@@ -7,46 +7,46 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <style>
         /* =========================================
-           BASE STYLING & THEME (DEFAULT: LIGHT MODE) 
+           BASE STYLING & THEME (DEFAULT: LIGHT MODE)
            ========================================= */
         /* GLOBAL RESET FOR OVERFLOW PREVENTION */
         *, *::before, *::after {
             box-sizing: border-box;
         }
 
-        body { 
-            font-family: 'Rajdhani', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-            background: #f8fafc; 
-            color: #0f172a; 
-            padding: 40px 20px; 
+        body {
+            font-family: 'Rajdhani', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+            padding: 40px 20px;
             line-height: 1.6;
             margin: 0;
             overflow-x: hidden; /* Prevents horizontal scroll wobbling */
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        .container { 
-            max-width: 800px; 
+        .container {
+            max-width: 800px;
             width: 100%;
-            margin: 0 auto; 
-            background: #ffffff; 
-            padding: 40px 50px; 
-            border-radius: 12px; 
-            border: 1px solid #e2e8f0; 
-            text-align: justify; 
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); 
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px 50px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            text-align: justify;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
         }
-        .back-btn { 
-            display: inline-block; 
-            margin-bottom: 30px; 
-            color: #475569; 
-            font-weight: 600; 
-            text-decoration: none; 
-            border: 1px solid #cbd5e1; 
-            padding: 8px 20px; 
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #475569;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid #cbd5e1;
+            padding: 8px 20px;
             border-radius: 30px;
             font-size: 14px;
             text-transform: uppercase;
@@ -54,15 +54,15 @@
             transition: all 0.2s ease;
         }
         .back-btn:hover { background: #e2e8f0; color: #0f172a; border-color: #94a3b8; }
-        
+
         h1 { color: #0f172a; font-size: 32px; border-bottom: 1px solid #e2e8f0; padding-bottom: 15px; margin-top: 0; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s ease, border-color 0.3s ease;}
-        
+
         /* Purple Accent for ZBZGames™ */
         h2 { color: #8b5cf6; font-size: 20px; margin-top: 35px; text-transform: uppercase; letter-spacing: 1px;}
-        
+
         p, li { color: #475569; font-size: 16px; font-weight: 500; margin-bottom: 15px; transition: color 0.3s ease; text-align: justify; }
         ul { padding-left: 20px; }
-        
+
         .meta-info {
             background: #f1f5f9;
             padding: 15px 20px;
@@ -73,7 +73,20 @@
         }
         .meta-info p { margin: 0; font-size: 15px; text-align: left; }
         .meta-info strong { color: #0f172a; transition: color 0.3s ease; }
-        
+
+        /* Plain-language mirror of the Google Play Data safety declaration */
+        .summary-box {
+            background: #f1f5f9;
+            padding: 20px 24px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            margin: 20px 0 5px;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+        .summary-box ul { margin: 0; }
+        .summary-box li { text-align: left; margin-bottom: 10px; }
+        .summary-box li:last-child { margin-bottom: 0; }
+
         a.contact-link { color: #8b5cf6; text-decoration: none; font-weight: 600; }
         a.contact-link:hover { text-decoration: underline; }
 
@@ -97,7 +110,7 @@
             transition: all 0.3s ease;
         }
         .theme-toggle-btn:hover { transform: scale(1.1); border-color: #94a3b8; color: #0f172a; }
-        
+
         /* Default state: Light Mode */
         .icon-moon { display: block; }
         .icon-sun { display: none; }
@@ -109,21 +122,24 @@
             h1 { font-size: 26px; }
             .back-btn { font-size: 13px; padding: 8px 16px; margin-bottom: 20px; }
             .theme-toggle-btn { top: 15px; right: 15px; width: 40px; height: 40px; } /* Slightly scale down button */
+            .summary-box { padding: 16px 18px; }
         }
 
         /* =========================================
-           DARK MODE OVERRIDES 
+           DARK MODE OVERRIDES
            ========================================= */
         body.dark-mode { background: #090d16; color: #f1f5f9; }
         body.dark-mode .container { background: #111827; border-color: #1f2937; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); }
         body.dark-mode .back-btn { color: #94a3b8; border-color: #334155; }
         body.dark-mode .back-btn:hover { background: #1e293b; color: #f8fafc; border-color: #475569; }
-        
+
         body.dark-mode h1 { color: #f8fafc; border-bottom-color: #334155; }
         body.dark-mode p, body.dark-mode li { color: #9ca3af; }
-        
+
         body.dark-mode .meta-info { background: rgba(17, 24, 39, 0.8); border-color: #1f2937; border-left-color: #8b5cf6;}
         body.dark-mode .meta-info strong { color: #f8fafc; }
+
+        body.dark-mode .summary-box { background: rgba(17, 24, 39, 0.8); border-color: #1f2937; }
 
         body.dark-mode .theme-toggle-btn { background: #111827; border-color: #334155; color: #94a3b8; box-shadow: 0 4px 6px rgba(0,0,0,0.3);}
         body.dark-mode .theme-toggle-btn:hover { border-color: #475569; color: #f8fafc; }
@@ -154,69 +170,86 @@
 
     <div class="container">
         <a href="https://zbzgames.zyeemzia.com" class="back-btn">← Return to Studio Dashboard</a>
-        
+
         <h1>Privacy Policy</h1>
-        
+
         <div class="meta-info">
             <p><strong>Application:</strong> Golf Championship Mini</p>
+            <p><strong>Package:</strong> com.zyeemzia.golfchampionshipmini</p>
             <p><strong>Developer:</strong> ZyeemZia™ / ZBZGames™</p>
-            <p><strong>Last Updated:</strong> June 25, 2026</p>
+            <p><strong>Last Updated:</strong> September 23, 2026</p>
         </div>
 
         <h2>1. Introduction</h2>
-        <p>Welcome to Golf Championship Mini. This Privacy Policy informs you of our policies regarding the collection, use, and disclosure of personal data when you play our offline 2D/3D casual golf game. By using the app, you agree to the collection and use of information in accordance with this policy. We prioritize a lean, privacy-first user experience and are committed to protecting your digital footprint.</p>
+        <p>Welcome to Golf Championship Mini. This Privacy Policy informs you of our policies regarding the collection, use, and disclosure of personal data when you play our offline 2D casual golf game. By using the app, you agree to the collection and use of information in accordance with this policy. We prioritize a lean, privacy-first user experience and are committed to protecting your digital footprint.</p>
 
-        <h2>2. Information Collection and Use</h2>
+        <h2>2. At A Glance</h2>
+        <p>This summary matches the Data safety declaration for the app on Google Play:</p>
+        <div class="summary-box">
+            <ul>
+                <li><strong>Collected and shared:</strong> your device's advertising identifier, IP address and general network information, used by Google AdMob to deliver advertising. Not linked to your identity.</li>
+                <li><strong>Stored on your device only:</strong> scorecards, career points, achievements, personal bests, the round you have in progress, and your theme and assist preferences. Never uploaded.</li>
+                <li><strong>Not collected at all:</strong> no name, email address, phone number, contacts, location, camera or microphone data, photos, files, health data, or payment details.</li>
+                <li><strong>Permissions:</strong> internet access, network state, and the advertising ID permission required by the ads SDK. The app requests no runtime permissions at all.</li>
+            </ul>
+        </div>
+
+        <h2>3. Information Collection and Use</h2>
         <p>We built Golf Championship Mini to be a completely offline, standalone experience. We only request the permissions strictly necessary for the app to function and deliver advertisements. We do not require you to create an account, nor do we collect your name, email, phone number, or personal contacts.</p>
         <ul>
             <li><strong>No Precise Location Data (GPS):</strong> Unlike real-world golf rangefinders, this game does not require, request, or access your device's GPS or location data.</li>
             <li><strong>No Camera or Microphone Access:</strong> The game operates entirely via touch controls on a digital canvas. We do not access your camera or microphone.</li>
-            <li><strong>Local Storage & Caching:</strong> Your active game state, round scores, and digital scorecards are stored securely within your device's local memory. This data is processed locally and is never uploaded to the cloud or transmitted to our developer servers.</li>
-            <li><strong>Device Identifiers:</strong> We use secure third-party services that collect Device IDs and Android Advertising Identifiers to facilitate ad delivery.</li>
+            <li><strong>Local Storage &amp; Caching:</strong> Your active round, hole-by-hole scorecards, career points, unlocked achievements, personal best scores, and your theme and assist-mode preferences are stored within your device's private app storage. The app also keeps a simple count of launches, used solely to pace how often advertisements appear. All of this is processed locally and is never uploaded to the cloud or transmitted to our developer servers.</li>
+            <li><strong>Device Identifiers:</strong> We use secure third-party services that collect Device IDs and the Android Advertising Identifier to facilitate ad delivery. The app itself never reads, stores, or transmits your advertising identifier for any purpose of its own.</li>
         </ul>
 
-        <h2>3. Third-Party Service Providers</h2>
-        <p>To keep the game free to play, we integrate with industry-standard third-party monetization platforms. These providers operate under their own strict Privacy Policies:</p>
+        <h2>4. Third-Party Service Providers</h2>
+        <p>To keep the game free to play, we integrate two components, both provided by Google. These operate under their own Privacy Policies:</p>
         <ul>
-            <li><strong>Google AdMob:</strong> We display banner, interstitial, and rewarded video advertisements (e.g., watching an ad to earn a "Mulligan"). AdMob automatically collects and uses service data, such as your device's advertising ID, IP address, and network information, to serve relevant ads and prevent fraud. All user data collected by the Google Mobile Ads SDK is encrypted in transit.</li>
+            <li><strong>Google AdMob:</strong> We display banner, interstitial, app-open, and rewarded video advertisements. Rewarded videos are always optional and are offered in exchange for an in-game benefit, such as replaying a shot as a "Mulligan" or taking a free drop after a water penalty; declining one never blocks your progress. AdMob automatically collects and uses service data, such as your device's advertising ID, IP address, and network information, to serve relevant ads and prevent fraud. All user data collected by the Google Mobile Ads SDK is encrypted in transit. Google's handling of that data is described at <a href="https://business.safety.google/privacy/" class="contact-link" target="_blank" rel="noopener">business.safety.google/privacy</a>, and its advertising partners are listed at <a href="https://policies.google.com/technologies/partner-sites" class="contact-link" target="_blank" rel="noopener">policies.google.com/technologies/partner-sites</a>.</li>
+            <li><strong>Google User Messaging Platform (UMP):</strong> A Google-certified consent management platform, used to ask for and record your advertising preferences where the law requires it. It stores your choice on your device so it can be applied to future sessions and changed later.</li>
         </ul>
+        <p>There is no analytics SDK, no crash-reporting service, no social login, no advertising mediation network, no cloud database, and no server operated by the developer. The app connects to the internet only to request advertisements and consent messages, and remains fully playable with no connection at all.</p>
         <p><em>Note: Golf Championship Mini does not currently utilize in-app purchases or subscription services. All gameplay elements are entirely free or accessible via rewarded advertisements.</em></p>
 
-        <h2>4. Data Retention and Deletion Policy</h2>
+        <h2>5. Data Retention and Deletion Policy</h2>
         <p>In compliance with modern app store Data Safety regulations:</p>
         <ul>
             <li><strong>No Account Data:</strong> Because Golf Championship Mini operates entirely without user accounts, we do not hold any personal profile data on any remote servers.</li>
-            <li><strong>Local Data Deletion:</strong> Any scorecards or round histories generated during gameplay are stored locally on your device. You can permanently delete this data at any time by clearing the app's cache in your Android settings, or by simply uninstalling the app.</li>
-            <li><strong>No Formal Deletion Request Required:</strong> Because we do not collect, tie, or transmit your usage to a permanent, personally identifiable profile on external developer servers, no formal data deletion request to the publisher is necessary.</li>
+            <li><strong>Deletion Inside the App:</strong> Open the scorecard list and choose <em>Delete all</em> to erase every saved round, or remove individual scorecards one at a time.</li>
+            <li><strong>Local Data Deletion:</strong> Any scorecards, career progress or round histories generated during gameplay are stored locally on your device. You can permanently delete all of it at any time via <em>Settings &gt; Apps &gt; Golf Championship Mini &gt; Storage &gt; Clear data</em>, or by simply uninstalling the app.</li>
+            <li><strong>No Formal Deletion Request Required:</strong> Because we do not collect, tie, or transmit your usage to a permanent, personally identifiable profile on external developer servers, no formal data deletion request to the publisher is necessary. Data processed by Google for advertising is retained according to Google's own policies, linked above.</li>
         </ul>
 
-        <h2>5. Analytics and Tracking</h2>
+        <h2>6. Analytics and Tracking</h2>
         <p>We maintain a lean and private gaming experience. We do not use generalized behavioral monitoring or external analytics tools (such as Google Analytics). Our third-party partner (AdMob) only collects the minimum telemetry data required to serve advertisements and maintain network security.</p>
 
-        <h2>6. Your Privacy Rights & Consent</h2>
-        <p>Depending on your region (such as the EEA or the UK), you have specific rights regarding your personal data and ad tracking.</p>
+        <h2>7. Your Privacy Rights &amp; Consent</h2>
+        <p>Depending on your region, you have specific rights regarding your personal data and ad tracking.</p>
         <ul>
-            <li><strong>Consent Management:</strong> If applicable in your region, you will be presented with a Consent Management Platform (CMP) dialog upon launching the app, allowing you to grant or deny permission for personalized ad tracking.</li>
-            <li><strong>Opt-Out of Personalized Ads:</strong> You can opt-out of personalized advertising at any time by navigating to your device's system settings (e.g., Google Settings > Ads > Opt out of Ads Personalization) or by resetting your advertising ID.</li>
+            <li><strong>Consent Management (EEA, UK, Switzerland):</strong> If applicable in your region, you will be presented with a Consent Management Platform (CMP) dialog upon launching the app, allowing you to grant or deny permission for personalized ad tracking. You may decline, and the game remains fully playable.</li>
+            <li><strong>Changing Your Choice In-App:</strong> Tap <strong>Privacy options</strong> on the app's home screen at any time to review, change, or withdraw the consent you previously gave. Withdrawing is as easy as granting.</li>
+            <li><strong>United States:</strong> Residents of states with applicable privacy laws are shown a notice allowing them to opt out of the sale or sharing of personal information for targeted advertising. The same <strong>Privacy options</strong> entry reopens that notice.</li>
+            <li><strong>Opt-Out of Personalized Ads:</strong> You can opt out of personalized advertising at any time by navigating to your device's system settings (e.g., Settings &gt; Privacy &gt; Ads) or by resetting your advertising ID.</li>
         </ul>
 
-        <h2>7. Children’s Privacy</h2>
-        <p>Our Service does not address anyone under the age of 13 (or 16 in certain jurisdictions). We do not knowingly collect personally identifiable information from children. If you are a parent or guardian and you are aware that your child has provided us with personal data, please contact us immediately so we can take steps to ensure it is purged from any associated third-party advertising networks.</p>
+        <h2>8. Children's Privacy</h2>
+        <p>Our Service is intended for users aged 13 and over (or 16 in certain jurisdictions) and does not address children. The app is not enrolled in Google Play's Designed for Families programme. We do not knowingly collect personally identifiable information from children. If you are a parent or guardian and you are aware that your child has provided us with personal data, please contact us immediately so we can take steps to ensure it is purged from any associated third-party advertising networks.</p>
 
-        <h2>8. Security of Data</h2>
-        <p>The security of your operational data is critical to us. Because we do not transmit your scorecards or gameplay data to external developer servers, the risk of external data breaches is mitigated natively by your device's sandboxed storage architecture. However, please remember that no method of electronic storage or transmission over the Internet is 100% secure.</p>
+        <h2>9. Security of Data</h2>
+        <p>The security of your operational data is critical to us. Because we do not transmit your scorecards or gameplay data to external developer servers, the risk of external data breaches is mitigated natively by your device's sandboxed storage architecture. Advertisement and consent requests travel over encrypted connections. However, please remember that no method of electronic storage or transmission over the Internet is 100% secure.</p>
 
-        <h2>9. Changes to This Privacy Policy</h2>
+        <h2>10. Changes to This Privacy Policy</h2>
         <p>We may update our Privacy Policy from time to time to reflect changes in Google Play Data Safety requirements or new app features. We will notify you of any changes by updating the "Last Updated" date at the top of this policy. You are advised to review this Privacy Policy periodically for any changes.</p>
 
-        <h2>10. Contact Us</h2>
+        <h2>11. Contact Us</h2>
         <p>If you have any questions, concerns, or requests regarding this Privacy Policy or how your data is handled, please contact ZyeemZia™ via email at: <a href="mailto:admin@zyeemzia.com" class="contact-link">admin@zyeemzia.com</a>.</p>
     </div>
 
     <script>
         const themeBtn = document.getElementById('themeToggle');
         const bodyElement = document.body;
-        
+
         // Check if the user selected dark mode on the main index.html page
         if(localStorage.getItem('matrixTheme') === 'dark') {
             bodyElement.classList.add('dark-mode');
@@ -224,7 +257,7 @@
 
         themeBtn.addEventListener('click', () => {
             bodyElement.classList.toggle('dark-mode');
-            
+
             if(bodyElement.classList.contains('dark-mode')) {
                 localStorage.setItem('matrixTheme', 'dark');
             } else {
