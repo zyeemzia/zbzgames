@@ -7,45 +7,45 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <style>
         /* =========================================
-           BASE STYLING & THEME (DEFAULT: LIGHT MODE) 
+           BASE STYLING & THEME (DEFAULT: LIGHT MODE)
            ========================================= */
         /* GLOBAL RESET FOR OVERFLOW PREVENTION */
         *, *::before, *::after {
             box-sizing: border-box;
         }
 
-        body { 
-            font-family: 'Rajdhani', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-            background: #f8fafc; 
-            color: #0f172a; 
-            text-align: center; 
-            padding: 50px 20px; 
-            line-height: 1.6; 
+        body {
+            font-family: 'Rajdhani', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+            text-align: center;
+            padding: 50px 20px;
+            line-height: 1.6;
             margin: 0;
-            overflow-x: hidden; 
-            transition: background-color 0.3s ease, color 0.3s ease; 
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         .container { max-width: 950px; margin: 0 auto; position: relative; z-index: 1; width: 100%; }
-        
+
         /* Dashboard Header */
         .header { margin-bottom: 30px; }
-        .header h1 { 
-            color: #0f172a; 
-            font-size: 42px; 
-            margin-bottom: 5px; 
-            letter-spacing: 2px; 
+        .header h1 {
+            color: #0f172a;
+            font-size: 42px;
+            margin-bottom: 5px;
+            letter-spacing: 2px;
             font-weight: 700;
             transition: color 0.3s ease;
         }
-        .header p { 
-            color: #64748b; 
-            font-size: 16px; 
-            margin-top: 0; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
+        .header p {
+            color: #64748b;
+            font-size: 16px;
+            margin-top: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             font-weight: 600;
         }
 
@@ -79,62 +79,62 @@
             transition: color 0.3s ease;
         }
         .profile-highlight { color: #0f172a; font-weight: 600; transition: color 0.3s ease; }
-        
+
         /* Grid Layout System */
-        .app-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); 
-            gap: 25px; 
-            margin-bottom: 40px; 
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
         }
-        
+
         /* Creative App Module Cards */
-        .app-card { 
-            background: #ffffff; 
-            padding: 30px; 
-            border-radius: 16px; 
-            border: 1px solid #e2e8f0; 
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05); 
-            text-align: justify; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: space-between; 
-            transition: all 0.3s ease; 
+        .app-card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            text-align: justify;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
         }
-        .app-card:hover { 
-            transform: translateY(-6px); 
-            border-color: #cbd5e1; 
+        .app-card:hover {
+            transform: translateY(-6px);
+            border-color: #cbd5e1;
         }
-        
+
         /* Game Accents */
         .purple-accent:hover { box-shadow: 0 10px 25px -5px rgba(139, 92, 246, 0.15); border-color: rgba(139, 92, 246, 0.4); }
         .red-accent:hover { box-shadow: 0 10px 25px -5px rgba(225, 29, 72, 0.15); border-color: rgba(225, 29, 72, 0.4); }
         .emerald-accent:hover { box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.4); }
-        
+
         .app-card h2 { margin-top: 0; margin-bottom: 12px; font-size: 24px; font-weight: 700; letter-spacing: 0.5px; }
         .purple-accent h2 { color: #8b5cf6; }
         .red-accent h2 { color: #e11d48; }
         .emerald-accent h2 { color: #10b981; }
-        
+
         .app-card p { color: #64748b; font-size: 16px; font-weight: 500; margin-bottom: 25px; flex-grow: 1; transition: color 0.3s ease; }
-        
+
         /* Action Links & Store Badges */
-        .card-footer { 
-            border-top: 1px solid #e2e8f0; 
-            padding-top: 20px; 
-            margin-top: auto; 
+        .card-footer {
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+            margin-top: auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
             transition: border-color 0.3s ease;
         }
-        .link-btn { 
-            display: inline-block; 
-            text-decoration: none; 
-            font-weight: 600; 
-            font-size: 14px; 
-            text-transform: uppercase; 
-            letter-spacing: 0.5px; 
+        .link-btn {
+            display: inline-block;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             transition: opacity 0.2s ease;
         }
         .purple-accent .link-btn { color: #8b5cf6; }
@@ -149,31 +149,57 @@
         }
         .play-badge:hover { transform: scale(1.05); }
         .play-badge img { height: 100%; width: auto; }
-        
-        /* Global Command Links */
-        .global-support { 
-            margin-top: 60px; 
-            padding-top: 20px; 
-            display: flex; 
-            justify-content: center;
-            gap: 20px; 
-            flex-wrap: wrap; 
+
+        /* Pre-release status pill, shown in place of a store badge while a
+           game is still in closed testing. Swap it for a .play-badge link
+           once the game is live on Google Play. */
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #64748b;
+            border: 1px dashed #cbd5e1;
+            padding: 9px 16px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
         }
-        .support-btn { 
+        .status-pill::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18);
+        }
+
+        /* Global Command Links */
+        .global-support {
+            margin-top: 60px;
+            padding-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .support-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            font-family: inherit; 
-            color: #475569; 
-            text-decoration: none; 
-            font-weight: 600; 
-            font-size: 15px; 
-            border: 1px solid #cbd5e1; 
-            padding: 12px 24px; 
-            border-radius: 30px; 
+            font-family: inherit;
+            color: #475569;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            border: 1px solid #cbd5e1;
+            padding: 12px 24px;
+            border-radius: 30px;
             letter-spacing: 1px;
-            transition: all 0.2s ease; 
+            transition: all 0.2s ease;
             cursor: pointer;
             background: transparent;
             line-height: 1.4;
@@ -184,7 +210,7 @@
         .contact-section {
             background: rgba(255, 255, 255, 0.8);
             border: 1px solid #e2e8f0;
-            border-left: 4px solid #8b5cf6; 
+            border-left: 4px solid #8b5cf6;
             border-radius: 12px;
             padding: 30px 35px;
             margin-top: 50px;
@@ -212,9 +238,9 @@
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; }
         .form-group { display: flex; flex-direction: column; gap: 6px; text-align: left; width: 100%; }
         .form-group label { font-weight: 600; color: #0f172a; font-size: 15px; transition: color 0.3s ease; }
-        
+
         .form-group input, .form-group textarea, .form-group select {
-            width: 100%; 
+            width: 100%;
             font-family: inherit;
             padding: 12px 15px;
             border: 1px solid #cbd5e1;
@@ -241,11 +267,11 @@
         .phone-wrapper select {
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
-            border-right: 0; 
-            width: 150px; 
+            border-right: 0;
+            width: 150px;
             padding: 12px 10px;
             cursor: pointer;
-            text-overflow: ellipsis; 
+            text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap;
         }
@@ -253,7 +279,7 @@
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
             flex: 1;
-            min-width: 0; 
+            min-width: 0;
         }
 
         .submit-btn {
@@ -268,7 +294,7 @@
             letter-spacing: 1px;
             cursor: pointer;
             transition: all 0.3s ease;
-            align-self: center; 
+            align-self: center;
             width: 100%;
             max-width: 400px;
             margin-top: 10px;
@@ -277,33 +303,33 @@
 
         /* Media Query adjusted to optimize mobile boundaries */
         @media (max-width: 650px) {
-            .contact-section { padding: 25px 20px; } 
+            .contact-section { padding: 25px 20px; }
             .form-row { grid-template-columns: 1fr; }
             .phone-wrapper select { width: 120px; font-size: 14px; }
         }
 
         /* Legal Footer For Web Crawlers */
-        .legal-footer { 
-            margin-top: 40px; 
-            padding-top: 20px; 
-            border-top: 1px solid #e2e8f0; 
-            color: #64748b; 
-            font-size: 13px; 
-            font-weight: 600; 
+        .legal-footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            color: #64748b;
+            font-size: 13px;
+            font-weight: 600;
             line-height: 1.8;
-            transition: border-color 0.3s ease, color 0.3s ease; 
+            transition: border-color 0.3s ease, color 0.3s ease;
         }
-        body.dark-mode .legal-footer { 
-            border-top-color: #1f2937; 
-            color: #94a3b8; 
+        body.dark-mode .legal-footer {
+            border-top-color: #1f2937;
+            color: #94a3b8;
         }
-        .legal-footer a { 
-            color: #3b82f6; 
-            text-decoration: none; 
-            font-weight: 700; 
+        .legal-footer a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 700;
             display: inline-block;
             margin-top: 5px;
-            transition: opacity 0.2s ease; 
+            transition: opacity 0.2s ease;
         }
         .legal-footer a:hover { opacity: 0.7; }
 
@@ -327,54 +353,56 @@
             transition: all 0.3s ease;
         }
         .theme-toggle-btn:hover { transform: scale(1.1); border-color: #94a3b8; color: #0f172a; }
-        
+
         .icon-moon { display: block; }
         .icon-sun { display: none; }
 
         /* MODAL CSS (Light Base) */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(248, 250, 252, 0.85); backdrop-filter: blur(8px); 
+            background: rgba(248, 250, 252, 0.85); backdrop-filter: blur(8px);
             display: flex; justify-content: center; align-items: center;
-            z-index: 9999; opacity: 0; visibility: hidden; transition: all 0.3s ease-in-out; cursor: pointer; 
+            z-index: 9999; opacity: 0; visibility: hidden; transition: all 0.3s ease-in-out; cursor: pointer;
         }
         .modal-overlay.active { opacity: 1; visibility: visible; }
         .modal-content {
             max-width: 90%; max-height: 85vh; border-radius: 12px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2), 0 0 20px rgba(245, 158, 11, 0.1);
             transform: scale(0.9); transition: all 0.3s ease-in-out;
-            user-select: none; -webkit-user-select: none; pointer-events: none; 
+            user-select: none; -webkit-user-select: none; pointer-events: none;
         }
         .modal-overlay.active .modal-content { transform: scale(1); }
 
         /* =========================================
-           DARK MODE OVERRIDES 
+           DARK MODE OVERRIDES
            ========================================= */
         body.dark-mode { background: #090d16; color: #f1f5f9; }
         body.dark-mode .header h1 { color: #f8fafc; }
-        
+
         body.dark-mode .profile-section { background: rgba(17, 24, 39, 0.6); border-color: #1f2937; box-shadow: inset 0 0 20px rgba(0,0,0,0.2); }
         body.dark-mode .profile-section h3 { color: #e2e8f0; border-bottom-color: #334155; }
         body.dark-mode .profile-section p { color: #94a3b8; }
         body.dark-mode .profile-highlight { color: #f8fafc; }
-        
+
         body.dark-mode .app-card { background: #111827; border-color: #1f2937; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3); }
         body.dark-mode .app-card:hover { border-color: #374151; }
         body.dark-mode .app-card p { color: #9ca3af; }
         body.dark-mode .card-footer { border-top-color: #1f2937; }
 
+        body.dark-mode .status-pill { color: #94a3b8; border-color: #334155; }
+
         body.dark-mode .app-card.purple-accent:hover { box-shadow: 0 10px 25px -5px rgba(139, 92, 246, 0.15); border-color: rgba(139, 92, 246, 0.4); }
         body.dark-mode .app-card.red-accent:hover { box-shadow: 0 10px 25px -5px rgba(225, 29, 72, 0.15); border-color: rgba(225, 29, 72, 0.4); }
         body.dark-mode .app-card.emerald-accent:hover { box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.4); }
-        
+
         body.dark-mode .support-btn { border-color: #334155; color: #94a3b8; }
         body.dark-mode .support-btn:hover { background: #1e293b; color: #f8fafc; border-color: #475569; }
-        
+
         /* Dark Mode for Contact Form */
         body.dark-mode .contact-section { background: rgba(17, 24, 39, 0.6); border-color: #1f2937; border-left-color: #8b5cf6; box-shadow: inset 0 0 20px rgba(0,0,0,0.2); }
         body.dark-mode .contact-section h3 { color: #e2e8f0; border-bottom-color: #334155; }
         body.dark-mode .contact-section p { color: #94a3b8; }
-        
+
         body.dark-mode .form-group label { color: #e2e8f0; }
         body.dark-mode .form-group input, body.dark-mode .form-group textarea, body.dark-mode .form-group select {
             background: #1e293b;
@@ -416,7 +444,7 @@
     </button>
 
     <div class="container">
-        
+
         <div class="header">
             <h1>ZBZGames™</h1>
             <p>Interactive Entertainment Studio</p>
@@ -442,8 +470,19 @@
                 </div>
             </div>
 
+            <div class="app-card emerald-accent">
+                <div>
+                    <h2>Bangladesh Airforce Mini</h2>
+                    <p>A ten-mission offline arcade flight campaign set in the 1971 Liberation War, flying with Kilo Flight &mdash; the first air operations unit of the Bangladesh Air Force. Every aircraft, map and sound is generated in code, alongside a researched mission archive and a 704-question history quiz. No accounts, no servers, fully playable offline.</p>
+                </div>
+                <div class="card-footer">
+                    <a class="link-btn" href="https://zbzgames.zyeemzia.com/privacy-bdairforcemini.html">Privacy Protocol</a>
+                    <span class="status-pill">Closed Testing</span>
+                </div>
+            </div>
+
         </div>
-        
+
         <div class="global-support">
             <button id="openCardBtn" class="support-btn">DIGITAL BUSINESS CARD</button>
             <a class="support-btn" href="mailto:admin@zyeemzia.com">SIGNAL SUPPORT DESK | ADMIN@ZYEEMZIA.COM</a>
@@ -452,7 +491,7 @@
         <div class="contact-section">
             <h3>Direct Transmission Hub</h3>
             <p>For operational inquiries, game support, or partnership requests, submit a secure message directly to the executive command.</p>
-            
+
             <form action="https://formsubmit.co/zyeemz@gmail.com" method="POST" enctype="multipart/form-data" class="contact-form">
                 <input type="hidden" name="_subject" value="New Transmission via ZBZGames Studio">
                 <input type="hidden" name="_captcha" value="false">
@@ -758,20 +797,30 @@
         // --- 2. THEME TOGGLE LOGIC ---
         const themeBtn = document.getElementById('themeToggle');
         const bodyElement = document.body;
-        
+
+        /*
+         * localStorage is wrapped, because reading it can THROW rather than
+         * return null -- in private browsing, with site data blocked, or
+         * inside an embedded viewer. Unwrapped, that exception kills the rest
+         * of this script and the theme button stops working, which is worse
+         * than simply forgetting the theme. Remembering is a convenience; the
+         * page must work without it.
+         */
+        const readTheme = () => {
+            try { return localStorage.getItem('matrixTheme'); } catch (e) { return null; }
+        };
+        const writeTheme = (v) => {
+            try { localStorage.setItem('matrixTheme', v); } catch (e) { /* not fatal */ }
+        };
+
         // Synchronizes theme with main site via localStorage
-        if(localStorage.getItem('matrixTheme') === 'dark') {
+        if (readTheme() === 'dark') {
             bodyElement.classList.add('dark-mode');
         }
 
         themeBtn.addEventListener('click', () => {
             bodyElement.classList.toggle('dark-mode');
-            
-            if(bodyElement.classList.contains('dark-mode')) {
-                localStorage.setItem('matrixTheme', 'dark');
-            } else {
-                localStorage.setItem('matrixTheme', 'light');
-            }
+            writeTheme(bodyElement.classList.contains('dark-mode') ? 'dark' : 'light');
         });
     </script>
 </body>
