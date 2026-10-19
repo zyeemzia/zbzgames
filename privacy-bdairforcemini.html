@@ -147,6 +147,8 @@
         /* Dark state: Show Sun icon to toggle Light Mode */
         body.dark-mode .icon-moon { display: none; }
         body.dark-mode .icon-sun { display: block; }
+            /* phones: justified text leaves wide gaps between words, so use normal alignment */
+        @media (max-width: 650px) { .container, .container p, .container li, .policy-card, .policy-card p, .policy-card li, .legal-entity-box p { text-align: left; } }
     </style>
     <link rel="stylesheet" href="https://zyeemzia.com/transmit.css?v=3">
     <style>.tx-page { max-width: 800px; margin: 0 auto; } .tx-page .tx { margin-top: 28px; }</style>
@@ -177,75 +179,84 @@
 
         <div class="meta-info">
             <p><strong>Application:</strong> Bangladesh Airforce Mini</p>
-            <p><strong>Package:</strong> com.zyeemzia.bangladeshairforcemini</p>
-            <p><strong>Developer:</strong> ZyeemZia&trade; / ZBZGames&trade;</p>
-            <p><strong>Last Updated:</strong> October 2, 2026</p>
+            <p><strong>Package (Google Play ID):</strong> com.zyeemzia.bangladeshairforcemini</p>
+            <p><strong>Developer:</strong> ZyeemZia&trade; / ZBZGames&trade; (Zyeem Bin Zia), Dhaka, Bangladesh</p>
+            <p><strong>Effective date / Last updated:</strong> 19 October 2026</p>
         </div>
 
-        <h2>1. Introduction</h2>
-        <p>Welcome to Bangladesh Airforce Mini. This Privacy Policy informs you of our policies regarding the collection, use, and disclosure of personal data when you play our offline arcade flight campaign set during the 1971 Liberation War. By using the app, you agree to the collection and use of information in accordance with this policy. The game is a single-player, offline experience with no accounts and no developer-operated servers, and we are committed to keeping your digital footprint minimal.</p>
+        <p>This policy explains what information Bangladesh Airforce Mini uses, who receives it and the choices you have. Bangladesh Airforce Mini is a single-player, offline arcade flight campaign set during the 1971 Liberation War. It has no accounts and no developer-operated servers.</p>
 
-        <h2>2. At A Glance</h2>
+        <h2>1. Summary: At A Glance</h2>
         <p>This summary matches the Data safety declaration for the app on Google Play:</p>
         <div class="summary-box">
             <ul>
                 <li><strong>Collected and shared:</strong> your device's advertising identifier, IP address and general network information, used by Google AdMob to deliver advertising. Not linked to your identity.</li>
                 <li><strong>Stored on your device only:</strong> which missions you have unlocked, your best score, star rating and time for each mission, your experience points and rank, which quiz questions you have answered correctly, which archive entries you have read, and your theme, difficulty and sound preferences. Never uploaded.</li>
-                <li><strong>Not collected at all:</strong> no name, email address, phone number, contacts, location, camera or microphone data, photos, files, health data, or payment details.</li>
+                <li><strong>Not collected at all:</strong> no name, email address, phone number, contacts, location, camera or microphone data, photos, files, health data or payment details.</li>
                 <li><strong>Permissions:</strong> internet access, network state, the advertising ID permission required by the ads SDK, and vibration for haptic feedback on the flight controls. The app requests no runtime permissions at all.</li>
+                <li><strong>Advertising:</strong> yes, through Google AdMob. Full-screen advertisements between missions, an advertisement when the app is opened after you have completed a mission, and optional rewarded advertisements. No banner advertisements.</li>
+                <li><strong>Purchases:</strong> none. The app has no in-app purchases or subscriptions.</li>
             </ul>
         </div>
 
-        <h2>3. Information Collection and Use</h2>
-        <p>Bangladesh Airforce Mini is a completely offline, standalone experience. The entire game, including all ten missions, the mission archive and the history quiz, runs on your device. We only request the permissions strictly necessary for the app to function and to deliver advertisements. We do not require you to create an account, nor do we collect your name, email, phone number, or personal contacts.</p>
+        <h2>2. Information the App Uses</h2>
+        <p>The whole game, including all ten missions, the mission archive and the history quiz, runs on your device. You do not need an account, and we do not collect your name, email address, phone number or contacts. The app asks only for the permissions it needs to work and to show advertisements.</p>
         <ul>
-            <li><strong>No Location Data (GPS):</strong> the game's map is a fictionalised rendering of 1971 East Pakistan drawn entirely in code. It does not require, request, or access your device's GPS or location data.</li>
-            <li><strong>No Camera or Microphone Access:</strong> the game operates entirely via touch controls on a digital canvas. We do not access your camera or microphone.</li>
-            <li><strong>Local Storage &amp; Caching:</strong> your campaign progress, per-mission best score, star rating and completion time, experience points and rank, the quiz questions you have answered correctly, the archive entries you have read, and your theme, difficulty and sound preferences are stored in a single record inside your device's private app storage. All of this is processed locally and is never uploaded to the cloud or transmitted to our developer servers. If that record is missing or unreadable, the game simply starts a fresh one rather than failing.</li>
-            <li><strong>Haptic Feedback:</strong> the vibration permission is used only to produce a short pulse when you press an on-screen control. It reads nothing and transmits nothing.</li>
-            <li><strong>Device Identifiers:</strong> we use a third-party advertising service that collects Device IDs and the Android Advertising Identifier to facilitate ad delivery. The app itself never reads, stores, or transmits your advertising identifier for any purpose of its own.</li>
+            <li><strong>Local game data:</strong> your campaign progress, best score, star rating and completion time for each mission, experience points and rank, the quiz questions you have answered correctly, the archive entries you have read, and your theme, difficulty and sound preferences are kept in a single record in the app's private storage on your device. This data is processed on the device and is never uploaded to the cloud or sent to us. If the record is missing or unreadable, the game starts a fresh one instead of failing.</li>
+            <li><strong>Internet and network state:</strong> used only to request advertisements and consent messages. The campaign is fully playable without a connection.</li>
+            <li><strong>Vibration:</strong> used only to give a short pulse when you press an on-screen control. It reads nothing and sends nothing.</li>
+            <li><strong>Advertising ID:</strong> the advertising ID permission is required by the Google Mobile Ads SDK, which collects device identifiers and the Android advertising identifier to deliver advertisements. The app itself never reads, stores or sends your advertising identifier for any purpose of its own.</li>
+            <li><strong>Location:</strong> not used. The game's map is a fictionalised rendering of 1971 East Pakistan drawn entirely in code. The app does not request or access your device's GPS or location.</li>
+            <li><strong>Camera and microphone:</strong> not used. The game is played entirely with touch controls on a digital canvas.</li>
+        </ul>
+        <p>The app requests no runtime permissions at all.</p>
+
+        <h2>3. Third-Party Services</h2>
+        <p>To keep the game free to play, the app uses two components, both provided by Google. Each operates under Google's own privacy policy, available at <a href="https://policies.google.com/privacy" class="contact-link" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
+        <ul>
+            <li><strong>Google AdMob:</strong> shows full-screen advertisements between missions, an advertisement when the app is opened after you have already completed a mission, and optional rewarded advertisements. A rewarded advertisement is offered in exchange for an in-game benefit, such as doubling the experience points earned from a sortie; declining one never blocks your progress or affects the campaign. <strong>The game does not display banner advertisements.</strong> AdMob automatically collects and uses service data, such as your device's advertising ID, IP address and network information, to serve relevant advertisements and prevent fraud. All user data collected by the Google Mobile Ads SDK is encrypted in transit. Advertisements are restricted to a maximum content rating suitable for teen audiences. Google explains how it handles this data at <a href="https://business.safety.google/privacy/" class="contact-link" target="_blank" rel="noopener">business.safety.google/privacy</a>, and lists its advertising partners at <a href="https://policies.google.com/technologies/partner-sites" class="contact-link" target="_blank" rel="noopener">policies.google.com/technologies/partner-sites</a>.</li>
+            <li><strong>Google User Messaging Platform (UMP):</strong> a Google-certified consent management platform, used to ask for and record your advertising choices where the law requires it. It stores your choice on your device so that it applies to future sessions.</li>
+        </ul>
+        <p>There is no analytics SDK, no crash-reporting service, no social login, no advertising mediation network, no cloud database and no server operated by us.</p>
+        <p><em>Bangladesh Airforce Mini does not offer in-app purchases or subscriptions. All gameplay is free; rewarded advertisements only ever grant optional bonuses.</em></p>
+
+        <h2>4. Data Retention and Deletion</h2>
+        <ul>
+            <li><strong>No account data:</strong> the app has no user accounts, so we hold no personal profile data on any server.</li>
+            <li><strong>Local data:</strong> your campaign progress, scores, rank and preferences stay on your device. You can delete all of it at any time through <em>Settings &gt; Apps &gt; Bangladesh Airforce Mini &gt; Storage &gt; Clear storage</em>, or by uninstalling the app. Clearing storage also removes the advertising consent choice recorded on your device, so the consent message will be shown again on the next launch where it applies.</li>
+            <li><strong>No deletion request needed:</strong> because we do not collect your data or link your use of the app to a personally identifiable profile on any server, there is nothing for us to delete on our side. You are still welcome to contact us (see Contact).</li>
+            <li><strong>Advertising data:</strong> data processed by Google for advertising is retained by Google under Google's own policies, linked above.</li>
         </ul>
 
-        <h2>4. Third-Party Service Providers</h2>
-        <p>To keep the game free to play, we integrate two components, both provided by Google. These operate under their own Privacy Policies:</p>
+        <h2>5. Analytics and Tracking</h2>
+        <p>We do not use behavioural monitoring or analytics tools (such as Google Analytics), and the game does not report crashes to us. Google AdMob collects only the data it needs to serve advertisements and maintain network security.</p>
+
+        <h2>6. Your Choices and Rights</h2>
         <ul>
-            <li><strong>Google AdMob:</strong> we display full-screen advertisements between missions, an advertisement when the app is opened after you have already completed a mission, and optional rewarded advertisements. Rewarded advertisements are always optional and are offered in exchange for an in-game benefit, such as doubling the experience points earned from a sortie; declining one never blocks your progress and never affects the campaign. <strong>The game does not display banner advertisements.</strong> AdMob automatically collects and uses service data, such as your device's advertising ID, IP address, and network information, to serve relevant ads and prevent fraud. All user data collected by the Google Mobile Ads SDK is encrypted in transit. Advertisements are additionally restricted to a maximum content rating suitable for teen audiences. Google's handling of that data is described at <a href="https://business.safety.google/privacy/" class="contact-link" target="_blank" rel="noopener">business.safety.google/privacy</a>, and its advertising partners are listed at <a href="https://policies.google.com/technologies/partner-sites" class="contact-link" target="_blank" rel="noopener">policies.google.com/technologies/partner-sites</a>.</li>
-            <li><strong>Google User Messaging Platform (UMP):</strong> a Google-certified consent management platform, used to ask for and record your advertising preferences where the law requires it. It stores your choice on your device so it can be applied to future sessions.</li>
+            <li><strong>Permissions:</strong> the app requests no runtime permissions. You can review the app's permissions at any time in your device's Android Settings.</li>
+            <li><strong>Consent (EEA, UK and Switzerland):</strong> where this applies in your region, a consent message from a consent management platform (CMP) is shown before advertising starts, letting you grant or refuse permission for personalised advertising. You can refuse, and the game remains fully playable.</li>
+            <li><strong>United States:</strong> residents of states with applicable privacy laws are shown a notice that lets them opt out of the sale or sharing of personal information for targeted advertising.</li>
+            <li><strong>Changing or withdrawing your choice:</strong> you can reset the choice recorded on your device at any time by clearing the app's storage through <em>Settings &gt; Apps &gt; Bangladesh Airforce Mini &gt; Storage &gt; Clear storage</em>. The consent message will then be shown again on the next launch where it applies.</li>
+            <li><strong>Opting out of personalised ads:</strong> you can opt out of personalised advertising at any time, independently of this app, in your device's system settings (for example <em>Settings &gt; Privacy &gt; Ads</em>) or by resetting your advertising ID.</li>
         </ul>
-        <p>There is no analytics SDK, no crash-reporting service, no social login, no advertising mediation network, no cloud database, and no server operated by the developer. The app connects to the internet only to request advertisements and consent messages, and the entire campaign remains fully playable with no connection at all.</p>
-        <p><em>Note: Bangladesh Airforce Mini does not currently utilise in-app purchases or subscription services. All gameplay elements are entirely free; rewarded advertisements only ever grant optional bonuses.</em></p>
+        <p>Depending on where you live (for example under the GDPR in the EEA/UK), you may have rights to access, correct or delete personal data and to object to processing. Because the app keeps your data on your device, most of these you can exercise directly on the device; for anything else, contact us.</p>
 
-        <h2>5. Data Retention and Deletion Policy</h2>
-        <p>In compliance with modern app store Data Safety regulations:</p>
-        <ul>
-            <li><strong>No Account Data:</strong> because Bangladesh Airforce Mini operates entirely without user accounts, we do not hold any personal profile data on any remote servers.</li>
-            <li><strong>Local Data Deletion:</strong> your campaign progress, scores, rank and preferences are stored locally on your device. You can permanently delete all of it at any time via <em>Settings &gt; Apps &gt; Bangladesh Airforce Mini &gt; Storage &gt; Clear data</em>, or by simply uninstalling the app. Clearing the app's data also clears the advertising consent choice recorded on your device, so the consent message will be presented again on the next launch where it applies.</li>
-            <li><strong>No Formal Deletion Request Required:</strong> because we do not collect, tie, or transmit your usage to a permanent, personally identifiable profile on external developer servers, no formal data deletion request to the publisher is necessary. Data processed by Google for advertising is retained according to Google's own policies, linked above.</li>
-        </ul>
+        <h2>7. Children's Privacy</h2>
+        <p>Bangladesh Airforce Mini is intended for users aged 13 and over (or 16 in certain jurisdictions) and is not directed at children. The app is not enrolled in Google Play's Designed for Families programme, and advertising is restricted to a maximum content rating suitable for teen audiences.</p>
+        <p>Please note that the game depicts historical armed conflict: it portrays air operations flown by Kilo Flight during the 1971 Liberation War, in a stylised, non-graphic form.</p>
+        <p>We do not knowingly collect personal information from children. If you are a parent or guardian and believe your child has provided personal data, please contact us so that we can take steps to have it removed from any associated third-party advertising networks.</p>
 
-        <h2>6. Analytics and Tracking</h2>
-        <p>We maintain a lean and private gaming experience. We do not use generalised behavioural monitoring or external analytics tools (such as Google Analytics), and the game does not report crashes to us. Our third-party partner (AdMob) only collects the minimum telemetry data required to serve advertisements and maintain network security.</p>
+        <h2>8. Security</h2>
+        <p>We do not send your progress or gameplay data to any server, so it stays protected by your device's sandboxed app storage. Advertisement and consent requests travel over encrypted connections. No method of electronic storage or transmission over the internet is completely secure.</p>
 
-        <h2>7. Your Privacy Rights &amp; Consent</h2>
-        <p>Depending on your region, you have specific rights regarding your personal data and ad tracking.</p>
-        <ul>
-            <li><strong>Consent Management (EEA, UK, Switzerland):</strong> if applicable in your region, you will be presented with a Consent Management Platform (CMP) dialog before advertising is initialised, allowing you to grant or deny permission for personalised ad tracking. You may decline, and the game remains fully playable.</li>
-            <li><strong>United States:</strong> residents of states with applicable privacy laws are shown a notice allowing them to opt out of the sale or sharing of personal information for targeted advertising.</li>
-            <li><strong>Changing or Withdrawing Your Choice:</strong> you can reset the choice recorded on your device at any time by clearing the app's data via <em>Settings &gt; Apps &gt; Bangladesh Airforce Mini &gt; Storage &gt; Clear data</em>, which causes the consent message to be presented again on the next applicable launch.</li>
-            <li><strong>Opt-Out of Personalised Ads:</strong> you can opt out of personalised advertising at any time, independently of this app, by navigating to your device's system settings (for example <em>Settings &gt; Privacy &gt; Ads</em>) or by resetting your advertising ID.</li>
-        </ul>
+        <h2>9. International Processing</h2>
+        <p>Google, which provides the advertising and consent services named above, may process data on servers outside your country under its own safeguards.</p>
 
-        <h2>8. Children's Privacy</h2>
-        <p>Our Service is intended for users aged 13 and over (or 16 in certain jurisdictions) and does not address children. The app is not enrolled in Google Play's Designed for Families programme, and advertising is restricted to a maximum content rating suitable for teen audiences. Please also note that the game depicts historical armed conflict: it portrays air operations flown by Kilo Flight during the 1971 Liberation War, in a stylised, non-graphic form. We do not knowingly collect personally identifiable information from children. If you are a parent or guardian and you are aware that your child has provided us with personal data, please contact us immediately so we can take steps to ensure it is purged from any associated third-party advertising networks.</p>
+        <h2>10. Changes to This Policy</h2>
+        <p>We may update this policy from time to time, for example to reflect changes in Google Play Data safety requirements or new app features. When we do, we will change the date at the top of this page. For significant changes, we will also note them in the app's store listing or release notes.</p>
 
-        <h2>9. Security of Data</h2>
-        <p>The security of your operational data is critical to us. Because we do not transmit your progress or gameplay data to external developer servers, the risk of external data breaches is mitigated natively by your device's sandboxed storage architecture. Advertisement and consent requests travel over encrypted connections. However, please remember that no method of electronic storage or transmission over the Internet is 100% secure.</p>
-
-        <h2>10. Changes to This Privacy Policy</h2>
-        <p>We may update our Privacy Policy from time to time to reflect changes in Google Play Data Safety requirements or new app features. We will notify you of any changes by updating the "Last Updated" date at the top of this policy. You are advised to review this Privacy Policy periodically for any changes.</p>
-
-        <h2>11. Contact Us</h2>
-        <p>If you have any questions, concerns, or requests regarding this Privacy Policy or how your data is handled, please contact ZyeemZia&trade; via email at: <a href="mailto:admin@zyeemzia.com" class="contact-link">admin@zyeemzia.com</a>.</p>
+        <h2>11. Contact</h2>
+        <p>If you have any questions or requests about this policy or how your data is handled, email ZyeemZia&trade; at <a href="mailto:admin@zyeemzia.com" class="contact-link">admin@zyeemzia.com</a>. You can also use the Direct Transmission Hub at the bottom of this page.</p>
     </div>
 
     <div class="tx-page"><section class="tx-mount" id="contact" data-tx-topic="privacy" data-tx-apps-label="Game support" data-tx-regarding="Bangladesh Airforce Mini" data-tx-source="zbzgames.zyeemzia.com · Privacy · Bangladesh Airforce Mini" data-tx-lead="Questions about this privacy policy or your data in Bangladesh Airforce Mini? Send them straight to the ZyeemZia command desk."></section></div>
