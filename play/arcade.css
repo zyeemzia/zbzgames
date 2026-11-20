@@ -221,3 +221,9 @@ a { color: var(--cyan); }
 .qd-pad.go { background: linear-gradient(135deg, #16a34a, #15803d); }
 .qd-pad.early { background: linear-gradient(135deg, #b45309, #78350f); }
 .qd-pad.done { background: linear-gradient(135deg, #4338ca, #1e1b4b); }
+
+/* Anything the page hides must stay hidden, whatever display a component sets.
+   Without this the category filter and search set [hidden] and nothing vanished. */
+[hidden] { display: none !important; }
+/* Narrow phones: the game name gives way to the score, never the reverse. */
+@media (max-width: 380px) { .hud h1 { font-size: 1rem; } .hud .num { min-width: 46px; } .hud .num small { font-size: .6rem; } .hbtn { width: 36px; height: 36px; } }
