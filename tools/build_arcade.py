@@ -47,6 +47,27 @@ GAMES = [
     dict(id='fruit-catch', name='Fruit Catch', icon='🧺', hue=110, cats=['kids', 'arcade'],
          desc='Slide the basket, catch the falling fruit and keep the rocks out.',
          how='Move with your finger, the mouse or the arrow keys. Three hearts: a dropped fruit or a caught rock costs one.'),
+    dict(id='neon-lanes', name='Neon Lanes', icon='🏎️', hue=320, cats=['arcade', 'quick'],
+         desc='Swerve between three neon lanes, dodge the traffic and grab the gold.',
+         how='Tap the left or right half, or use the arrow keys, to change lane. Gold squares are a bonus.'),
+    dict(id='quick-draw', name='Quick Draw', icon='⚡', hue=130, cats=['quick', 'brain'],
+         desc='Wait for green, then tap faster than anyone. How sharp are your reflexes?',
+         how='When the screen turns green, tap or press Space. Five rounds. Tapping on red costs you.'),
+    dict(id='slide-shift', name='Slide Shift', icon='🧩', hue=230, cats=['puzzle', 'brain'],
+         desc='Slide the scrambled tiles back into order from 1 to 15.',
+         how='Tap a tile in line with the gap to slide it, or use the arrow keys. Fewer moves, higher score.'),
+    dict(id='hue-hunter', name='Hue Hunter', icon='🎨', hue=20, cats=['brain', 'kids', 'quick'],
+         desc='One tile is a slightly different colour. Spot it before the clock runs out.',
+         how='Tap the odd tile out. Every level adds tiles and makes the difference subtler. A wrong tap costs three seconds.'),
+    dict(id='echo-lights', name='Echo Lights', icon='🚦', hue=150, cats=['kids', 'brain'],
+         desc='Watch the coloured lights, then play the pattern back. It grows every round.',
+         how='Watch the sequence, then tap the lights in the same order, or press 1 to 4.'),
+    dict(id='grid-duel', name='Grid Duel', icon='❌', hue=0, cats=['kids', 'brain'],
+         desc='Noughts and crosses against the ZBZ bot, which gets sharper as you win.',
+         how='Tap a square, or press 1 to 9, to place your cross. Three in a row wins. Keep going until the bot beats you.'),
+    dict(id='mole-patrol', name='Mole Patrol', icon='🐹', hue=90, cats=['kids', 'quick'],
+         desc='Tap the moles as they pop up, but leave the bunnies alone.',
+         how='Tap each mole before it hides. Tapping a bunny costs two points. You have 45 seconds.'),
 ]
 
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
@@ -66,11 +87,13 @@ def head(title, desc, path, extra=''):
 <meta property="og:type" content="website"><meta property="og:site_name" content="ZBZGames">
 <meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}">
 <meta property="og:url" content="{ORIGIN}{path}"><meta property="og:image" content="{ORIGIN}/icon-512.png">
-<meta name="theme-color" content="#05060f">
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#f4f5fc" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#05060f" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<script>try{{var t=localStorage.getItem("matrixTheme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}}catch(e){{}}</script>
+<link rel="icon" href="/favicon.ico?v=2" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2">
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -84,12 +107,13 @@ def head(title, desc, path, extra=''):
 
 def bar(current):
     return f'''<header class="bar"><div class="wrap">
-  <a class="logo" href="/play/"><img src="/icon-192.png" width="34" height="34" alt=""><span>ZBZ<b>Games</b></span></a>
+  <a class="logo" href="/play/"><img src="/icon-192.png?v=2" width="34" height="34" alt=""><span>ZBZ<b>Games</b></span></a>
   <nav aria-label="Main">
     <a href="/play/"{' aria-current="page"' if current == 'arcade' else ''}>Arcade</a>
     <a href="/play/#kids" class="hide-sm">Kids</a>
     <a href="/" class="hide-sm">Studio</a>
     <span data-zz-install></span>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch light or dark theme"><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
   </nav>
 </div></header>'''
 
@@ -111,6 +135,16 @@ FOOT = '''<footer class="foot"><div class="wrap">
 </div></footer>'''
 
 BEST_JS = '''<script>
+/* Theme: follows the device until the visitor picks one; shared with the studio page. */
+(function () {
+  var b = document.getElementById('themeBtn'); if (!b) return;
+  b.addEventListener('click', function () {
+    var r = document.documentElement, dark = r.dataset.theme ? r.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    r.dataset.theme = dark ? 'light' : 'dark';
+    try { localStorage.setItem('matrixTheme', r.dataset.theme); } catch (e) {}
+    window.dispatchEvent(new Event('zbz-theme'));
+  });
+})();
 /* Show each game's best score on its card. Storage may be blocked; then nothing shows. */
 document.querySelectorAll('.game[data-id]').forEach(function (a) {
   try { var v = JSON.parse(localStorage.getItem('zbz-best-' + a.dataset.id) || '0'); if (v > 0) { var b = a.querySelector('.best'); b.textContent = '★ ' + v; b.hidden = false; } } catch (e) {}
@@ -222,9 +256,9 @@ if __name__ == '__main__':
         'description': f'{len(GAMES)} free original games by ZBZGames, the studio of ZyeemZia. Arcade, puzzle, brain and kids games that also play offline.',
         'display': 'standalone', 'orientation': 'any', 'background_color': '#05060f', 'theme_color': '#05060f',
         'lang': 'en', 'categories': ['games', 'entertainment', 'kids', 'education'],
-        'icons': [{'src': '/icon-192.png', 'sizes': '192x192', 'type': 'image/png', 'purpose': 'any'},
-                  {'src': '/icon-512.png', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'any'},
-                  {'src': '/icon-maskable-512.png', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'maskable'}],
+        'icons': [{'src': '/icon-192.png?v=2', 'sizes': '192x192', 'type': 'image/png', 'purpose': 'any'},
+                  {'src': '/icon-512.png?v=2', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'any'},
+                  {'src': '/icon-maskable-512.png?v=2', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'maskable'}],
         'shortcuts': [{'name': 'Kids corner', 'url': '/play/?cat=kids'}, {'name': 'All games', 'url': '/play/'},
                       {'name': 'Studio', 'url': '/'}]
     }, ensure_ascii=False, indent=1))

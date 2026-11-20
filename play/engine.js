@@ -25,6 +25,21 @@
     set(k, v) { try { localStorage.setItem('zbz-' + k, JSON.stringify(v)); } catch { /* fine */ } }
   };
   const meta = window.ZBZ_GAME || { id: 'game', name: 'Game', how: '' };
+  /* Theme colours for canvas games, read from the page's CSS so a game is
+     light in the light theme and dark in the dark one, and follows a switch. */
+  const colors = { bg: '#060818', ink: '#fff', ink2: '#aab2d8', line: 'rgba(120,140,255,.1)' };
+  function readColors() {
+    try {
+      const cs = getComputedStyle(document.documentElement);
+      const v = n => cs.getPropertyValue(n).trim();
+      colors.bg = v('--g-bg') || colors.bg; colors.ink = v('--g-ink') || colors.ink;
+      colors.ink2 = v('--g-ink2') || colors.ink2; colors.line = v('--g-line') || colors.line;
+      colors.dark = (getComputedStyle(document.documentElement).colorScheme || '').includes('dark');
+    } catch { /* keep defaults */ }
+  }
+  readColors();
+  window.addEventListener('zbz-theme', readColors);
+  try { matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => setTimeout(readColors, 0)); } catch { /* old browser */ }
   let game = null, round = null, score = 0, playing = false, paused = false;
   let muted = store.get('muted', false);
 
@@ -52,7 +67,7 @@
     let alive = true;
     stage.innerHTML = '';
     const api = {
-      stage, store, sfx,
+      stage, store, sfx, c: colors,
       rand: (a, b) => a + Math.random() * (b - a),
       pick: arr => arr[Math.floor(Math.random() * arr.length)],
       get alive() { return alive; },

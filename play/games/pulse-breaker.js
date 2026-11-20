@@ -42,12 +42,12 @@ ZBZ.register({ start(api) {
       if (ball.y > H + 20) { lives--; api.sfx('bad'); if (lives <= 0) { api.end('Out of balls.'); return; } serve(); }
       if (bricks.every(b => b.hp <= 0)) { level++; api.add(100); api.sfx('win'); wall(); serve(); }
     }
-    ctx.fillStyle = '#060818'; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = api.c.bg; ctx.fillRect(0, 0, W, H);
     for (const b of bricks) if (b.hp > 0) { ctx.fillStyle = b.hp > 1 ? '#e2b95c' : `hsl(${200 + b.r * 25},90%,60%)`; ctx.fillRect(b.c * bw + 2, top + b.r * bh + 2, bw - 4, bh - 4); }
-    ctx.fillStyle = '#fff'; ctx.shadowColor = '#56e0ff'; ctx.shadowBlur = 16;
+    ctx.fillStyle = api.c.dark ? '#fff' : '#2b2f6b'; ctx.shadowColor = '#56e0ff'; ctx.shadowBlur = 16;
     ctx.fillRect(px - pw / 2, py, pw, 10);
     ctx.beginPath(); ctx.arc(ball.x, ball.y, R, 0, 7); ctx.fill(); ctx.shadowBlur = 0;
-    ctx.fillStyle = '#aab2d8'; ctx.font = '600 15px Rajdhani,sans-serif';
+    ctx.fillStyle = api.c.ink2; ctx.font = '600 15px Rajdhani,sans-serif';
     ctx.fillText('Level ' + level + '   Balls ' + '●'.repeat(lives), 12, 28);
   });
 } });

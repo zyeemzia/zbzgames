@@ -452,13 +452,13 @@
         .section-title { text-align: left; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: #64748b; margin: 0 0 16px; font-weight: 700; }
     </style>
     <link rel="stylesheet" href="https://zyeemzia.com/transmit.css?v=3">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" href="favicon.ico?v=2" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=2">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png?v=2">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=2">
 <link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#05060f">
+<meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#05060f" media="(prefers-color-scheme: dark)">
 <meta name="description" content="ZBZGames, the interactive entertainment studio of ZyeemZia: free original online games for everyone and kids, plus offline mobile games on Google Play.">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="ZBZGames"><meta name="application-name" content="ZBZGames">
@@ -497,7 +497,7 @@
         <section class="arcade-cta" aria-labelledby="arcade-h">
             <div class="kicker">New · ZBZGames™ Arcade</div>
             <h2 id="arcade-h">Play free, <span>right now</span></h2>
-            <p>Twelve original ZBZ games that open in a second in any browser: arcade, puzzle, brain teasers and a safe Kids corner. No download, no sign-up, no ads, and installable to play offline.</p>
+            <p>Nineteen original ZBZ games that open in a second in any browser: arcade, puzzle, brain teasers and a safe Kids corner. No download, no sign-up, no ads, and installable to play offline.</p>
             <div class="arcade-row">
                 <a href="/play/orbit-dash/"><span>🪐</span>Orbit Dash</a>
                 <a href="/play/word-forge/"><span>🔤</span>Word Forge</a>
@@ -505,6 +505,8 @@
                 <a href="/play/stack-tower/"><span>🏗️</span>Stack Tower</a>
                 <a href="/play/memory-stars/"><span>⭐</span>Memory Stars<small>Kids</small></a>
                 <a href="/play/bubble-pop/"><span>🎈</span>Bubble Pop<small>Kids</small></a>
+                <a href="/play/neon-lanes/"><span>🏎️</span>Neon Lanes</a>
+                <a href="/play/echo-lights/"><span>🚦</span>Echo Lights<small>Kids</small></a>
             </div>
             <div class="arcade-go"><a class="primary" href="/play/">Open the arcade</a><a class="ghost" href="/play/#kids">Kids corner</a></div>
         </section>
@@ -599,9 +601,15 @@
         };
 
         // Synchronizes theme with main site via localStorage
-        if (readTheme() === 'dark') {
+        // A saved choice wins; with none, follow the device's light or dark setting.
+        const saved = readTheme();
+        const mq = window.matchMedia ? matchMedia('(prefers-color-scheme: dark)') : null;
+        if (saved === 'dark' || (!saved && mq && mq.matches)) {
             bodyElement.classList.add('dark-mode');
         }
+        if (mq && mq.addEventListener) mq.addEventListener('change', (e) => {
+            if (!readTheme()) bodyElement.classList.toggle('dark-mode', e.matches);
+        });
 
         themeBtn.addEventListener('click', () => {
             bodyElement.classList.toggle('dark-mode');

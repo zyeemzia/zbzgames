@@ -32,7 +32,7 @@ ZBZ.register({ start(api) {
     const want = Math.max(0, blocks.length * BH - H * .55);
     cam += (want - cam) * Math.min(1, dt * 5);
     const yOf = i => H - 40 - i * BH + cam;
-    ctx.fillStyle = '#060818'; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = api.c.bg; ctx.fillRect(0, 0, W, H);
     const draw = (b, dy = 0, a = 1) => { ctx.globalAlpha = a; ctx.fillStyle = `hsl(${(b.i * 14 + 200) % 360},85%,60%)`; ctx.fillRect(b.x, yOf(b.i) + dy, b.wd, BH - 2); ctx.globalAlpha = 1; };
     blocks.forEach(b => draw(b));
     if (api.alive) draw(cur);

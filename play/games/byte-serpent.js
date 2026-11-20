@@ -36,10 +36,10 @@ ZBZ.register({ start(api) {
       else snake.pop();
     }
     const W = w(), H = h(), c = Math.floor(Math.min(W, H) / N), ox = (W - c * N) / 2, oy = (H - c * N) / 2;
-    ctx.fillStyle = '#060818'; ctx.fillRect(0, 0, W, H);
-    ctx.strokeStyle = 'rgba(120,140,255,.08)'; ctx.lineWidth = 1;
+    ctx.fillStyle = api.c.bg; ctx.fillRect(0, 0, W, H);
+    ctx.strokeStyle = api.c.line; ctx.lineWidth = 1;
     for (let i = 0; i <= N; i++) { ctx.beginPath(); ctx.moveTo(ox + i * c, oy); ctx.lineTo(ox + i * c, oy + N * c); ctx.moveTo(ox, oy + i * c); ctx.lineTo(ox + N * c, oy + i * c); ctx.stroke(); }
     ctx.fillStyle = '#e2b95c'; ctx.fillRect(ox + food[0] * c + c * .2, oy + food[1] * c + c * .2, c * .6, c * .6);
-    snake.forEach((s, i) => { ctx.fillStyle = i ? `hsl(${190 + i * 3},90%,${Math.max(30, 62 - i)}%)` : '#fff'; ctx.fillRect(ox + s[0] * c + 1, oy + s[1] * c + 1, c - 2, c - 2); });
+    snake.forEach((s, i) => { ctx.fillStyle = i ? `hsl(${190 + i * 3},90%,${Math.max(30, 62 - i)}%)` : api.c.ink; ctx.fillRect(ox + s[0] * c + 1, oy + s[1] * c + 1, c - 2, c - 2); });
   });
 } });

@@ -4,7 +4,7 @@
  "id": "/",
  "start_url": "/play/",
  "scope": "/",
- "description": "12 free original games by ZBZGames, the studio of ZyeemZia. Arcade, puzzle, brain and kids games that also play offline.",
+ "description": "19 free original games by ZBZGames, the studio of ZyeemZia. Arcade, puzzle, brain and kids games that also play offline.",
  "display": "standalone",
  "orientation": "any",
  "background_color": "#05060f",
@@ -18,19 +18,19 @@
  ],
  "icons": [
   {
-   "src": "/icon-192.png",
+   "src": "/icon-192.png?v=2",
    "sizes": "192x192",
    "type": "image/png",
    "purpose": "any"
   },
   {
-   "src": "/icon-512.png",
+   "src": "/icon-512.png?v=2",
    "sizes": "512x512",
    "type": "image/png",
    "purpose": "any"
   },
   {
-   "src": "/icon-maskable-512.png",
+   "src": "/icon-maskable-512.png?v=2",
    "sizes": "512x512",
    "type": "image/png",
    "purpose": "maskable"

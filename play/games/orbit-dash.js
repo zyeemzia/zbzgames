@@ -17,7 +17,7 @@ ZBZ.register({ start(api) {
     spawn -= dt; if (spawn <= 0) { add(); spawn = Math.max(.45, 1.3 - speed * .18); }
     const px = cx + Math.cos(a) * r, py = cy + Math.sin(a) * r;
     trail.push([px, py]); if (trail.length > 18) trail.shift();
-    ctx.fillStyle = '#060818'; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = api.c.bg; ctx.fillRect(0, 0, W, H);
     ctx.strokeStyle = 'rgba(120,140,255,.25)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(cx, cy, r, 0, 7); ctx.stroke();
     ctx.fillStyle = '#e2b95c'; ctx.beginPath(); ctx.arc(cx, cy, r * .16, 0, 7); ctx.fill();
     for (const it of items) {
@@ -37,6 +37,6 @@ ZBZ.register({ start(api) {
     }
     items = items.filter(i => i.life > 0);
     trail.forEach(([x, y], i) => { ctx.fillStyle = `rgba(167,139,250,${i / trail.length * .5})`; ctx.beginPath(); ctx.arc(x, y, 4 + i / 3, 0, 7); ctx.fill(); });
-    ctx.fillStyle = '#fff'; ctx.shadowColor = '#a78bfa'; ctx.shadowBlur = 18; ctx.beginPath(); ctx.arc(px, py, 10, 0, 7); ctx.fill(); ctx.shadowBlur = 0;
+    ctx.fillStyle = api.c.dark ? '#fff' : '#2b2f6b'; ctx.shadowColor = '#a78bfa'; ctx.shadowBlur = 18; ctx.beginPath(); ctx.arc(px, py, 10, 0, 7); ctx.fill(); ctx.shadowBlur = 0;
   });
 } });

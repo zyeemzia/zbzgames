@@ -51,6 +51,6 @@ ZBZ.register({ start(api) {
     ctx.fillText(`Pop the ${mode.say}:`, 14, 27);
     if (mode.say === 'colour') { ctx.fillStyle = HEX[target]; ctx.beginPath(); ctx.arc(14 + ctx.measureText(`Pop the ${mode.say}:`).width + 24, 27, 14, 0, 7); ctx.fill(); }
     else { ctx.fillStyle = '#ffd23f'; ctx.fillText(target, 14 + ctx.measureText(`Pop the ${mode.say}: `).width, 27); }
-    ctx.fillStyle = '#cfd5f2'; ctx.textAlign = 'right'; ctx.fillText(Math.ceil(timeLeft) + 's', W - 14, 27); ctx.textAlign = 'left';
+    ctx.fillStyle = api.c.ink2; ctx.textAlign = 'right'; ctx.fillText(Math.ceil(timeLeft) + 's', W - 14, 27); ctx.textAlign = 'left';
   });
 } });
