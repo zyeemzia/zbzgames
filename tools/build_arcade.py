@@ -170,6 +170,12 @@ def hub():
   <input class="search" type="search" placeholder="Search games…" aria-label="Search games" autocomplete="off"></div>
   <div class="grid" id="games">{''.join(card(g) for g in GAMES)}</div>
   <p class="empty" hidden>No game matches that. Try another word.</p>
+  <a class="classic-band" href="/1971-baf/">
+    <span class="classic-tag">Since 2004 · Where ZBZ began</span>
+    <strong>1971 BAF</strong>
+    <span>The first ZBZGames title, a Windows game made by Zyeem Bin Zia as a child. Free download for PC.</span>
+    <em>Download for Windows →</em>
+  </a>
   <section class="kids-band" id="kids">
     <h2>🧒 Kids corner</h2>
     <p>Gentle, colourful games that practise letters, numbers, colours, memory and quick sums. Safe to hand over: no chat, no links out, no ads.</p>
@@ -197,6 +203,78 @@ def hub():
 '''
     desc = f'Play {len(GAMES)} free original online games by ZBZGames: arcade, puzzle, brain and kids games. No download, no sign-up, no ads.'
     return head('ZBZGames Arcade · Free online games for everyone', desc, '/play/') + '\n' + body
+
+
+CLASSIC_SHA = '43e1b07e9172061584233b70df33aa0de52b675d5d6f07e62c1814fb2c4f0401'
+
+
+def classic():
+    desc = ('1971 BAF, the first ZBZGames title (2004): a Windows PC game made by Zyeem Bin Zia as a child, '
+            'honouring the Bangladesh Air Force of 1971. Free download, never for sale.')
+    body = f'''<body>
+<a class="sr" href="#main">Skip to content</a>
+{bar('classic')}
+<main id="main" class="wrap classic">
+  <section class="classic-hero">
+    <span class="eyebrow">ZBZGames™ Heritage · 2004</span>
+    <h1>1971 <span>BAF</span></h1>
+    <p class="lead">Where ZBZGames began. Long before the arcade and the Google Play titles, a young Zyeem Bin Zia built this
+    Windows game in honour of the Bangladesh Air Force and the Liberation War of 1971, and gave it away free with the words
+    <q>This game is not for sale</q>. It is kept here exactly as it shipped in 2004.</p>
+    <div class="classic-cta">
+      <a class="go" href="/downloads/1971-BAF-Setup.exe" download="1971-BAF-Setup.exe">Download for Windows</a>
+      <span class="classic-meta">Installer · 7.0 MB · Windows · Free</span>
+    </div>
+  </section>
+  <section class="classic-grid">
+    <div class="panel">
+      <h2>The story</h2>
+      <p>1971 BAF was the very first game published under the ZBZ Games name, created and published by Zyeem Bin Zia in 2004
+      while still a child. Its spirit lives on in <a href="/">Bangladesh Airforce Mini</a> on Google Play, a modern
+      ten-mission campaign flying with Kilo Flight, the first air operations unit of the Bangladesh Air Force.</p>
+      <ul class="facts">
+        <li><b>Released</b><span>2004</span></li>
+        <li><b>Studio</b><span>ZBZ Games, now ZBZGames™</span></li>
+        <li><b>Platform</b><span>Windows PC</span></li>
+        <li><b>Price</b><span>Free, never for sale</span></li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h2>Original system requirements</h2>
+      <ul class="facts">
+        <li><b>Windows</b><span>98, 98 SE, ME, 2000 Professional or XP</span></li>
+        <li><b>DirectX</b><span>9.0 or later</span></li>
+        <li><b>Processor</b><span>Intel Pentium 200 MHz or faster</span></li>
+        <li><b>Memory</b><span>64 MB or more</span></li>
+        <li><b>Disk</b><span>12 MB</span></li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h2>Playing it on Windows 10 or 11</h2>
+      <ol>
+        <li>Download and open <b>1971-BAF-Setup.exe</b>. It is a 2004 installer without a modern signature, so Windows may
+        show <i>Windows protected your PC</i>: choose <b>More info</b>, then <b>Run anyway</b>.</li>
+        <li>If the installer asks for a password, the original one from 2004 is <b>godzbzgames</b>.</li>
+        <li>If the game does not start, right-click its shortcut, choose <b>Properties</b>, then <b>Compatibility</b>, tick
+        <b>Run this program in compatibility mode for Windows XP (Service Pack 3)</b>, and try again.</li>
+        <li>Old DirectX games may also need Microsoft's free <b>DirectX End-User Runtime</b>.</li>
+      </ol>
+    </div>
+    <div class="panel">
+      <h2>Check your download</h2>
+      <p>The file here is the original installer. Its SHA-256 fingerprint is:</p>
+      <code class="sha">{CLASSIC_SHA}</code>
+      <p class="small">On Windows: <code>certutil -hashfile 1971-BAF-Setup.exe SHA256</code></p>
+    </div>
+  </section>
+  <p class="classic-more"><a href="/play/">Or play the free ZBZ games in your browser now →</a></p>
+</main>
+{FOOT}
+{BEST_JS}
+</body>
+</html>
+'''
+    return head('1971 BAF · The first ZBZGames title (2004) · Free PC download', desc, '/1971-baf/') + '\n' + body
 
 
 def page(g):
@@ -249,6 +327,7 @@ if __name__ == '__main__':
     VER = h.hexdigest()[:8]
     globals()['VER'] = VER
     write('play/index.html', hub())
+    write('1971-baf/index.html', classic())
     for g in GAMES:
         write(f"play/{g['id']}/index.html", page(g))
     write('manifest.webmanifest', json.dumps({
@@ -262,7 +341,7 @@ if __name__ == '__main__':
         'shortcuts': [{'name': 'Kids corner', 'url': '/play/?cat=kids'}, {'name': 'All games', 'url': '/play/'},
                       {'name': 'Studio', 'url': '/'}]
     }, ensure_ascii=False, indent=1))
-    pages = ['/', '/play/'] + [f"/play/{g['id']}/" for g in GAMES]
+    pages = ['/', '/play/', '/1971-baf/'] + [f"/play/{g['id']}/" for g in GAMES]
     assets = ['/play/arcade.css', '/play/engine.js', '/zz-app.js', '/manifest.webmanifest', '/favicon.ico', '/favicon-32.png',
               '/icon-192.png', '/icon-512.png', '/apple-touch-icon.png'] + [f"/play/games/{g['id']}.js" for g in GAMES]
     with open(os.path.join(ROOT, 'tools', 'sw.template.js'), encoding='utf-8') as f:

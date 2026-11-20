@@ -23,6 +23,7 @@ self.addEventListener('fetch', e => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
+  if (url.pathname.startsWith('/downloads/')) return;   // big files go straight to the network, never the cache
   e.respondWith((async () => {
     try {
       const fresh = await fetch(req);

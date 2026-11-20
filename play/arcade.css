@@ -227,3 +227,34 @@ a { color: var(--cyan); }
 [hidden] { display: none !important; }
 /* Narrow phones: the game name gives way to the score, never the reverse. */
 @media (max-width: 380px) { .hud h1 { font-size: 1rem; } .hud .num { min-width: 46px; } .hud .num small { font-size: .6rem; } .hbtn { width: 36px; height: 36px; } }
+
+/* 1971 BAF heritage */
+.classic-band { display: grid; gap: 4px; margin: 6px 0 26px; padding: 22px 24px; border-radius: 22px; text-decoration: none; color: var(--ink);
+  background: linear-gradient(120deg, rgba(0, 106, 78, .22), rgba(244, 42, 65, .16)), var(--panel); border: 1px solid rgba(0, 106, 78, .45); transition: transform .18s; }
+.classic-band:hover { transform: translateY(-3px); }
+.classic-band strong { font-size: 1.9rem; line-height: 1.1; }
+.classic-band span { color: var(--ink2); font-weight: 500; }
+.classic-band .classic-tag { color: var(--gold); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; font-size: .8rem; }
+.classic-band em { font-style: normal; font-weight: 700; color: var(--cyan); margin-top: 6px; }
+.classic { padding-bottom: 30px; }
+.classic-hero { padding: 40px 0 10px; }
+.classic-hero .eyebrow { color: var(--gold); font-weight: 700; letter-spacing: .18em; text-transform: uppercase; font-size: .85rem; }
+.classic-hero h1 { font-size: clamp(3rem, 12vw, 6rem); margin: 6px 0; line-height: 1; }
+.classic-hero h1 span { background: linear-gradient(120deg, #006a4e, #f42a41); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.classic-hero .lead { font-size: 1.15rem; color: var(--ink2); max-width: 760px; font-weight: 500; }
+.classic-cta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 20px; }
+.classic-cta .go { text-decoration: none; display: inline-block; }
+.classic-meta { color: var(--ink3); font-weight: 600; }
+.classic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 16px; margin-top: 26px; }
+.classic .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 20px 22px; }
+.classic .panel h2 { margin: 0 0 10px; font-size: 1.3rem; }
+.classic .panel p, .classic .panel li { color: var(--ink2); font-weight: 500; }
+.classic .panel ol { padding-left: 1.2em; margin: 0; }
+.classic .panel ol li { margin: 8px 0; }
+.facts { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 8px; }
+.facts li { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px dashed var(--line); padding-bottom: 6px; }
+.facts b { color: var(--ink); }
+.facts span { text-align: right; }
+.sha { display: block; word-break: break-all; font-size: .85rem; background: var(--bg2); border: 1px solid var(--line); padding: 10px 12px; border-radius: 10px; color: var(--ink); }
+.classic .small { font-size: .9rem; color: var(--ink3); }
+.classic-more { text-align: center; margin: 26px 0 0; font-weight: 700; font-size: 1.1rem; }
