@@ -63,7 +63,7 @@ GAMES = [
          desc='Watch the coloured lights, then play the pattern back. It grows every round.',
          how='Watch the sequence, then tap the lights in the same order, or press 1 to 4.'),
     dict(id='grid-duel', name='Grid Duel', icon='❌', hue=0, cats=['kids', 'brain'],
-         desc='Noughts and crosses against the ZBZ bot, which gets sharper as you win.',
+         desc='Noughts and crosses against the ZBZGames™ bot, which gets sharper as you win.',
          how='Tap a square, or press 1 to 9, to place your cross. Three in a row wins. Keep going until the bot beats you.'),
     dict(id='mole-patrol', name='Mole Patrol', icon='🐹', hue=90, cats=['kids', 'quick'],
          desc='Tap the moles as they pop up, but leave the bunnies alone.',
@@ -107,7 +107,7 @@ def head(title, desc, path, extra=''):
 
 def bar(current):
     return f'''<header class="bar"><div class="wrap">
-  <a class="logo" href="/play/"><img src="/icon-192.png?v=2" width="34" height="34" alt=""><span>ZBZ<b>Games</b></span></a>
+  <a class="logo" href="/play/"><img src="/icon-192.png?v=2" width="34" height="34" alt=""><span>ZBZ<b>Games™</b></span></a>
   <nav aria-label="Main">
     <a href="/play/"{' aria-current="page"' if current == 'arcade' else ''}>Arcade</a>
     <a href="/play/#kids" class="hide-sm">Kids</a>
@@ -161,7 +161,7 @@ def hub():
 <main>
 <section class="hero"><div class="wrap">
   <span class="eyebrow">ZBZGames™ Arcade</span>
-  <h1>Free games, <span>built by ZBZ</span></h1>
+  <h1>Free games, <span>built by ZBZGames™</span></h1>
   <p>{len(GAMES)} original games that open in a second on any phone, tablet or computer. No download, no sign-up, no ads. Install it and play offline.</p>
   <div class="stats"><div><b>{len(GAMES)}</b><span>Original games</span></div><div><b>{len(kids)}</b><span>For kids</span></div><div><b>0</b><span>Ads or sign-ups</span></div></div>
 </div></section>
@@ -229,12 +229,12 @@ def classic():
   <section class="classic-grid">
     <div class="panel">
       <h2>The story</h2>
-      <p>1971 BAF was the very first game published under the ZBZ Games name, created and published by Zyeem Bin Zia in 2004
+      <p>1971 BAF was the very first game published under the ZBZGames™ name, created and published by Zyeem Bin Zia in 2004
       while still a child. Its spirit lives on in <a href="/">Bangladesh Airforce Mini</a> on Google Play, a modern
       ten-mission campaign flying with Kilo Flight, the first air operations unit of the Bangladesh Air Force.</p>
       <ul class="facts">
         <li><b>Released</b><span>2004</span></li>
-        <li><b>Studio</b><span>ZBZ Games, now ZBZGames™</span></li>
+        <li><b>Studio</b><span>ZBZGames™</span></li>
         <li><b>Platform</b><span>Windows PC</span></li>
         <li><b>Price</b><span>Free, never for sale</span></li>
       </ul>
@@ -267,7 +267,7 @@ def classic():
       <p class="small">On Windows: <code>certutil -hashfile 1971-BAF-Setup.exe SHA256</code></p>
     </div>
   </section>
-  <p class="classic-more"><a href="/play/">Or play the free ZBZ games in your browser now →</a></p>
+  <p class="classic-more"><a href="/play/">Or play the free ZBZGames™ games in your browser now →</a></p>
 </main>
 {FOOT}
 {BEST_JS}
