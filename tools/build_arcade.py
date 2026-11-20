@@ -141,7 +141,7 @@ def card(g):
 
 FOOT = '''<footer class="foot"><div class="wrap">
   <p>ZBZGames™ is the interactive entertainment studio of ZyeemZia™. Every arcade game is an original, free to play, with no sign-up and no ads.</p>
-  <p><a href="/">Studio &amp; mobile games</a><a href="https://zyeemzia.com">zyeemzia.com</a><a href="https://academy.zyeemzia.com">Academy</a><a href="https://ai.zyeemzia.com">ZyeemZia AI</a><a href="https://policy.zyeemzia.com">Policies</a></p>
+  <p><a href="/">Studio &amp; mobile games</a><a href="https://zyeemzia.com">zyeemzia.com</a><a href="https://academy.zyeemzia.com">Academy</a><a href="https://ai.zyeemzia.com">ZyeemZia AI</a><a href="/privacy-arcade.html">Privacy</a><a href="https://policy.zyeemzia.com">Policies</a></p>
   <p>Copyright © ZyeemZia</p>
 </div></footer>'''
 
@@ -288,6 +288,56 @@ def classic():
     return head('1971 BAF · The first ZBZGames title (2004) · Free PC download', desc, '/1971-baf/') + '\n' + body
 
 
+def privacy():
+    desc = 'Privacy for the ZBZGames Arcade, its Kids corner, the installable app and the 1971 BAF download: no accounts, no ads, no tracking.'
+    body = f'''<body>
+<a class="sr" href="#main">Skip to content</a>
+{bar('privacy')}
+<main id="main" class="wrap classic">
+  <section class="classic-hero">
+    <span class="eyebrow">ZBZGames™ · Privacy</span>
+    <h1>Arcade <span>privacy</span></h1>
+    <p class="lead">The ZBZGames™ Arcade at zbzgames.zyeemzia.com/play/ is built to collect nothing. This page covers the browser games,
+    the Kids corner, the installable app and the 1971 BAF download. The Google Play games have their own policies, listed in the
+    <a href="https://policy.zyeemzia.com">Trust &amp; Security Center</a>.</p>
+  </section>
+  <section class="classic-grid">
+    <div class="panel"><h2>Nothing collected</h2><ul class="facts">
+      <li><b>Accounts</b><span>None. No sign-up, no login.</span></li>
+      <li><b>Advertising</b><span>None.</span></li>
+      <li><b>Analytics and tracking</b><span>None. No cookies.</span></li>
+      <li><b>Personal data</b><span>None is asked for or sent to us.</span></li></ul></div>
+    <div class="panel"><h2>What stays on your device</h2>
+      <p>Best scores, your light or dark choice and the sound setting are saved in your own browser so they are there next time.
+      Clearing the site's data, or uninstalling the app, removes them. They are never sent anywhere.</p></div>
+    <div class="panel"><h2>Kids corner</h2>
+      <p>The Kids corner and the Bangla, Arabic and English learning games are made to be safe to hand to a child: no chat, no
+      ads, no purchases, no links out of the arcade and no data collection. Finger tracing in the Write mode is checked on the
+      device itself and never uploaded.</p>
+      <p>Letters are read aloud by your device's own text-to-speech voice. Some phones may use their maker's online speech
+      service to produce that voice; that is a setting of the device, not of the game, and it can be changed in the phone's
+      text-to-speech settings.</p></div>
+    <div class="panel"><h2>The installable app</h2>
+      <p>Installing ZBZGames keeps a copy of the games in your browser so they open instantly and play offline. When a new
+      version is published the app offers to update; nothing installs without your tap. Uninstalling removes the copy.</p></div>
+    <div class="panel"><h2>1971 BAF download</h2>
+      <p>1971 BAF is the original 2004 Windows installer, offered free and unchanged as a piece of ZBZGames history. It is
+      provided as is, and it runs on your computer, not on our servers. Check its SHA-256 fingerprint on the
+      <a href="/1971-baf/">1971 BAF page</a> before you run it.</p></div>
+    <div class="panel"><h2>Contact</h2>
+      <p>Questions about privacy: <a href="mailto:admin@zyeemzia.com">admin@zyeemzia.com</a>. The full terms, privacy principles and
+      every product policy are in the <a href="https://policy.zyeemzia.com">Trust &amp; Security Center</a>.</p></div>
+  </section>
+  <p class="classic-more"><a href="/play/">Back to the arcade →</a></p>
+</main>
+{FOOT}
+{BEST_JS}
+</body>
+</html>
+'''
+    return head('Arcade privacy · ZBZGames', desc, '/privacy-arcade.html') + '\n' + body
+
+
 def page(g):
     others = [o for o in GAMES if o['id'] != g['id']]
     same = [o for o in others if set(o['cats']) & set(g['cats'])][:4]
@@ -341,6 +391,7 @@ if __name__ == '__main__':
     globals()['VER'] = VER
     write('play/index.html', hub())
     write('1971-baf/index.html', classic())
+    write('privacy-arcade.html', privacy())
     for g in GAMES:
         write(f"play/{g['id']}/index.html", page(g))
     write('manifest.webmanifest', json.dumps({
@@ -354,7 +405,7 @@ if __name__ == '__main__':
         'shortcuts': [{'name': 'Kids corner', 'url': '/play/?cat=kids'}, {'name': 'All games', 'url': '/play/'},
                       {'name': 'Studio', 'url': '/'}]
     }, ensure_ascii=False, indent=1))
-    pages = ['/', '/play/', '/1971-baf/'] + [f"/play/{g['id']}/" for g in GAMES]
+    pages = ['/', '/play/', '/1971-baf/', '/privacy-arcade.html'] + [f"/play/{g['id']}/" for g in GAMES]
     assets = ['/play/arcade.css', '/play/engine.js', '/play/learn.js', '/zz-app.js', '/manifest.webmanifest', '/favicon.ico', '/favicon-32.png',
               '/icon-192.png', '/icon-512.png', '/apple-touch-icon.png'] + [f"/play/games/{g['id']}.js" for g in GAMES]
     with open(os.path.join(ROOT, 'tools', 'sw.template.js'), encoding='utf-8') as f:
