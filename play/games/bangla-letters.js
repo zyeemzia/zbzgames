@@ -1,6 +1,8 @@
 /* Bangla Barnamala · ZBZGames™ original, for kids. Learn, write and hear the Bangla letters and numbers. */
 (() => {
-  const L = (ch, word, emoji, roman, say) => ({ ch, word, emoji, roman, say: say || `${ch}, ${word}` });
+  const NAMES = {"অ": "স্বরে অ", "আ": "স্বরে আ", "ই": "হ্রস্ব ই", "ঈ": "দীর্ঘ ঈ", "উ": "হ্রস্ব উ", "ঊ": "দীর্ঘ ঊ", "ঋ": "ঋ", "এ": "এ", "ঐ": "ঐ", "ও": "ও", "ঔ": "ঔ", "ক": "ক", "খ": "খ", "গ": "গ", "ঘ": "ঘ", "ঙ": "উঁয়ো", "চ": "চ", "ছ": "ছ", "জ": "বর্গীয় জ", "ঝ": "ঝ", "ঞ": "ইঁয়ো", "ট": "ট", "ঠ": "ঠ", "ড": "ড", "ঢ": "ঢ", "ণ": "মূর্ধন্য ণ", "ত": "ত", "থ": "থ", "দ": "দ", "ধ": "ধ", "ন": "দন্ত্য ন", "প": "প", "ফ": "ফ", "ব": "ব", "ভ": "ভ", "ম": "ম", "য": "অন্তঃস্থ য", "র": "র", "ল": "ল", "শ": "তালব্য শ", "ষ": "মূর্ধন্য ষ", "স": "দন্ত্য স", "হ": "হ", "ড়": "ড এ শূন্য ড়", "ঢ়": "ঢ এ শূন্য ঢ়", "য়": "অন্তঃস্থ অ", "ৎ": "খণ্ড ত", "ং": "অনুস্বার", "ঃ": "বিসর্গ", "ঁ": "চন্দ্রবিন্দু"};
+  // Spoken as the letter's traditional name, a pause, then the word: clearer than a lone symbol.
+  const L = (ch, word, emoji, roman) => ({ ch, word, emoji, roman, say: `${NAMES[ch] || ch}। ${word}।` });
   const vowels = [
     L('অ', 'অজগর', '🐍', 'o — ojogor'), L('আ', 'আম', '🥭', 'aa — aam'), L('ই', 'ইঁদুর', '🐭', 'i — indur'),
     L('ঈ', 'ঈগল', '🦅', 'ee — eegol'), L('উ', 'উট', '🐫', 'u — ut'), L('ঊ', 'ঊর্মি', '🌊', 'oo — urmi'),
@@ -25,7 +27,7 @@
   const NUM = ['শূন্য', 'এক', 'দুই', 'তিন', 'চার', 'পাঁচ', 'ছয়', 'সাত', 'আট', 'নয়', 'দশ'];
   const ROM = ['shunno', 'ek', 'dui', 'tin', 'char', 'panch', 'chhoy', 'saat', 'aat', 'noy', 'dosh'];
   const DIG = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯', '১০'];
-  const numbers = DIG.map((ch, n) => ({ ch, word: NUM[n], emoji: n ? '⭐'.repeat(Math.min(n, 10)) : '⭕', roman: `${n} — ${ROM[n]}`, say: NUM[n], color: '#22c55e' }));
+  const numbers = DIG.map((ch, n) => ({ ch, word: NUM[n], count: n, roman: `${n} — ${ROM[n]}`, say: NUM[n], color: '#22c55e' }));
   ZBZLearn({
     lang: 'bn-BD', langName: 'Bangla', color: '#0ea5e9',
     font: "'Noto Sans Bengali', 'Hind Siliguri', sans-serif", canvasFont: "'Noto Sans Bengali', sans-serif", baseline: .06,

@@ -10,28 +10,41 @@
  */
 window.ZBZLearn = function (cfg) {
   'use strict';
-  const voiceFor = (() => {
-    let cache = null;
-    const pick = () => {
-      try {
-        const vs = speechSynthesis.getVoices();
-        if (!vs.length) return null;
-        const want = cfg.lang.toLowerCase(), base = want.split('-')[0];
-        return vs.find(v => v.lang.toLowerCase() === want) || vs.find(v => v.lang.toLowerCase().startsWith(base)) || null;
-      } catch { return null; }
-    };
-    try { speechSynthesis.addEventListener('voiceschanged', () => { cache = pick(); }); } catch { /* no speech */ }
-    return () => cache || (cache = pick());
-  })();
-  function speak(text, rate = .8) {
+  /* Speech. Only a real voice for the game's language is ever used: when a
+     phone has no Bangla or Arabic voice, browsers otherwise read the text with
+     an English voice, which mangles every letter. Among the matching voices the
+     clearest is chosen (natural or online voices first). Voices load late on
+     some browsers, so the first request waits briefly for them. */
+  const want = cfg.lang.toLowerCase(), base = want.split('-')[0];
+  let voice = null, voicesReady = false;
+  const score = v => (v.lang.toLowerCase() === want ? 4 : 0) + (/natural|neural|online|google|enhanced|premium/i.test(v.name) ? 2 : 0) + (v.localService ? 0 : 1);
+  function pickVoice() {
     try {
-      if (ZBZ.store.get('muted', false) || !('speechSynthesis' in window)) return false;
+      const vs = speechSynthesis.getVoices().filter(v => v.lang && v.lang.toLowerCase().replace('_', '-').split('-')[0] === base);
+      voicesReady = voicesReady || speechSynthesis.getVoices().length > 0;
+      voice = vs.sort((x, y) => score(y) - score(x))[0] || null;
+    } catch { voice = null; }
+    return voice;
+  }
+  try { pickVoice(); speechSynthesis.addEventListener('voiceschanged', pickVoice); } catch { /* no speech */ }
+  const waitVoices = () => new Promise(res => {
+    if (voicesReady) return res();
+    let n = 0; const t = setInterval(() => { pickVoice(); if (voicesReady || ++n > 15) { clearInterval(t); res(); } }, 100);
+  });
+  /* Returns true when it spoke with a proper voice. */
+  async function speak(text, rate = .78) {
+    try {
+      if (ZBZ.store.get('muted', false) || !('speechSynthesis' in window)) return true;
+      await waitVoices();
+      if (!voice) pickVoice();
+      if (!voice) return false;
       speechSynthesis.cancel();
+      // Chrome sometimes stays paused after cancel; resume keeps it reliable.
+      try { speechSynthesis.resume(); } catch { /* fine */ }
       const u = new SpeechSynthesisUtterance(text);
-      u.lang = cfg.lang; u.rate = rate; u.pitch = 1.1;
-      const v = voiceFor(); if (v) u.voice = v;
+      u.voice = voice; u.lang = voice.lang; u.rate = rate; u.pitch = 1; u.volume = 1;
       speechSynthesis.speak(u);
-      return !!v;
+      return true;
     } catch { return false; }
   }
 
@@ -59,13 +72,15 @@ window.ZBZLearn = function (cfg) {
     api.stage.style.touchAction = 'auto';
     const body = wrap.querySelector('.ln-body'), voiceNote = wrap.querySelector('.ln-voice');
 
-    function say(it) {
-      const ok = speak(it.say || it.ch);
-      if (!ok && 'speechSynthesis' in window) {
+    async function say(it) {
+      const ok = await speak(it.say || it.ch);
+      if (!ok) {
         voiceNote.hidden = false;
-        voiceNote.innerHTML = `🔈 This device has no ${cfg.langName} voice, so read the sound shown under the letter. To hear it, add ${cfg.langName} in your phone's text-to-speech settings (Google Text-to-Speech on Android).`;
-      }
+        voiceNote.innerHTML = `🔈 This device has no ${cfg.langName} voice, so the sound is written under each letter instead of spoken with the wrong accent. To hear it, add the ${cfg.langName} voice in your phone's text-to-speech settings (Google Text-to-Speech on Android, Spoken Content on iPhone), then reload.`;
+      } else voiceNote.hidden = true;
     }
+    const COUNTERS = ['🍎', '🐟', '🌸', '⭐', '🎈', '🐤', '🍊', '🚗', '🦋', '🍓'];
+    const countHtml = (n, small) => `<div class="ln-count${small ? ' small' : ''}" aria-label="${n}">${n ? Array.from({ length: n }, () => `<span>${COUNTERS[n % COUNTERS.length]}</span>`).join('') : '<em>0</em>'}</div>`;
     const font = cfg.font ? `font-family:${cfg.font}` : '';
     const strip = () => `<div class="ln-strip" dir="${cfg.dir || 'ltr'}">${items().map((it, i) => `<button type="button" class="${i === idx ? 'on' : ''}" data-i="${i}" style="${font}">${it.ch}</button>`).join('')}</div>`;
 
@@ -75,7 +90,7 @@ window.ZBZLearn = function (cfg) {
       body.innerHTML = `
         <div class="ln-card" style="--c:${it.color || cfg.color}">
           <button class="ln-big" type="button" aria-label="Hear it" style="${font}">${it.ch}</button>
-          <div class="ln-word"><span class="ln-emoji">${it.emoji || ''}</span><span style="${font}" dir="${cfg.dir || 'ltr'}">${it.word || ''}</span></div>
+          ${it.count !== undefined ? countHtml(it.count) : ''}<div class="ln-word">${it.emoji ? `<span class="ln-emoji">${it.emoji}</span>` : ''}<span style="${font}" dir="${cfg.dir || 'ltr'}">${it.word || ''}</span></div>
           <div class="ln-roman">${it.roman || ''}</div>
           <div class="ln-nav">
             <button type="button" class="ln-prev" aria-label="Previous">◀</button>
@@ -168,7 +183,7 @@ window.ZBZLearn = function (cfg) {
         <div class="ln-quiz">
           <p class="ln-qhead">Question ${quiz.n} of 10 · ${quiz.right} right</p>
           <button type="button" class="ln-say ln-hear">🔊 Listen, then tap the right one</button>
-          <p class="ln-hint">${it.emoji || ''} <span style="${font}" dir="${cfg.dir || 'ltr'}">${it.word || ''}</span> <small>${it.roman || ''}</small></p>
+          ${it.count !== undefined ? countHtml(it.count, true) : `<p class="ln-hint ln-pic">${it.emoji || '❓'}</p>`}
           <div class="ln-opts">${quiz.q.opts.map(i => `<button type="button" data-o="${i}" style="${font}">${list[i].ch}</button>`).join('')}</div>
         </div>`;
       api.after(250, () => say(it));

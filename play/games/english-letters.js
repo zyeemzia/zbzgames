@@ -9,7 +9,7 @@
     return { ch: ch + ch.toLowerCase(), word, emoji, roman: `${ch} is for ${word}`, say: `${ch}. ${ch} is for ${word}.`, color: `hsl(${(i * 37) % 360},80%,52%)` };
   });
   const NUM = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
-  const numbers = NUM.map((w, n) => ({ ch: String(n), word: w, emoji: n ? '⭐'.repeat(n) : '⭕', roman: `${n} — ${w}`, say: w, color: '#8b5cf6' }));
+  const numbers = NUM.map((w, n) => ({ ch: String(n), word: w, count: n, roman: `${n} — ${w}`, say: w, color: '#8b5cf6' }));
   ZBZLearn({
     lang: 'en-US', langName: 'English', color: '#8b5cf6', baseline: .02,
     font: "'Rajdhani', sans-serif", canvasFont: "'Rajdhani', sans-serif",

@@ -294,3 +294,15 @@ a { color: var(--cyan); }
 .ln-voice { margin: 0; padding: 10px 12px; border-radius: 12px; background: var(--panel); border: 1px solid var(--line2); color: var(--ink2); font-weight: 600; font-size: .92rem; }
 #stage:has(.ln-wrap) { overflow-y: auto; align-items: flex-start; }
 @media (max-width: 440px) { .ln-nav { gap: 5px; } .ln-nav button { padding: 9px 10px; font-size: .92rem; min-width: 40px; } .ln-seg button { padding: 6px 9px; font-size: .88rem; } }
+
+/* counting objects and stars always wrap inside the card */
+.ln-count { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 6px; max-width: 100%; font-size: clamp(1.4rem, 6vw, 2rem); line-height: 1.2; padding: 4px 0; }
+.ln-count span { animation: lnPop .35s both; }
+.ln-count span:nth-child(n+6) { animation-delay: .05s; }
+.ln-count.small { font-size: 1.3rem; }
+.ln-count em { font-style: normal; font-weight: 700; color: var(--ink3); }
+.ln-word { flex-wrap: wrap; justify-content: center; text-align: center; max-width: 100%; }
+.ln-stars { max-width: 100%; overflow-wrap: anywhere; }
+.ln-card, .ln-quiz, .ln-write { min-width: 0; max-width: 100%; }
+.ln-hint { overflow-wrap: anywhere; }
+.ln-pic { font-size: clamp(3rem, 14vw, 4.5rem); line-height: 1.1; }

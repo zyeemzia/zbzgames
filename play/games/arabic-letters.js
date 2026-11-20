@@ -1,6 +1,6 @@
 /* Alif Ba · ZBZGames™ original, for kids. Learn, write and hear the Arabic letters and numbers. */
 (() => {
-  const L = (ch, name, word, emoji, roman) => ({ ch, word, emoji, roman, say: `${name}، ${word}`, color: '#10b981' });
+  const L = (ch, name, word, emoji, roman) => ({ ch, word, emoji, roman, say: `${name}. ${word}.`, color: '#10b981' });
   const letters = [
     L('ا', 'ألف', 'أسد', '🦁', 'alif — asad'), L('ب', 'باء', 'بطة', '🦆', 'baa — batta'), L('ت', 'تاء', 'تفاحة', '🍎', 'taa — tuffaha'),
     L('ث', 'ثاء', 'ثعلب', '🦊', 'thaa — tha\'lab'), L('ج', 'جيم', 'جمل', '🐫', 'jeem — jamal'), L('ح', 'حاء', 'حصان', '🐴', 'haa — hisan'),
@@ -16,7 +16,7 @@
   const NUM = ['صفر', 'واحد', 'اثنان', 'ثلاثة', 'أربعة', 'خمسة', 'ستة', 'سبعة', 'ثمانية', 'تسعة', 'عشرة'];
   const ROM = ['sifr', 'wahid', 'ithnan', 'thalatha', 'arba\'a', 'khamsa', 'sitta', 'sab\'a', 'thamaniya', 'tis\'a', '\'ashara'];
   const DIG = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩', '١٠'];
-  const numbers = DIG.map((ch, n) => ({ ch, word: NUM[n], emoji: n ? '⭐'.repeat(n) : '⭕', roman: `${n} — ${ROM[n]}`, say: NUM[n], color: '#f59e0b' }));
+  const numbers = DIG.map((ch, n) => ({ ch, word: NUM[n], count: n, roman: `${n} — ${ROM[n]}`, say: NUM[n], color: '#f59e0b' }));
   ZBZLearn({
     lang: 'ar-SA', langName: 'Arabic', color: '#10b981', dir: 'rtl',
     font: "'Noto Naskh Arabic', 'Amiri', serif", canvasFont: "'Noto Naskh Arabic', serif", baseline: -.02,
