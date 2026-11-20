@@ -3,7 +3,7 @@
  * copy is used only with no connection. Every game is saved on first visit, so
  * the whole arcade plays offline. A new release waits and the page offers
  * "Update now"; the first visit takes over at once. Recovery: ?nosw=1 */
-const CACHE = 'zbz-9770c15f';
+const CACHE = 'zbz-56c1db22';
 const PAGES = ["/", "/play/", "/1971-baf/", "/play/orbit-dash/", "/play/stack-tower/", "/play/sky-glider/", "/play/byte-serpent/", "/play/pulse-breaker/", "/play/merge-matrix/", "/play/mine-sentinel/", "/play/word-forge/", "/play/math-sprint/", "/play/memory-stars/", "/play/bubble-pop/", "/play/fruit-catch/", "/play/neon-lanes/", "/play/quick-draw/", "/play/slide-shift/", "/play/hue-hunter/", "/play/echo-lights/", "/play/grid-duel/", "/play/mole-patrol/"];
 const ASSETS = ["/play/arcade.css", "/play/engine.js", "/zz-app.js", "/manifest.webmanifest", "/favicon.ico", "/favicon-32.png", "/icon-192.png", "/icon-512.png", "/apple-touch-icon.png", "/play/games/orbit-dash.js", "/play/games/stack-tower.js", "/play/games/sky-glider.js", "/play/games/byte-serpent.js", "/play/games/pulse-breaker.js", "/play/games/merge-matrix.js", "/play/games/mine-sentinel.js", "/play/games/word-forge.js", "/play/games/math-sprint.js", "/play/games/memory-stars.js", "/play/games/bubble-pop.js", "/play/games/fruit-catch.js", "/play/games/neon-lanes.js", "/play/games/quick-draw.js", "/play/games/slide-shift.js", "/play/games/hue-hunter.js", "/play/games/echo-lights.js", "/play/games/grid-duel.js", "/play/games/mole-patrol.js"];
 

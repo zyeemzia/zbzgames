@@ -90,10 +90,10 @@ def head(title, desc, path, extra=''):
 <meta name="theme-color" content="#f4f5fc" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#05060f" media="(prefers-color-scheme: dark)">
 <meta name="color-scheme" content="light dark">
 <script>try{{var t=localStorage.getItem("matrixTheme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}}catch(e){{}}</script>
-<link rel="icon" href="/favicon.ico?v=2" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2">
-<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png?v=2">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2">
+<link rel="icon" href="/favicon.ico?v=3" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=3">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png?v=3">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3">
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -107,7 +107,7 @@ def head(title, desc, path, extra=''):
 
 def bar(current):
     return f'''<header class="bar"><div class="wrap">
-  <a class="logo" href="/play/"><img src="/icon-192.png?v=2" width="34" height="34" alt=""><span>ZBZ<b>Games™</b></span></a>
+  <a class="logo" href="/play/"><img src="/icon-192.png?v=3" width="34" height="34" alt=""><span>ZBZ<b>Games™</b></span></a>
   <nav aria-label="Main">
     <a href="/play/"{' aria-current="page"' if current == 'arcade' else ''}>Arcade</a>
     <a href="/play/#kids" class="hide-sm">Kids</a>
@@ -322,7 +322,7 @@ if __name__ == '__main__':
     h = hashlib.sha256()
     for g in GAMES:
         with open(os.path.join(ROOT, 'play', 'games', g['id'] + '.js'), 'rb') as f: h.update(f.read())
-    for rel in ('play/engine.js', 'play/arcade.css'):
+    for rel in ('play/engine.js', 'play/arcade.css', 'icon-512.png', 'icon-maskable-512.png', 'index.html'):
         with open(os.path.join(ROOT, rel), 'rb') as f: h.update(f.read())
     VER = h.hexdigest()[:8]
     globals()['VER'] = VER
@@ -335,9 +335,9 @@ if __name__ == '__main__':
         'description': f'{len(GAMES)} free original games by ZBZGames, the studio of ZyeemZia. Arcade, puzzle, brain and kids games that also play offline.',
         'display': 'standalone', 'orientation': 'any', 'background_color': '#05060f', 'theme_color': '#05060f',
         'lang': 'en', 'categories': ['games', 'entertainment', 'kids', 'education'],
-        'icons': [{'src': '/icon-192.png?v=2', 'sizes': '192x192', 'type': 'image/png', 'purpose': 'any'},
-                  {'src': '/icon-512.png?v=2', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'any'},
-                  {'src': '/icon-maskable-512.png?v=2', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'maskable'}],
+        'icons': [{'src': '/icon-192.png?v=3', 'sizes': '192x192', 'type': 'image/png', 'purpose': 'any'},
+                  {'src': '/icon-512.png?v=3', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'any'},
+                  {'src': '/icon-maskable-512.png?v=3', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'maskable'}],
         'shortcuts': [{'name': 'Kids corner', 'url': '/play/?cat=kids'}, {'name': 'All games', 'url': '/play/'},
                       {'name': 'Studio', 'url': '/'}]
     }, ensure_ascii=False, indent=1))
