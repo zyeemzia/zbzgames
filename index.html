@@ -429,11 +429,40 @@
 
         body.dark-mode .icon-moon { display: none; }
         body.dark-mode .icon-sun { display: block; }
+
+        /* ---------- ZBZ Arcade launch panel ---------- */
+        .arcade-cta { position: relative; overflow: hidden; border-radius: 22px; padding: 30px 28px; margin: 0 0 40px; text-align: left; color: #eef1ff;
+            background: radial-gradient(600px 300px at 90% 0%, rgba(255,94,168,.35), transparent 60%), radial-gradient(500px 300px at 0% 100%, rgba(86,224,255,.25), transparent 60%), linear-gradient(135deg, #1b0f4a, #0a0c22);
+            border: 1px solid rgba(150,160,255,.3); box-shadow: 0 20px 50px -20px rgba(124,58,237,.6); }
+        .arcade-cta .kicker { color: #56e0ff; font-weight: 700; letter-spacing: 3px; font-size: 13px; text-transform: uppercase; }
+        .arcade-cta h2 { font-size: clamp(28px, 5vw, 42px); margin: 6px 0 6px; line-height: 1.05; color: #fff; }
+        .arcade-cta h2 span { background: linear-gradient(120deg,#a78bfa,#56e0ff 55%,#e2b95c); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .arcade-cta p { color: #c3c9ec; font-size: 17px; margin: 0 0 18px; max-width: 620px; font-weight: 500; }
+        .arcade-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; margin-bottom: 20px; }
+        @media (max-width: 560px) { .arcade-cta { padding: 22px 16px; } .arcade-row a { font-size: 14px; padding: 10px 4px; text-align: center; } .arcade-row a span { font-size: 28px; } }
+        .arcade-row a { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 14px 8px; border-radius: 16px; text-decoration: none; color: #fff; font-weight: 700; font-size: 16px;
+            background: rgba(255,255,255,.06); border: 1px solid rgba(150,160,255,.22); transition: transform .18s, background .18s; }
+        .arcade-row a:hover { transform: translateY(-3px); background: rgba(255,255,255,.12); }
+        .arcade-row a span { font-size: 34px; line-height: 1.1; }
+        .arcade-row a small { color: #ffd23f; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+        .arcade-go { display: flex; gap: 12px; flex-wrap: wrap; }
+        .arcade-go a { display: inline-block; text-decoration: none; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; font-size: 15px; padding: 12px 24px; border-radius: 999px; }
+        .arcade-go .primary { background: linear-gradient(135deg,#e2b95c,#b8862f); color: #1a1205; box-shadow: 0 10px 26px -8px rgba(226,185,92,.6); }
+        .arcade-go .ghost { color: #fff; border: 1px solid rgba(255,210,63,.6); }
+        .section-title { text-align: left; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: #64748b; margin: 0 0 16px; font-weight: 700; }
     </style>
     <link rel="stylesheet" href="https://zyeemzia.com/transmit.css?v=3">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#05060f">
+<meta name="description" content="ZBZGames, the interactive entertainment studio of ZyeemZia: free original online games for everyone and kids, plus offline mobile games on Google Play.">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ZBZGames"><meta name="application-name" content="ZBZGames">
+<script src="zz-app.js?v=2" data-sw="/sw.js" data-name="ZBZGames" defer></script>
 </head>
 <body>
     <button id="themeToggle" class="theme-toggle-btn" title="Toggle Light/Dark Mode">
@@ -465,6 +494,22 @@
             <p>ZBZGames™ is the dedicated interactive entertainment and simulation branch of ZyeemZia™. We engineer immersive experiences, tactical simulators, and high-performance mobile games designed to push the boundaries of digital recreation. Utilizing advanced physics engines, AI-driven environments, and seamless multiplayer architecture, ZBZGames™ delivers precision-crafted interactive media to players worldwide.</p>
         </div>
 
+        <section class="arcade-cta" aria-labelledby="arcade-h">
+            <div class="kicker">New · ZBZGames™ Arcade</div>
+            <h2 id="arcade-h">Play free, <span>right now</span></h2>
+            <p>Twelve original ZBZ games that open in a second in any browser: arcade, puzzle, brain teasers and a safe Kids corner. No download, no sign-up, no ads, and installable to play offline.</p>
+            <div class="arcade-row">
+                <a href="/play/orbit-dash/"><span>🪐</span>Orbit Dash</a>
+                <a href="/play/word-forge/"><span>🔤</span>Word Forge</a>
+                <a href="/play/merge-matrix/"><span>🔢</span>Merge Matrix</a>
+                <a href="/play/stack-tower/"><span>🏗️</span>Stack Tower</a>
+                <a href="/play/memory-stars/"><span>⭐</span>Memory Stars<small>Kids</small></a>
+                <a href="/play/bubble-pop/"><span>🎈</span>Bubble Pop<small>Kids</small></a>
+            </div>
+            <div class="arcade-go"><a class="primary" href="/play/">Open the arcade</a><a class="ghost" href="/play/#kids">Kids corner</a></div>
+        </section>
+
+        <h2 class="section-title">Mobile games on Google Play</h2>
         <div class="app-grid">
 
             <div class="app-card purple-accent">

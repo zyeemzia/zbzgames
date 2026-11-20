@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://zbzgames.zyeemzia.com/</loc><priority>1.0</priority></url>
-  <url><loc>https://zbzgames.zyeemzia.com/privacy-bdairforcemini.html</loc><priority>0.3</priority></url>
-  <url><loc>https://zbzgames.zyeemzia.com/privacy-golfcshipmini.html</loc><priority>0.3</priority></url>
-  <url><loc>https://zbzgames.zyeemzia.com/terms-bdairforcemini.html</loc><priority>0.3</priority></url>
-  <url><loc>https://zbzgames.zyeemzia.com/terms-golfcshipmini.html</loc><priority>0.3</priority></url>
+  <url><loc>https://zbzgames.zyeemzia.com/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://zbzgames.zyeemzia.com/play/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://zbzgames.zyeemzia.com/play/orbit-dash/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://zbzgames.zyeemzia.com/play/stack-tower/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://zbzgames.zyeemzia.com/play/sky-glider/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://zbzgames.zyeemzia.com/play/byte-serpent/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://zbzgames.zyeemzia.com/play/pulse-breaker/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://zbzgames.zyeemzia.com/play/merge-matrix/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://zbzgames.zyeemzia.com/play/mine-sentinel/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://zbzgames.zyeemzia.com/play/word-forge/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://zbzgames.zyeemzia.com/play/math-sprint/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://zbzgames.zyeemzia.com/play/memory-stars/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://zbzgames.zyeemzia.com/play/bubble-pop/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://zbzgames.zyeemzia.com/play/fruit-catch/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://zbzgames.zyeemzia.com/privacy-golfcshipmini.html</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://zbzgames.zyeemzia.com/terms-golfcshipmini.html</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://zbzgames.zyeemzia.com/privacy-bdairforcemini.html</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://zbzgames.zyeemzia.com/terms-bdairforcemini.html</loc><lastmod>2026-11-20</lastmod></url>
 </urlset>

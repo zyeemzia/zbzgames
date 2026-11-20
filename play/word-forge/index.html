@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Word Forge · Free online game by ZBZGames</title>
+<meta name="description" content="Find the hidden five-letter word in six tries, then forge the next. Play Word Forge free in your browser: no download, no sign-up, no ads.">
+<link rel="canonical" href="https://zbzgames.zyeemzia.com/play/word-forge/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="ZBZGames">
+<meta property="og:title" content="Word Forge · Free online game by ZBZGames"><meta property="og:description" content="Find the hidden five-letter word in six tries, then forge the next. Play Word Forge free in your browser: no download, no sign-up, no ads.">
+<meta property="og:url" content="https://zbzgames.zyeemzia.com/play/word-forge/"><meta property="og:image" content="https://zbzgames.zyeemzia.com/icon-512.png">
+<meta name="theme-color" content="#05060f">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ZBZGames"><meta name="application-name" content="ZBZGames">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/play/arcade.css?v=ae43e536">
+<script src="/zz-app.js?v=2" data-sw="/sw.js" data-name="ZBZGames" defer></script>
+
+</head>
+<body>
+<a class="sr" href="#stage">Skip to the game</a>
+<header class="bar"><div class="wrap">
+  <a class="logo" href="/play/"><img src="/icon-192.png" width="34" height="34" alt=""><span>ZBZ<b>Games</b></span></a>
+  <nav aria-label="Main">
+    <a href="/play/">Arcade</a>
+    <a href="/play/#kids" class="hide-sm">Kids</a>
+    <a href="/" class="hide-sm">Studio</a>
+    <span data-zz-install></span>
+  </nav>
+</div></header>
+<main class="play-main">
+  <div class="hud">
+    <h1>🔤 Word Forge</h1>
+    <div class="num"><small>Score</small><b id="score">0</b></div>
+    <div class="num best"><small>Best</small><b id="best">0</b></div>
+    <button class="hbtn" id="pause" type="button" aria-label="Pause" hidden>&#10073;&#10073;</button>
+    <button class="hbtn" id="mute" type="button" aria-label="Sound off">&#128264;</button>
+    <button class="hbtn" id="full" type="button" aria-label="Full screen">&#x26F6;</button>
+  </div>
+  <div id="arena"><div id="stage" tabindex="0" aria-label="Word Forge game area"></div><div id="card" hidden></div></div>
+  <section class="more"><h2>More games</h2><div class="grid"><a class="game" href="/play/merge-matrix/" data-id="merge-matrix" data-cats="puzzle brain" data-name="merge matrix slide the grid so equal tiles fuse. can you reach 2048?" style="--h:300"><div class="tags"><i>Puzzle</i></div><span class="best" hidden></span><div class="art" aria-hidden="true"><span>🔢</span></div><div class="body"><h3>Merge Matrix</h3><p>Slide the grid so equal tiles fuse. Can you reach 2048?</p></div></a><a class="game" href="/play/mine-sentinel/" data-id="mine-sentinel" data-cats="puzzle brain" data-name="mine sentinel clear the field using the numbers. each one counts the mines around it." style="--h:350"><div class="tags"><i>Puzzle</i></div><span class="best" hidden></span><div class="art" aria-hidden="true"><span>💣</span></div><div class="body"><h3>Mine Sentinel</h3><p>Clear the field using the numbers. Each one counts the mines around it.</p></div></a><a class="game" href="/play/math-sprint/" data-id="math-sprint" data-cats="kids brain quick" data-name="math sprint sixty seconds of quick sums. the faster you go, the harder it gets." style="--h:140"><div class="tags"><i class="kids">Kids</i><i>Learning</i></div><span class="best" hidden></span><div class="art" aria-hidden="true"><span>➗</span></div><div class="body"><h3>Math Sprint</h3><p>Sixty seconds of quick sums. The faster you go, the harder it gets.</p></div></a><a class="game" href="/play/memory-stars/" data-id="memory-stars" data-cats="kids brain" data-name="memory stars flip the cards and find every matching pair of animals, fruit or vehicles." style="--h:50"><div class="tags"><i class="kids">Kids</i><i>Learning</i></div><span class="best" hidden></span><div class="art" aria-hidden="true"><span>⭐</span></div><div class="body"><h3>Memory Stars</h3><p>Flip the cards and find every matching pair of animals, fruit or vehicles.</p></div></a><a class="game" href="/play/orbit-dash/" data-id="orbit-dash" data-cats="arcade quick" data-name="orbit dash circle the core, grab the stars and flip direction before the spikes." style="--h:265"><div class="tags"><i>Arcade</i></div><span class="best" hidden></span><div class="art" aria-hidden="true"><span>🪐</span></div><div class="body"><h3>Orbit Dash</h3><p>Circle the core, grab the stars and flip direction before the spikes.</p></div></a><a class="game" href="/play/stack-tower/" data-id="stack-tower" data-cats="arcade quick kids" data-name="stack tower drop each sliding block on the tower. only the overlap stays." style="--h:200"><div class="tags"><i class="kids">Kids</i><i>Arcade</i></div><span class="best" hidden></span><div class="art" aria-hidden="true"><span>🏗️</span></div><div class="body"><h3>Stack Tower</h3><p>Drop each sliding block on the tower. Only the overlap stays.</p></div></a></div></section>
+</main>
+<footer class="foot"><div class="wrap">
+  <p>ZBZGames™ is the interactive entertainment studio of ZyeemZia™. Every arcade game is an original, free to play, with no sign-up and no ads.</p>
+  <p><a href="/">Studio &amp; mobile games</a><a href="https://zyeemzia.com">zyeemzia.com</a><a href="https://academy.zyeemzia.com">Academy</a><a href="https://ai.zyeemzia.com">ZyeemZia AI</a><a href="https://policy.zyeemzia.com">Policies</a></p>
+  <p>Copyright © ZyeemZia</p>
+</div></footer>
+<script>window.ZBZ_GAME = {"id": "word-forge", "name": "Word Forge", "how": "Type or tap letters. Gold: right letter, right place. Blue: in the word, elsewhere. Grey: not in it."};</script>
+<script src="/play/engine.js?v=ae43e536"></script>
+<script src="/play/games/word-forge.js?v=ae43e536"></script>
+<script>
+/* Show each game's best score on its card. Storage may be blocked; then nothing shows. */
+document.querySelectorAll('.game[data-id]').forEach(function (a) {
+  try { var v = JSON.parse(localStorage.getItem('zbz-best-' + a.dataset.id) || '0'); if (v > 0) { var b = a.querySelector('.best'); b.textContent = '★ ' + v; b.hidden = false; } } catch (e) {}
+});
+</script>
+</body>
+</html>
