@@ -171,7 +171,7 @@ def hub():
   <div class="grid" id="games">{''.join(card(g) for g in GAMES)}</div>
   <p class="empty" hidden>No game matches that. Try another word.</p>
   <a class="classic-band" href="/1971-baf/">
-    <span class="classic-tag">Since 2004 · Where ZBZ began</span>
+    <span class="classic-tag">Since 2004 · Where ZBZGames began</span>
     <strong>1971 BAF</strong>
     <span>The first ZBZGames title, a Windows game made by Zyeem Bin Zia as a child. Free download for PC.</span>
     <em>Download for Windows →</em>
