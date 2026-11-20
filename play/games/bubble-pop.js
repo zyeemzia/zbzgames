@@ -20,7 +20,7 @@ ZBZ.register({ start(api) {
       const b = bubbles[i];
       if (!b.pop && Math.hypot(b.x - x, b.y - y) < b.r + 8) {
         b.pop = .01;
-        if (b.v === target) { streak++; api.add(1 + Math.floor(streak / 5)); api.sfx('point'); if (streak % 6 === 0) target = api.pick(mode.pool); }
+        if (b.v === target) { streak++; api.add(1 + Math.floor(streak / 5)); api.sfx('pop'); if (streak % 6 === 0) target = api.pick(mode.pool); }
         else { streak = 0; api.sfx('bad'); }
         return;
       }

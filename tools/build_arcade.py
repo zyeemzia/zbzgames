@@ -47,6 +47,17 @@ GAMES = [
     dict(id='fruit-catch', name='Fruit Catch', icon='🧺', hue=110, cats=['kids', 'arcade'],
          desc='Slide the basket, catch the falling fruit and keep the rocks out.',
          how='Move with your finger, the mouse or the arrow keys. Three hearts: a dropped fruit or a caught rock costs one.'),
+    dict(id='bangla-letters', name='Bangla Barnamala', icon='🔤', hue=200, cats=['kids', 'brain'], learn=True,
+         fonts='Noto+Sans+Bengali:wght@500;700',
+         desc='Learn every Bangla letter and number: hear it spoken, trace it with your finger, then play a quiz.',
+         how='Pick Letters or Numbers, then Learn, Write or Quiz. Tap a letter to hear it. In Write, trace the dotted letter and press Check for stars.'),
+    dict(id='arabic-letters', name='Alif Ba', icon='🌙', hue=160, cats=['kids', 'brain'], learn=True,
+         fonts='Noto+Naskh+Arabic:wght@500;700',
+         desc='The Arabic alphabet and numbers for kids: hear each letter, trace it, and test yourself.',
+         how='Pick Letters or Numbers, then Learn, Write or Quiz. Tap a letter to hear its name and a word that starts with it.'),
+    dict(id='english-letters', name='ABC Adventure', icon='🅰️', hue=270, cats=['kids', 'brain'], learn=True,
+         desc='A to Z and 0 to 10 with pictures and voice: learn, trace each letter, then take the quiz.',
+         how='Pick Letters or Numbers, then Learn, Write or Quiz. Tap the big letter to hear it again.'),
     dict(id='neon-lanes', name='Neon Lanes', icon='🏎️', hue=320, cats=['arcade', 'quick'],
          desc='Swerve between three neon lanes, dodge the traffic and grab the gold.',
          how='Tap the left or right half, or use the arrow keys, to change lane. Gold squares are a bonus.'),
@@ -300,6 +311,7 @@ def page(g):
 {FOOT}
 <script>window.ZBZ_GAME = {meta};</script>
 <script src="/play/engine.js?v={VER}"></script>
+{'<script src="/play/learn.js?v=' + VER + '"></script>' if g.get('learn') else ''}
 <script src="/play/games/{g['id']}.js?v={VER}"></script>
 {BEST_JS}
 </body>
@@ -307,7 +319,8 @@ def page(g):
 '''
     title = f"{g['name']} · Free online game by ZBZGames"
     desc = f"{g['desc']} Play {g['name']} free in your browser: no download, no sign-up, no ads."
-    return head(title, desc, f"/play/{g['id']}/") + '\n' + body
+    fonts = f'<link href="https://fonts.googleapis.com/css2?family={g["fonts"]}&display=swap" rel="stylesheet">' if g.get('fonts') else ''
+    return head(title, desc, f"/play/{g['id']}/", fonts) + '\n' + body
 
 
 def write(rel, text):
@@ -322,7 +335,7 @@ if __name__ == '__main__':
     h = hashlib.sha256()
     for g in GAMES:
         with open(os.path.join(ROOT, 'play', 'games', g['id'] + '.js'), 'rb') as f: h.update(f.read())
-    for rel in ('play/engine.js', 'play/arcade.css', 'icon-512.png', 'icon-maskable-512.png', 'index.html'):
+    for rel in ('play/engine.js', 'play/learn.js', 'play/arcade.css', 'icon-512.png', 'icon-maskable-512.png', 'index.html'):
         with open(os.path.join(ROOT, rel), 'rb') as f: h.update(f.read())
     VER = h.hexdigest()[:8]
     globals()['VER'] = VER
@@ -342,7 +355,7 @@ if __name__ == '__main__':
                       {'name': 'Studio', 'url': '/'}]
     }, ensure_ascii=False, indent=1))
     pages = ['/', '/play/', '/1971-baf/'] + [f"/play/{g['id']}/" for g in GAMES]
-    assets = ['/play/arcade.css', '/play/engine.js', '/zz-app.js', '/manifest.webmanifest', '/favicon.ico', '/favicon-32.png',
+    assets = ['/play/arcade.css', '/play/engine.js', '/play/learn.js', '/zz-app.js', '/manifest.webmanifest', '/favicon.ico', '/favicon-32.png',
               '/icon-192.png', '/icon-512.png', '/apple-touch-icon.png'] + [f"/play/games/{g['id']}.js" for g in GAMES]
     with open(os.path.join(ROOT, 'tools', 'sw.template.js'), encoding='utf-8') as f:
         sw = f.read()

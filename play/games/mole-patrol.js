@@ -21,7 +21,7 @@ ZBZ.register({ start(api) {
   api.on(wrap, 'pointerdown', e => {
     const h = e.target.closest('.mp-hole'); if (!h) return;
     const i = +h.dataset.i;
-    if (state[i] === 'mole') { api.add(1); api.sfx('point'); h.classList.add('hit'); state[i] = 'hit'; api.after(180, () => hide(i)); upFor = Math.max(520, upFor - 12); }
+    if (state[i] === 'mole') { api.add(1); api.sfx('pop'); h.classList.add('hit'); state[i] = 'hit'; api.after(180, () => hide(i)); upFor = Math.max(520, upFor - 12); }
     else if (state[i] === 'bunny') { api.add(-2); api.sfx('bad'); h.classList.add('hit'); state[i] = 'hit'; api.after(180, () => hide(i)); }
   });
   api.every(520, () => { pop(); if (Math.random() < Math.min(.5, (45 - timeLeft) / 60)) pop(); });
