@@ -395,7 +395,7 @@ if __name__ == '__main__':
     for g in GAMES:
         write(f"play/{g['id']}/index.html", page(g))
     write('manifest.webmanifest', json.dumps({
-        'name': 'ZBZGames', 'short_name': 'ZBZGames', 'id': '/', 'start_url': '/play/', 'scope': '/',
+        'name': 'ZBZGames™', 'short_name': 'ZBZGames', 'id': '/', 'start_url': '/play/', 'scope': '/',
         'description': f'{len(GAMES)} free original games by ZBZGames, the studio of ZyeemZia. Arcade, puzzle, brain and kids games that also play offline.',
         'display': 'standalone', 'orientation': 'any', 'background_color': '#05060f', 'theme_color': '#05060f',
         'lang': 'en', 'categories': ['games', 'entertainment', 'kids', 'education'],
