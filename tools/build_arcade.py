@@ -86,6 +86,19 @@ FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="
 e = lambda s: html.escape(str(s), quote=True)
 
 
+# ZyeemZia house style: every page gets the small script that justifies normal writing.
+HOUSE_MARK = 'ZyeemZia house style: justified writing'
+HOUSE = "<script>/* ZyeemZia house style: justified writing. Paragraphs and list text that read left-aligned are justified; centred text, headings, buttons and columns too narrow to justify cleanly stay as they are. Copyright © ZyeemZia */(function(){var S='p,li,dd,blockquote';function j(r){if(!r||!r.querySelectorAll)return;var L=r.querySelectorAll(S);for(var i=0;i<L.length;i++){var e=L[i];if(e.getAttribute('data-zj'))continue;e.setAttribute('data-zj','1');var a=getComputedStyle(e).textAlign;if(a==='start'||a==='left'||a==='-webkit-auto'){var w=e.clientWidth;if(!w||w>=280)e.style.textAlign='justify'}}}function go(){j(document);if(!window.MutationObserver)return;new MutationObserver(function(m){for(var i=0;i<m.length;i++){var N=m[i].addedNodes;for(var k=0;k<N.length;k++){var n=N[k];if(n.nodeType===1)j(n.matches&&n.matches(S)?n.parentNode:n)}}}).observe(document.body,{childList:true,subtree:true})}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go()})()</script>\n"
+
+
+def house(name, text):
+    """Add the house-style script to an html page, once, just before </body>."""
+    if not str(name).endswith('.html') or HOUSE_MARK in text or '</body>' not in text:
+        return text
+    i = text.rfind('</body>')
+    return text[:i] + HOUSE + text[i:]
+
+
 def head(title, desc, path, extra=''):
     return f'''<!doctype html>
 <html lang="en">
@@ -374,6 +387,7 @@ def page(g):
 
 
 def write(rel, text):
+    text = house(rel, text)
     p = os.path.join(ROOT, rel)
     os.makedirs(os.path.dirname(p), exist_ok=True)
     with open(p, 'w', encoding='utf-8', newline='\n') as f:
