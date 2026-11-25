@@ -80,7 +80,7 @@ ZBZ.register({ start(api) {
       if (i === cur) { ctx.strokeStyle = '#ffd23f'; ctx.lineWidth = 3; api.rr(ctx, x + 3, y + 3, c - 6, c - 6, c * .16); ctx.stroke(); }
       ctx.save(); ctx.translate(mx, my); ctx.rotate(cell.a);
       const col = cell.lit ? '#56e0ff' : (api.c.dark ? '#59608f' : '#9aa1c7');
-      ctx.strokeStyle = col; ctx.lineWidth = Math.max(4, c * .15); ctx.lineCap = 'round';
+      ctx.strokeStyle = col; ctx.lineWidth = Math.max(4, c * .15); ctx.lineCap = 'butt';
       if (cell.lit) { ctx.shadowColor = '#56e0ff'; ctx.shadowBlur = 14; }
       let ends = 0;
       for (let d = 0; d < 4; d++) if (cell.m & (1 << d)) { ends++; ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(DX[d] * c / 2, DY[d] * c / 2); ctx.stroke(); }
