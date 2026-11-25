@@ -11,72 +11,102 @@ ORIGIN = 'https://zbzgames.zyeemzia.com'
 CATS = [('all', 'All games'), ('kids', 'Kids'), ('arcade', 'Arcade'), ('puzzle', 'Puzzle'), ('brain', 'Brain'), ('quick', 'Quick play')]
 
 GAMES = [
-    dict(id='orbit-dash', name='Orbit Dash', icon='🪐', hue=265, cats=['arcade', 'quick'],
+    dict(id='orbit-dash', name='Orbit Dash', icon='🪐', hue=265, cats=['arcade', 'quick'], touch='Tap to flip', keys='Space',
          desc='Circle the core, grab the stars and flip direction before the spikes.',
          how='Tap, click or press Space to flip direction. Collect stars, dodge the red spikes. It speeds up.'),
-    dict(id='stack-tower', name='Stack Tower', icon='🏗️', hue=200, cats=['arcade', 'quick', 'kids'],
+    dict(id='circuit-spin', name='Circuit Spin', icon='🔌', hue=188, cats=['puzzle', 'brain'], touch='Tap to rotate', keys='Arrows, Space',
+         desc='Rotate the wire tiles until power from the core reaches every corner.',
+         how='Tap a tile to turn it. Join the wires so the glowing core powers every tile. Each solved board adds time.'),
+    dict(id='stack-tower', name='Stack Tower', icon='🏗️', hue=200, cats=['arcade', 'quick', 'kids'], touch='Tap to drop', keys='Space',
          desc='Drop each sliding block on the tower. Only the overlap stays.',
          how='Tap or press Space to drop the block. Land it exactly for a perfect bonus.'),
-    dict(id='sky-glider', name='Sky Glider', icon='🛩️', hue=40, cats=['arcade', 'quick'],
-         desc='Lift your glider through the neon gates of the night sky.',
-         how='Tap or press Space to lift. Fly through the gaps; touching a gate ends the flight.'),
-    dict(id='byte-serpent', name='Byte Serpent', icon='🐍', hue=170, cats=['arcade'],
-         desc='Guide the data serpent, eat the golden bits and grow without biting your tail.',
-         how='Swipe, or use the arrow keys or WASD. The walls wrap around; only your own tail is deadly.'),
-    dict(id='pulse-breaker', name='Pulse Breaker', icon='🧱', hue=190, cats=['arcade'],
-         desc='Bounce the energy ball and shatter wall after wall of neon bricks.',
-         how='Move with your finger, the mouse or the arrow keys. Gold bricks take two hits. Three balls per game.'),
-    dict(id='merge-matrix', name='Merge Matrix', icon='🔢', hue=300, cats=['puzzle', 'brain'],
-         desc='Slide the grid so equal tiles fuse. Can you reach 2048?',
-         how='Swipe or use the arrow keys. Two equal tiles that touch become one. The game ends when no move is left.'),
-    dict(id='mine-sentinel', name='Mine Sentinel', icon='💣', hue=350, cats=['puzzle', 'brain'],
-         desc='Clear the field using the numbers. Each one counts the mines around it.',
-         how='Tap to dig. Long-press, right-click or switch to Flag mode to mark a mine. Your first dig is always safe.'),
-    dict(id='word-forge', name='Word Forge', icon='🔤', hue=45, cats=['brain', 'puzzle'],
+    dict(id='word-forge', name='Word Forge', icon='⚒️', hue=45, cats=['brain', 'puzzle'], touch='Tap letters', keys='Type, Enter', typing=True,
          desc='Find the hidden five-letter word in six tries, then forge the next.',
          how='Type or tap letters. Gold: right letter, right place. Blue: in the word, elsewhere. Grey: not in it.'),
-    dict(id='math-sprint', name='Math Sprint', icon='➗', hue=140, cats=['kids', 'brain', 'quick'],
+    dict(id='meteor-drift', name='Meteor Drift', icon='☄️', hue=255, cats=['arcade', 'quick'], touch='Drag to steer', keys='← →',
+         desc='Steer through a meteor shower, grab crystals and let a shield take one hit.',
+         how='Move with your finger, the mouse or the arrow keys. Crystals score five. A green ring is a shield that saves you once.'),
+    dict(id='merge-matrix', name='Merge Matrix', icon='🔢', hue=300, cats=['puzzle', 'brain'], touch='Swipe', keys='Arrows',
+         desc='Slide the grid so equal tiles fuse. Can you reach 2048?',
+         how='Swipe or use the arrow keys. Two equal tiles that touch become one. The game ends when no move is left.'),
+    dict(id='sum-trail', name='Sum Trail', icon='➕', hue=275, cats=['brain', 'puzzle', 'quick'], touch='Drag or tap', keys='Arrows, Enter',
+         desc='Link neighbouring numbers into a trail that adds up to the target.',
+         how='Drag or tap across touching numbers until they add up to the target. Longer trails score more. Going over costs two seconds.'),
+    dict(id='sky-glider', name='Sky Glider', icon='🛩️', hue=40, cats=['arcade', 'quick'], touch='Tap to lift', keys='Space',
+         desc='Lift your glider through the neon gates of the night sky.',
+         how='Tap or press Space to lift. Fly through the gaps; touching a gate ends the flight.'),
+    dict(id='tint-tubes', name='Tint Tubes', icon='🧪', hue=330, cats=['puzzle', 'brain'], touch='Tap two tubes', keys='1 to 9, U to undo',
+         desc='Pour the colours from tube to tube until each tube holds just one.',
+         how='Tap a tube, then the tube to pour into. A colour only lands on the same colour or in an empty tube. Three undos per level.'),
+    dict(id='byte-serpent', name='Byte Serpent', icon='🐍', hue=170, cats=['arcade'], touch='Swipe', keys='Arrows or WASD',
+         desc='Guide the data serpent, eat the golden bits and grow without biting your tail.',
+         how='Swipe, or use the arrow keys or WASD. The walls wrap around; only your own tail is deadly.'),
+    dict(id='mind-tiles', name='Mind Tiles', icon='🧠', hue=215, cats=['brain', 'kids'], touch='Tap the tiles', keys='Arrows, Enter',
+         desc='Tiles flash, then hide. Tap every one that lit up. The grid keeps growing.',
+         how='Watch which tiles light up, then tap them all from memory. A wrong tile costs a heart; you have three.'),
+    dict(id='pulse-breaker', name='Pulse Breaker', icon='🧱', hue=190, cats=['arcade'], touch='Drag the paddle', keys='← →',
+         desc='Bounce the energy ball and shatter wall after wall of neon bricks.',
+         how='Move with your finger, the mouse or the arrow keys. Gold bricks take two hits. Three balls per game.'),
+    dict(id='glow-grid', name='Glow Grid', icon='💡', hue=48, cats=['puzzle', 'brain'], touch='Tap a tile', keys='Arrows, Enter',
+         desc='Every tap flips a tile and its neighbours. Light up the whole grid.',
+         how='Tapping a tile flips it and the tiles above, below, left and right. Light all 25 before your moves run out.'),
+    dict(id='mine-sentinel', name='Mine Sentinel', icon='💣', hue=350, cats=['puzzle', 'brain'], touch='Tap, long-press to flag', keys='Arrows, Enter, F',
+         desc='Clear the field using the numbers. Each one counts the mines around it.',
+         how='Tap to dig. Long-press, right-click or switch to Flag mode to mark a mine. Your first dig is always safe.'),
+    dict(id='colour-clash', name='Colour Clash', icon='🌈', hue=10, cats=['brain', 'quick'], touch='Tap a colour', keys='1 2 3 4',
+         desc='The word says one colour, the ink shows another. Trust the rule, not your eyes.',
+         how='Tap the colour of the ink, not the word you read. Later the rule flips now and then. A wrong tap costs three seconds.'),
+    dict(id='math-sprint', name='Math Sprint', icon='➗', hue=140, cats=['kids', 'brain', 'quick'], touch='Tap the answer', keys='1 2 3 4',
          desc='Sixty seconds of quick sums. The faster you go, the harder it gets.',
          how='Tap the right answer, or press 1 to 4. A wrong answer costs three seconds.'),
-    dict(id='memory-stars', name='Memory Stars', icon='⭐', hue=50, cats=['kids', 'brain'],
+    dict(id='word-weave', name='Word Weave', icon='🧶', hue=25, cats=['brain', 'puzzle'], touch='Tap letters', keys='Type, Backspace', typing=True,
+         desc='The letters are tangled. Weave them back into the word before time runs out.',
+         how='Tap or type the letters in the right order to rebuild the word. Each word adds time. Shuffle for a fresh look.'),
+    dict(id='memory-stars', name='Memory Stars', icon='⭐', hue=50, cats=['kids', 'brain'], touch='Tap two cards', keys='Arrows, Enter',
          desc='Flip the cards and find every matching pair of animals, fruit or vehicles.',
          how='Tap two cards. A match stays open. Find all eight pairs with as few misses as you can.'),
-    dict(id='bubble-pop', name='Bubble Pop', icon='🎈', hue=210, cats=['kids', 'quick'],
+    dict(id='pattern-pilot', name='Pattern Pilot', icon='🔮', hue=285, cats=['brain', 'puzzle'], touch='Tap the answer', keys='1 2 3 4',
+         desc='Spot the rule behind the numbers and pick what comes next.',
+         how='Work out how the row of numbers grows, then pick the next one. The rule is shown after each answer. Three hearts.'),
+    dict(id='bubble-pop', name='Bubble Pop', icon='🎈', hue=210, cats=['kids', 'quick'], touch='Tap the bubbles', keys='',
          desc='Pop the bubbles with the right letter, number or colour. Learn while you play.',
          how='Pop only the bubbles that match the target at the top. You have 60 seconds.'),
-    dict(id='fruit-catch', name='Fruit Catch', icon='🧺', hue=110, cats=['kids', 'arcade'],
+    dict(id='count-garden', name='Count Garden', icon='🌻', hue=125, cats=['kids'], touch='Tap the number', keys='1 2 3 4',
+         desc='Count the flowers, bees and frogs in the garden, then tap the right number.',
+         how='Count what you see and tap the number. Ten gardens a round, and a star for every one you get first time.'),
+    dict(id='fruit-catch', name='Fruit Catch', icon='🧺', hue=110, cats=['kids', 'arcade'], touch='Drag the basket', keys='← →',
          desc='Slide the basket, catch the falling fruit and keep the rocks out.',
          how='Move with your finger, the mouse or the arrow keys. Three hearts: a dropped fruit or a caught rock costs one.'),
-    dict(id='bangla-letters', name='Bangla Barnamala', icon='🔤', hue=200, cats=['kids', 'brain'], learn=True,
+    dict(id='bangla-letters', name='Bangla Barnamala', icon='🔤', hue=200, cats=['kids', 'brain'], learn=True, touch='Tap and trace', keys='← → Space',
          fonts='Noto+Sans+Bengali:wght@500;700',
          desc='Learn every Bangla letter and number: hear it spoken, trace it with your finger, then play a quiz.',
          how='Pick Letters or Numbers, then Learn, Write or Quiz. Tap a letter to hear it. In Write, trace the dotted letter and press Check for stars.'),
-    dict(id='arabic-letters', name='Alif Ba', icon='🌙', hue=160, cats=['kids', 'brain'], learn=True,
+    dict(id='arabic-letters', name='Alif Ba', icon='🌙', hue=160, cats=['kids', 'brain'], learn=True, touch='Tap and trace', keys='← → Space',
          fonts='Noto+Naskh+Arabic:wght@500;700',
          desc='The Arabic alphabet and numbers for kids: hear each letter, trace it, and test yourself.',
          how='Pick Letters or Numbers, then Learn, Write or Quiz. Tap a letter to hear its name and a word that starts with it.'),
-    dict(id='english-letters', name='ABC Adventure', icon='🅰️', hue=270, cats=['kids', 'brain'], learn=True,
+    dict(id='english-letters', name='ABC Adventure', icon='🅰️', hue=270, cats=['kids', 'brain'], learn=True, touch='Tap and trace', keys='← → Space',
          desc='A to Z and 0 to 10 with pictures and voice: learn, trace each letter, then take the quiz.',
          how='Pick Letters or Numbers, then Learn, Write or Quiz. Tap the big letter to hear it again.'),
-    dict(id='neon-lanes', name='Neon Lanes', icon='🏎️', hue=320, cats=['arcade', 'quick'],
+    dict(id='neon-lanes', name='Neon Lanes', icon='🏎️', hue=320, cats=['arcade', 'quick'], touch='Tap left or right', keys='← →',
          desc='Swerve between three neon lanes, dodge the traffic and grab the gold.',
-         how='Tap the left or right half, or use the arrow keys, to change lane. Gold squares are a bonus.'),
-    dict(id='quick-draw', name='Quick Draw', icon='⚡', hue=130, cats=['quick', 'brain'],
+         how='Tap the left or right half, or use the arrow keys, to change lane. Gold coins are a bonus.'),
+    dict(id='quick-draw', name='Quick Draw', icon='⚡', hue=130, cats=['quick', 'brain'], touch='Tap', keys='Space',
          desc='Wait for green, then tap faster than anyone. How sharp are your reflexes?',
          how='When the screen turns green, tap or press Space. Five rounds. Tapping on red costs you.'),
-    dict(id='slide-shift', name='Slide Shift', icon='🧩', hue=230, cats=['puzzle', 'brain'],
+    dict(id='slide-shift', name='Slide Shift', icon='🧩', hue=230, cats=['puzzle', 'brain'], touch='Tap a tile', keys='Arrows',
          desc='Slide the scrambled tiles back into order from 1 to 15.',
          how='Tap a tile in line with the gap to slide it, or use the arrow keys. Fewer moves, higher score.'),
-    dict(id='hue-hunter', name='Hue Hunter', icon='🎨', hue=20, cats=['brain', 'kids', 'quick'],
+    dict(id='hue-hunter', name='Hue Hunter', icon='🎨', hue=20, cats=['brain', 'kids', 'quick'], touch='Tap the odd tile', keys='Arrows, Enter',
          desc='One tile is a slightly different colour. Spot it before the clock runs out.',
          how='Tap the odd tile out. Every level adds tiles and makes the difference subtler. A wrong tap costs three seconds.'),
-    dict(id='echo-lights', name='Echo Lights', icon='🚦', hue=150, cats=['kids', 'brain'],
+    dict(id='echo-lights', name='Echo Lights', icon='🚦', hue=150, cats=['kids', 'brain'], touch='Tap the lights', keys='1 2 3 4',
          desc='Watch the coloured lights, then play the pattern back. It grows every round.',
          how='Watch the sequence, then tap the lights in the same order, or press 1 to 4.'),
-    dict(id='grid-duel', name='Grid Duel', icon='❌', hue=0, cats=['kids', 'brain'],
+    dict(id='grid-duel', name='Grid Duel', icon='❌', hue=0, cats=['kids', 'brain'], touch='Tap a square', keys='1 to 9',
          desc='Noughts and crosses against the ZBZGames™ bot, which gets sharper as you win.',
          how='Tap a square, or press 1 to 9, to place your cross. Three in a row wins. Keep going until the bot beats you.'),
-    dict(id='mole-patrol', name='Mole Patrol', icon='🐹', hue=90, cats=['kids', 'quick'],
+    dict(id='mole-patrol', name='Mole Patrol', icon='🐹', hue=90, cats=['kids', 'quick'], touch='Tap the moles', keys='1 to 9',
          desc='Tap the moles as they pop up, but leave the bunnies alone.',
          how='Tap each mole before it hides. Tapping a bunny costs two points. You have 45 seconds.'),
 ]
@@ -144,12 +174,17 @@ def bar(current):
 
 def card(g):
     kids = '<i class="kids">Kids</i>' if 'kids' in g['cats'] else ''
-    cat = next(n for c, n in CATS if c == g['cats'][0])
+    names = [n for c, n in CATS if c in g['cats'] and c != 'kids']
+    cat = ' · '.join(names[:2]) if names else 'Kids'
     return (f'<a class="game" href="/play/{g["id"]}/" data-id="{g["id"]}" data-cats="{" ".join(g["cats"])}" '
             f'data-name="{e(g["name"].lower() + " " + g["desc"].lower())}" style="--h:{g["hue"]}">'
-            f'<div class="tags">{kids}<i>{e(cat if cat != "Kids" else "Learning")}</i></div><span class="best" hidden></span>'
-            f'<div class="art" aria-hidden="true"><span>{g["icon"]}</span></div>'
-            f'<div class="body"><h3>{e(g["name"])}</h3><p>{e(g["desc"])}</p></div></a>')
+            f'<div class="art" aria-hidden="true"><span class="ico">{g["icon"]}</span><em class="playpill">Play</em></div>'
+            f'{kids}<span class="best" hidden></span>'
+            f'<div class="body"><small class="cat">{e(cat)}</small><h3>{e(g["name"])}</h3><p>{e(desc_of(g))}</p></div></a>')
+
+
+def desc_of(g):
+    return g['desc']
 
 
 FOOT = '''<footer class="foot"><div class="wrap">
@@ -177,19 +212,29 @@ document.querySelectorAll('.game[data-id]').forEach(function (a) {
 
 
 def hub():
-    chips = ''.join(f'<button class="chip" type="button" data-cat="{c}" aria-pressed="{str(c == "all").lower()}">{n}</button>' for c, n in CATS)
+    count = lambda c: len(GAMES) if c == 'all' else sum(1 for g in GAMES if c in g['cats'])
+    chips = ''.join(f'<button class="chip" type="button" data-cat="{c}" aria-pressed="{str(c == "all").lower()}">{n}<small>{count(c)}</small></button>' for c, n in CATS)
     kids = [g for g in GAMES if 'kids' in g['cats']]
-    body = f'''<body>
+    names = ''.join(f'<span>{g["icon"]} {e(g["name"])}</span>' for g in GAMES)
+    body = f"""<body>
 <a class="sr" href="#games">Skip to the games</a>
 {bar('arcade')}
 <main>
-<section class="hero"><div class="wrap">
-  <span class="eyebrow">ZBZGames™ Arcade</span>
-  <h1>Free games, <span>built by ZBZGames™</span></h1>
-  <p>{len(GAMES)} original games that open in a second on any phone, tablet or computer. No download, no sign-up, no ads. Install it and play offline.</p>
-  <div class="stats"><div><b>{len(GAMES)}</b><span>Original games</span></div><div><b>{len(kids)}</b><span>For kids</span></div><div><b>0</b><span>Ads or sign-ups</span></div></div>
-</div></section>
+<section class="hero">
 <div class="wrap">
+  <div class="hero-copy">
+    <span class="eyebrow">ZBZGames™ Arcade</span>
+    <h1>Free games, <span>built by ZBZGames™</span></h1>
+    <p>{len(GAMES)} original games that open in a second on any phone, tablet or computer. No download, no sign-up, no ads. Install it and play offline.</p>
+    <div class="hero-go"><a class="go" href="#games">▶ Play now</a><button class="ghost" id="lucky" type="button">🎲 Surprise me</button></div>
+    <div class="stats"><div><b>{len(GAMES)}</b><span>Original games</span></div><div><b>{len(kids)}</b><span>For kids</span></div><div><b>0</b><span>Ads or sign-ups</span></div></div>
+  </div>
+  <div class="pick" id="pick" hidden><p class="pick-label">Today's pick</p></div>
+</div>
+<div class="marquee" aria-hidden="true"><div>{names}{names}</div></div>
+</section>
+<div class="wrap">
+  <section class="shelf" id="recent" hidden><h2>Jump back in</h2><div class="row"></div></section>
   <div class="tools"><div class="chips" role="group" aria-label="Category">{chips}</div>
   <input class="search" type="search" placeholder="Search games…" aria-label="Search games" autocomplete="off"></div>
   <div class="grid" id="games">{''.join(card(g) for g in GAMES)}</div>
@@ -202,7 +247,7 @@ def hub():
   </a>
   <section class="kids-band" id="kids">
     <h2>🧒 Kids corner</h2>
-    <p>Gentle, colourful games that practise letters, numbers, colours, memory and quick sums. Safe to hand over: no chat, no links out, no ads.</p>
+    <p>Gentle, colourful games that practise letters, numbers, counting, colours, memory and quick sums. Safe to hand over: no chat, no links out, no ads.</p>
     <div class="grid">{''.join(card(g) for g in kids)}</div>
   </section>
 </div>
@@ -210,7 +255,7 @@ def hub():
 {FOOT}
 <script>
 (function () {{
-  var chips = document.querySelectorAll('.chip'), cards = document.querySelectorAll('#games .game'), q = document.querySelector('.search'), empty = document.querySelector('.empty'), cat = 'all';
+  var chips = document.querySelectorAll('.chip'), cards = [].slice.call(document.querySelectorAll('#games .game')), q = document.querySelector('.search'), empty = document.querySelector('.empty'), cat = 'all';
   function apply() {{
     var s = (q.value || '').trim().toLowerCase(), n = 0;
     cards.forEach(function (c) {{ var ok = (cat === 'all' || c.dataset.cats.split(' ').indexOf(cat) >= 0) && (!s || c.dataset.name.indexOf(s) >= 0); c.hidden = !ok; if (ok) n++; }});
@@ -219,12 +264,29 @@ def hub():
   chips.forEach(function (b) {{ b.addEventListener('click', function () {{ cat = b.dataset.cat; chips.forEach(function (x) {{ x.setAttribute('aria-pressed', String(x === b)); }}); apply(); }}); }});
   q.addEventListener('input', apply);
   var m = /[?&]cat=(\\w+)/.exec(location.search); if (m) {{ var b = document.querySelector('.chip[data-cat="' + m[1] + '"]'); if (b) b.click(); }}
+  /* Surprise me: any game except the one played last. */
+  var last = null; try {{ last = JSON.parse(localStorage.getItem('zbz-last')); }} catch (e) {{}}
+  document.getElementById('lucky').addEventListener('click', function () {{
+    var pool = cards.filter(function (c) {{ return c.dataset.id !== last; }});
+    location.href = pool[Math.floor(Math.random() * pool.length)].href;
+  }});
+  /* Today's pick: the same game for everyone on the same day. */
+  var day = Math.floor((Date.now() - new Date().getTimezoneOffset() * 60000) / 86400000), pick = document.getElementById('pick');
+  pick.appendChild(cards[(day * 7) % cards.length].cloneNode(true)); pick.hidden = false;
+  /* Jump back in: the games played most recently on this device. */
+  try {{
+    var recent = JSON.parse(localStorage.getItem('zbz-recent') || '[]'), shelf = document.getElementById('recent'), row = shelf.querySelector('.row');
+    (Array.isArray(recent) ? recent : []).forEach(function (id) {{
+      var c = cards.filter(function (x) {{ return x.dataset.id === id; }})[0]; if (c) row.appendChild(c.cloneNode(true));
+    }});
+    shelf.hidden = !row.children.length;
+  }} catch (e) {{}}
 }})();
 </script>
 {BEST_JS}
 </body>
 </html>
-'''
+"""
     desc = f'Play {len(GAMES)} free original online games by ZBZGames: arcade, puzzle, brain and kids games. No download, no sign-up, no ads.'
     return head('ZBZGames Arcade · Free online games for everyone', desc, '/play/') + '\n' + body
 
@@ -321,7 +383,7 @@ def privacy():
       <li><b>Analytics and tracking</b><span>None. No cookies.</span></li>
       <li><b>Personal data</b><span>None is asked for or sent to us.</span></li></ul></div>
     <div class="panel"><h2>What stays on your device</h2>
-      <p>Best scores, your light or dark choice and the sound setting are saved in your own browser so they are there next time.
+      <p>Best scores, the games you played last, your light or dark choice and the sound setting are saved in your own browser so they are there next time.
       Clearing the site's data, or uninstalling the app, removes them. They are never sent anywhere.</p></div>
     <div class="panel"><h2>Kids corner</h2>
       <p>The Kids corner and the Bangla, Arabic and English learning games are made to be safe to hand to a child: no chat, no
@@ -355,18 +417,18 @@ def page(g):
     others = [o for o in GAMES if o['id'] != g['id']]
     same = [o for o in others if set(o['cats']) & set(g['cats'])][:4]
     more = same + [o for o in others if o not in same][:6 - len(same)]
-    meta = json.dumps({'id': g['id'], 'name': g['name'], 'how': g['how']}, ensure_ascii=False).replace('</', '<\\/')
-    body = f'''<body>
+    meta = json.dumps({'id': g['id'], 'name': g['name'], 'how': g['how'], 'icon': g['icon'], 'hue': g['hue'], 'touch': g.get('touch', ''), 'keys': g.get('keys', ''), 'typing': bool(g.get('typing'))}, ensure_ascii=False).replace('</', '<\\/')
+    body = f'''<body style="--h:{g['hue']}">
 <a class="sr" href="#stage">Skip to the game</a>
 {bar('game')}
 <main class="play-main">
   <div class="hud">
-    <h1>{g['icon']} {e(g['name'])}</h1>
+    <h1><i aria-hidden="true">{g['icon']}</i><span>{e(g['name'])}</span></h1>
     <div class="num"><small>Score</small><b id="score">0</b></div>
     <div class="num best"><small>Best</small><b id="best">0</b></div>
-    <button class="hbtn" id="pause" type="button" aria-label="Pause" hidden>&#10073;&#10073;</button>
-    <button class="hbtn" id="mute" type="button" aria-label="Sound off">&#128264;</button>
-    <button class="hbtn" id="full" type="button" aria-label="Full screen">&#x26F6;</button>
+    <button class="hbtn" id="pause" type="button" aria-label="Pause" hidden></button>
+    <button class="hbtn" id="mute" type="button" aria-label="Sound off"></button>
+    <button class="hbtn" id="full" type="button" aria-label="Full screen"></button>
   </div>
   <div id="arena"><div id="stage" tabindex="0" aria-label="{e(g['name'])} game area"></div><div id="card" hidden></div></div>
   <section class="more"><h2>More games</h2><div class="grid">{''.join(card(o) for o in more)}</div></section>

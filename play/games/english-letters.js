@@ -1,7 +1,7 @@
 /* ABC Adventure · ZBZGames™ original, for kids. Learn, write and hear the English alphabet and numbers. */
 (() => {
   const W = [['Apple', '🍎'], ['Ball', '⚽'], ['Cat', '🐱'], ['Dog', '🐶'], ['Elephant', '🐘'], ['Fish', '🐟'], ['Giraffe', '🦒'], ['House', '🏠'],
-    ['Ice cream', '🍦'], ['Juice', '🧃'], ['Kite', '🪁'], ['Lion', '🦁'], ['Moon', '🌙'], ['Nest', '🪺'], ['Orange', '🍊'], ['Parrot', '🦜'],
+    ['Ice cream', '🍦'], ['Juice', '🧃'], ['Kite', '🪁'], ['Lion', '🦁'], ['Moon', '🌙'], ['Nose', '👃'], ['Orange', '🍊'], ['Parrot', '🦜'],
     ['Queen', '👑'], ['Rainbow', '🌈'], ['Sun', '☀️'], ['Tiger', '🐯'], ['Umbrella', '☂️'], ['Violin', '🎻'], ['Whale', '🐳'], ['Xylophone', '🎼'],
     ['Yo-yo', '🪀'], ['Zebra', '🦓']];
   const letters = W.map(([word, emoji], i) => {
