@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Order Rush · Free online game by ZBZGames</title>
+<meta name="description" content="The numbers are scattered. Tap them in order, from 1 up, as fast as you can. Play Order Rush free in your browser: no download, no sign-up, no ads.">
+<link rel="canonical" href="https://zbzgames.zyeemzia.com/play/order-rush/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="ZBZGames">
+<meta property="og:title" content="Order Rush · Free online game by ZBZGames"><meta property="og:description" content="The numbers are scattered. Tap them in order, from 1 up, as fast as you can. Play Order Rush free in your browser: no download, no sign-up, no ads.">
+<meta property="og:url" content="https://zbzgames.zyeemzia.com/play/order-rush/"><meta property="og:image" content="https://zbzgames.zyeemzia.com/icon-512.png">
+<meta name="theme-color" content="#f4f5fc" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#05060f" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<script>try{var t=localStorage.getItem("matrixTheme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="icon" href="/favicon.ico?v=4" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=4">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png?v=4">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=4">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ZBZGames"><meta name="application-name" content="ZBZGames">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/play/arcade.css?v=688f043e">
+<script src="/zz-app.js?v=4" data-icon="4" data-sw="/sw.js" data-name="ZBZGames" defer></script>
+
+</head>
+<body style="--h:20">
+<a class="sr" href="#stage">Skip to the game</a>
+<header class="bar"><div class="wrap">
+  <a class="logo" href="/play/"><img src="/icon-192.png?v=4" width="34" height="34" alt=""><span>ZBZ<b>Games™</b></span></a>
+  <nav aria-label="Main">
+    <a href="/play/">Arcade</a>
+    <a href="/play/#kids" class="hide-sm">Kids</a>
+    <a href="/" class="hide-sm">Studio</a>
+    <span data-zz-install></span>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch light or dark theme"><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+  </nav>
+</div></header>
+<main class="play-main">
+  <div class="hud">
+    <h1><i aria-hidden="true">🧮</i><span>Order Rush</span></h1>
+    <div class="num"><small>Score</small><b id="score">0</b></div>
+    <div class="num best"><small>Best</small><b id="best">0</b></div>
+    <button class="hbtn" id="pause" type="button" aria-label="Pause" hidden></button>
+    <button class="hbtn" id="mute" type="button" aria-label="Sound off"></button>
+    <button class="hbtn" id="full" type="button" aria-label="Full screen"></button>
+  </div>
+  <div id="arena"><div id="stage" tabindex="0" aria-label="Order Rush game area"></div><div id="card" hidden></div></div>
+  <section class="more"><h2>More games</h2><div class="grid"><a class="game" href="/play/orbit-dash/" data-id="orbit-dash" data-cats="arcade quick" data-name="orbit dash circle the core, grab the stars and flip direction before the spikes." style="--h:265"><div class="art" aria-hidden="true"><span class="ico">🪐</span><em class="playpill">Play</em></div><span class="best" hidden></span><div class="body"><small class="cat">Arcade · Quick play</small><h3>Orbit Dash</h3><p>Circle the core, grab the stars and flip direction before the spikes.</p></div></a><a class="game" href="/play/circuit-spin/" data-id="circuit-spin" data-cats="puzzle brain" data-name="circuit spin rotate the wire tiles until power from the core reaches every corner." style="--h:188"><div class="art" aria-hidden="true"><span class="ico">🔌</span><em class="playpill">Play</em></div><span class="best" hidden></span><div class="body"><small class="cat">Puzzle · Brain</small><h3>Circuit Spin</h3><p>Rotate the wire tiles until power from the core reaches every corner.</p></div></a><a class="game" href="/play/beam-bender/" data-id="beam-bender" data-cats="puzzle brain" data-name="beam bender flip the mirrors so the light beam bends its way to the target." style="--h:335"><div class="art" aria-hidden="true"><span class="ico">🔦</span><em class="playpill">Play</em></div><span class="best" hidden></span><div class="body"><small class="cat">Puzzle · Brain</small><h3>Beam Bender</h3><p>Flip the mirrors so the light beam bends its way to the target.</p></div></a><a class="game" href="/play/stack-tower/" data-id="stack-tower" data-cats="arcade quick kids" data-name="stack tower drop each sliding block on the tower. only the overlap stays." style="--h:200"><div class="art" aria-hidden="true"><span class="ico">🏗️</span><em class="playpill">Play</em></div><i class="kids">Kids</i><span class="best" hidden></span><div class="body"><small class="cat">Arcade · Quick play</small><h3>Stack Tower</h3><p>Drop each sliding block on the tower. Only the overlap stays.</p></div></a><a class="game" href="/play/word-forge/" data-id="word-forge" data-cats="brain puzzle" data-name="word forge find the hidden five-letter word in six tries, then forge the next." style="--h:45"><div class="art" aria-hidden="true"><span class="ico">⚒️</span><em class="playpill">Play</em></div><span class="best" hidden></span><div class="body"><small class="cat">Puzzle · Brain</small><h3>Word Forge</h3><p>Find the hidden five-letter word in six tries, then forge the next.</p></div></a><a class="game" href="/play/meteor-drift/" data-id="meteor-drift" data-cats="arcade quick" data-name="meteor drift steer through a meteor shower, grab crystals and let a shield take one hit." style="--h:255"><div class="art" aria-hidden="true"><span class="ico">☄️</span><em class="playpill">Play</em></div><span class="best" hidden></span><div class="body"><small class="cat">Arcade · Quick play</small><h3>Meteor Drift</h3><p>Steer through a meteor shower, grab crystals and let a shield take one hit.</p></div></a></div></section>
+</main>
+<footer class="foot"><div class="wrap">
+  <p>ZBZGames™ is the interactive entertainment studio of ZyeemZia™. Every arcade game is an original, free to play, with no sign-up and no ads.</p>
+  <p><a href="/">Studio &amp; mobile games</a><a href="https://zyeemzia.com">zyeemzia.com</a><a href="https://academy.zyeemzia.com">Academy</a><a href="https://ai.zyeemzia.com">ZyeemZia AI</a><a href="https://zbzai.zyeemzia.com">ZBZAI™</a><a href="/privacy-arcade.html">Privacy</a><a href="https://policy.zyeemzia.com">Policies</a></p>
+  <p>Copyright © ZyeemZia</p>
+</div></footer>
+<script>window.ZBZ_GAME = {"id": "order-rush", "name": "Order Rush", "how": "Find and tap 1, then 2, then 3 and so on. Clearing a board adds time and the next board is bigger. A wrong tap costs two seconds.", "icon": "🧮", "hue": 20, "touch": "Tap in order", "keys": "Arrows, Enter", "typing": false};</script>
+<script src="/play/engine.js?v=688f043e"></script>
+
+<script src="/play/games/order-rush.js?v=688f043e"></script>
+<script>
+/* Theme: follows the device until the visitor picks one; shared with the studio page. */
+(function () {
+  var b = document.getElementById('themeBtn'); if (!b) return;
+  b.addEventListener('click', function () {
+    var r = document.documentElement, dark = r.dataset.theme ? r.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    r.dataset.theme = dark ? 'light' : 'dark';
+    try { localStorage.setItem('matrixTheme', r.dataset.theme); } catch (e) {}
+    window.dispatchEvent(new Event('zbz-theme'));
+  });
+})();
+/* Show each game's best score on its card. Storage may be blocked; then nothing shows. */
+document.querySelectorAll('.game[data-id]').forEach(function (a) {
+  try { var v = JSON.parse(localStorage.getItem('zbz-best-' + a.dataset.id) || '0'); if (v > 0) { var b = a.querySelector('.best'); b.textContent = '★ ' + v; b.hidden = false; } } catch (e) {}
+});
+</script>
+<script>/* ZyeemZia house style: justified writing. Paragraphs and list text that read left-aligned are justified; centred text, headings, buttons and columns too narrow to justify cleanly stay as they are. Copyright © ZyeemZia */(function(){var S='p,li,dd,blockquote';function j(r){if(!r||!r.querySelectorAll)return;var L=r.querySelectorAll(S);for(var i=0;i<L.length;i++){var e=L[i];if(e.getAttribute('data-zj'))continue;e.setAttribute('data-zj','1');var a=getComputedStyle(e).textAlign;if(a==='start'||a==='left'||a==='-webkit-auto'){var w=e.clientWidth;if(!w||w>=280)e.style.textAlign='justify'}}}function go(){j(document);if(!window.MutationObserver)return;new MutationObserver(function(m){for(var i=0;i<m.length;i++){var N=m[i].addedNodes;for(var k=0;k<N.length;k++){var n=N[k];if(n.nodeType===1)j(n.matches&&n.matches(S)?n.parentNode:n)}}}).observe(document.body,{childList:true,subtree:true})}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go()})()</script>
+</body>
+</html>

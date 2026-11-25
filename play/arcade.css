@@ -346,6 +346,42 @@ button { font-family: inherit; }
 .cg-field span { animation: pop .3s cubic-bezier(.2, 1.6, .4, 1) both; }
 .cg-field span.cnt { transform: scale(1.25); filter: drop-shadow(0 0 8px #ffd23f); transition: transform .15s; }
 
+/* Order Rush */
+.or-grid { display: grid; gap: 8px; width: min(100%, 400px, 54vh); aspect-ratio: 1; grid-auto-rows: minmax(0, 1fr); }
+.or-c { min-width: 0; min-height: 0; border: 0; border-radius: 16px; color: #fff; font: 700 clamp(1.3rem, 6vw, 2.1rem) 'Rajdhani', sans-serif; line-height: 1; cursor: pointer; padding: 0; touch-action: manipulation; background: linear-gradient(145deg, hsl(var(--hue) 82% 58%), hsl(calc(var(--hue) + 24) 74% 40%)); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35), inset 0 -4px 0 rgba(0, 0, 0, .18); text-shadow: 0 2px 4px rgba(0, 0, 0, .25); animation: pop .25s ease-out both; transition: transform .1s, opacity .2s, filter .2s; }
+.or-c:active { transform: scale(.93); }
+.or-c.done { opacity: .22; filter: grayscale(1); cursor: default; }
+/* Odd One Out, Shadow Safari */
+.oo-grid, .sh-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; }
+.oo-grid.six { grid-template-columns: repeat(3, 1fr); }
+.oo-c { position: relative; aspect-ratio: 1.25; border: 2px solid var(--line2); border-radius: 22px; background: var(--panel); font-size: clamp(2.6rem, 13vw, 4rem); line-height: 1; cursor: pointer; padding: 0; touch-action: manipulation; box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .08); animation: pop .3s cubic-bezier(.2, 1.6, .4, 1) both; transition: transform .1s, border-color .1s; }
+.oo-grid.six .oo-c { font-size: clamp(2rem, 9vw, 3rem); aspect-ratio: 1; }
+.oo-c:hover { border-color: var(--cyan); } .oo-c:active { transform: scale(.95); }
+.oo-c small { position: absolute; top: 6px; left: 10px; font: 700 .8rem 'Rajdhani', sans-serif; color: var(--ink3); }
+.oo-c.ok { background: color-mix(in srgb, #22c55e 30%, var(--panel)); border-color: #22c55e; }
+.oo-c.no { opacity: .35; border-color: #ff5470; }
+.sh-plate { width: 100%; display: grid; place-items: center; padding: 14px; border-radius: 24px; background: linear-gradient(160deg, #fff7d6, #ffe1a8); border: 2px solid #f0cc74; }
+.sh-shape { font-size: clamp(5rem, 26vw, 8rem); line-height: 1.15; transition: filter .45s; animation: pop .3s ease-out; }
+.sh-shape.dark { filter: brightness(0); }
+.sh-opts .oo-c { aspect-ratio: 1.7; font-size: clamp(2.2rem, 10vw, 3.2rem); }
+/* Tide Fill */
+.tf-grid { display: grid; width: min(100%, 400px, 48vh); aspect-ratio: 1; grid-auto-rows: minmax(0, 1fr); border-radius: 14px; overflow: hidden; border: 3px solid var(--line2); touch-action: manipulation; cursor: pointer; }
+.tf-grid i { display: block; min-width: 0; min-height: 0; transition: background .18s; }
+.tf-grid i.in { animation: tfIn .3s ease-out; }
+@keyframes tfIn { from { filter: brightness(1.9); } }
+.tf-pal { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.tf-p { position: relative; width: 50px; height: 50px; border-radius: 50%; border: 3px solid rgba(255, 255, 255, .7); background: var(--c); cursor: pointer; padding: 0; touch-action: manipulation; box-shadow: 0 8px 18px -8px var(--c), inset 0 2px 0 rgba(255, 255, 255, .45); transition: transform .12s, opacity .12s; }
+.tf-p small { font: 700 .95rem 'Rajdhani', sans-serif; color: rgba(0, 0, 0, .55); }
+.tf-p:active { transform: scale(.9); } .tf-p:disabled { opacity: .3; cursor: default; transform: scale(.82); }
+/* Knight Hop */
+.kh-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; width: min(100%, 400px, 50vh); aspect-ratio: 1; grid-auto-rows: minmax(0, 1fr); }
+.kh-c { position: relative; min-width: 0; min-height: 0; border: 0; border-radius: 12px; background: var(--tile); color: var(--ink); font-size: clamp(1.7rem, 8vw, 2.6rem); line-height: 1; cursor: pointer; padding: 0; touch-action: manipulation; transition: transform .1s; }
+.kh-c.alt { background: var(--tile2); }
+.kh-c.can::after { content: ''; position: absolute; inset: 38%; border-radius: 50%; background: var(--cyan); opacity: .75; }
+.kh-c.can:active { transform: scale(.93); }
+.kh-c.me { color: #fff; background: linear-gradient(145deg, #a78bfa, #6d28d9); box-shadow: 0 0 22px -4px #a78bfa, inset 0 1px 0 rgba(255, 255, 255, .4); font-size: clamp(2rem, 10vw, 3.1rem); animation: pop .2s ease-out; }
+.kh-c.hole { background: repeating-linear-gradient(45deg, rgba(255, 84, 112, .3) 0 6px, transparent 6px 12px); cursor: default; }
+
 @media (max-width: 640px) {
   /* Canvas games have no content height of their own, so the arena must claim the screen. */
   #arena { padding: 0 8px; min-height: calc(100vh - 128px); min-height: calc(100dvh - 128px); }
