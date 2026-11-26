@@ -53,6 +53,29 @@
   let game = null, round = null, score = 0, shown = -1, playing = false, paused = false;
   let muted = store.get('muted', false);
 
+  /* ---------- progress ----------
+     A player level, a daily streak and the list of games tried. All of it is
+     kept on this device only, next to the best scores. */
+  const RANKS = ['Rookie', 'Player', 'Pro', 'Ace', 'Master', 'Legend'];
+  const levelBase = l => 50 * l * (l - 1);                       // 0, 100, 300, 600, 1000 …
+  const levelOf = xp => { let l = 1; while (levelBase(l + 1) <= xp) l++; return l; };
+  const rankOf = l => RANKS[Math.min(RANKS.length - 1, Math.floor((l - 1) / 3))];
+  const MOTES = Array.from({ length: 22 }, () => [Math.random(), Math.random(), Math.random()]);
+  function earn(isBest) {
+    const num = (k, d) => { const v = store.get(k, d); return typeof v === 'number' && isFinite(v) ? v : d; };
+    const day = Math.floor((Date.now() - new Date().getTimezoneOffset() * 60000) / 86400000);
+    let tried = store.get('tried', []); if (!Array.isArray(tried)) tried = [];
+    const first = !tried.includes(meta.id);
+    if (first) store.set('tried', tried.concat(meta.id));
+    let st = store.get('streak', null); if (!st || typeof st !== 'object') st = { d: 0, n: 0 };
+    const newDay = st.d !== day;
+    if (newDay) { st = { d: day, n: st.d === day - 1 ? (st.n || 0) + 1 : 1 }; store.set('streak', st); }
+    const gain = (score > 0 ? 10 : 2) + (isBest ? 25 : 0) + (first ? 30 : 0) + (newDay ? 15 : 0);
+    const before = num('xp', 0), xp = before + gain;
+    store.set('xp', xp);
+    return { gain, xp, up: levelOf(xp) > levelOf(before), streak: st.n };
+  }
+
   /* ---------- sound ----------
      Synthesized in the browser, no files to download. Each effect layers a
      tone with its harmonics, a short noise transient for the "attack" a real
@@ -175,7 +198,8 @@
   function newRound() {
     const stage = $('#stage');
     const disposers = [], timers = new Set();
-    let alive = true, clock = 0, mark = performance.now();
+    let alive = true, clock = 0, mark = performance.now(), told = false;
+    const oldBest = store.get('best-' + meta.id, 0);
     stage.innerHTML = '';
     fx.clear(); stage.appendChild(fx.el); fx.fit();
     const arm = t => { t.at = performance.now(); t.id = setTimeout(() => { timers.delete(t); if (alive) t.fn(); }, t.left); };
@@ -253,8 +277,22 @@
         const r = ctx.createRadialGradient(W / 2, 0, 0, W / 2, 0, Math.max(W, H) * .85);
         r.addColorStop(0, `hsla(${hue},90%,60%,${colors.dark ? .2 : .13})`); r.addColorStop(1, `hsla(${hue},90%,60%,0)`);
         ctx.fillStyle = r; ctx.fillRect(0, 0, W, H);
+        if (calm) return;
+        // slow drifting motes give every canvas game some depth; they stop with the game clock
+        const tt = api.time();
+        ctx.fillStyle = `hsl(${hue},90%,${colors.dark ? 80 : 42}%)`;
+        for (let i = 0; i < MOTES.length; i++) {
+          const m = MOTES[i], x = (m[0] * W + tt * (5 + m[2] * 12)) % (W + 20) - 10, y = (m[1] * H + tt * (3 + m[2] * 8)) % (H + 20) - 10;
+          ctx.globalAlpha = (colors.dark ? .34 : .2) * (.3 + .7 * Math.abs(Math.sin(tt * (.4 + m[2]) + i)));
+          ctx.beginPath(); ctx.arc(x, y, .8 + m[2] * 1.7, 0, 7); ctx.fill();
+        }
+        ctx.globalAlpha = 1;
       },
-      score(n) { score = Math.max(0, Math.round(n)); paint(); },
+      score(n) {
+        score = Math.max(0, Math.round(n)); paint();
+        // the moment an old best is beaten, say so once
+        if (!told && alive && oldBest > 0 && score > oldBest) { told = true; fx.text(stage.clientWidth / 2, 34, 'New best!', '#ffd23f', 26); sfx('star'); }
+      },
       add(n) { api.score(score + n); },
       end(text) {
         if (!alive) return;
@@ -263,9 +301,10 @@
         const best = store.get('best-' + meta.id, 0);
         const isBest = score > best;
         if (isBest) store.set('best-' + meta.id, score);
-        sfx(isBest ? 'win' : 'bad');
-        showCard('over', text, isBest);
-        if (isBest) fx.confetti();
+        const prog = earn(isBest);
+        sfx(isBest || prog.up ? 'win' : 'bad');
+        showCard('over', text, isBest, prog);
+        if (isBest || prog.up) fx.confetti();
         paint();
       }
     };
@@ -317,20 +356,37 @@
     const t = meta.touch ? `<span>👆 ${meta.touch}</span>` : '', k = meta.keys ? `<span class="k">⌨️ ${meta.keys}</span>` : '';
     return t || k ? `<div class="ctl">${t}${k}</div>` : '';
   };
-  function showCard(kind, text, isBest) {
+  function progRow(p) {
+    if (!p) return '';
+    const L = levelOf(p.xp), a = levelBase(L), b = levelBase(L + 1), pct = Math.max(4, Math.min(100, Math.round((p.xp - a) / (b - a) * 100)));
+    return `<div class="xp${p.up ? ' up' : ''}"><span>${p.up ? 'Level up! ' : ''}Level ${L} · ${rankOf(L)}</span><i><b style="width:${pct}%"></b></i><span>+${p.gain} XP${p.streak > 1 ? ' · 🔥 ' + p.streak : ''}</span></div>`;
+  }
+  function share(btn) {
+    const text = `I scored ${score} in ${meta.name} on ZBZGames. Can you beat it?`, url = location.origin + '/play/' + meta.id + '/';
+    const done = () => { btn.textContent = 'Copied ✓'; };
+    try {
+      if (navigator.share) navigator.share({ title: meta.name + ' · ZBZGames', text, url }).catch(() => {});
+      else if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text + ' ' + url).then(done, () => {});
+    } catch { /* sharing is not allowed here */ }
+  }
+  function showCard(kind, text, isBest, prog) {
     const card = $('#card');
     const best = store.get('best-' + meta.id, 0);
     const icon = `<div class="c-icon" aria-hidden="true">${meta.icon || '🎮'}</div>`;
     const home = '<a class="ghost" href="/play/">All games</a>';
+    const canShare = !meta.kids && score > 0 && (navigator.share || (navigator.clipboard && navigator.clipboard.writeText));
+    const extra = (canShare ? '<button class="ghost sm" id="share" type="button">Share score</button>' : '')
+      + (meta.next ? `<a class="ghost sm" href="/play/${meta.next.id}/">Next: ${meta.next.icon} ${meta.next.name}</a>` : '');
     card.innerHTML = kind === 'start'
       ? `${icon}<h1>${meta.name}</h1><p class="how">${meta.how}</p>${chips()}<button class="go" id="go" type="button">▶ Play</button>${best ? `<p class="small">Your best: ${best}</p>` : ''}`
       : kind === 'pause'
         ? `<h2>Paused</h2><p class="how">${meta.how}</p>${chips()}<div class="c-row"><button class="go" id="go" type="button">▶ Resume</button><button class="ghost" id="again" type="button">Restart</button>${home}</div>`
-        : `${isBest ? '<p class="badge">New best</p>' : ''}<h2>${isBest ? 'Well played!' : 'Game over'}</h2><p class="big" id="final">0</p>${text ? `<p class="how">${text}</p>` : ''}<div class="c-row"><button class="go" id="go" type="button">↻ Play again</button>${home}</div><p class="small">Best: ${Math.max(best, score)}</p>`;
+        : `${isBest ? '<p class="badge">New best</p>' : ''}<h2>${isBest ? 'Well played!' : 'Game over'}</h2><p class="big" id="final">0</p>${text ? `<p class="how">${text}</p>` : ''}<div class="c-row"><button class="go" id="go" type="button">↻ Play again</button>${home}</div>${extra ? `<div class="c-row">${extra}</div>` : ''}${progRow(prog)}<p class="small">Best: ${Math.max(best, score)}</p>`;
     card.hidden = false;
     const go = $('#go');
     go.onclick = () => kind === 'pause' ? togglePause() : play();
     const again = $('#again'); if (again) again.onclick = play;
+    const sh = $('#share'); if (sh) sh.onclick = () => share(sh);
     if (kind === 'over') {
       const el = $('#final'), end = score, t0 = performance.now(), dur = calm ? 0 : Math.min(900, 250 + end * 8);
       const up = t => { if (!el.isConnected) return; const k = dur ? Math.min(1, (t - t0) / dur) : 1; el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(up); };

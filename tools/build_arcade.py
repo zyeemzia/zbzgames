@@ -8,7 +8,7 @@ import html, json, os, datetime
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ORIGIN = 'https://zbzgames.zyeemzia.com'
-CATS = [('all', 'All games'), ('kids', 'Kids'), ('arcade', 'Arcade'), ('puzzle', 'Puzzle'), ('brain', 'Brain'), ('quick', 'Quick play')]
+CATS = [('all', 'All games'), ('kids', 'Kids'), ('arcade', 'Arcade'), ('puzzle', 'Puzzle'), ('brain', 'Brain'), ('quick', 'Quick play'), ('new', 'New')]
 
 GAMES = [
     dict(id='orbit-dash', name='Orbit Dash', icon='🪐', hue=265, cats=['arcade', 'quick'], touch='Tap to flip', keys='Space',
@@ -133,6 +133,36 @@ GAMES = [
     dict(id='mole-patrol', name='Mole Patrol', icon='🐹', hue=90, cats=['kids', 'quick'], touch='Tap the moles', keys='1 to 9',
          desc='Tap the moles as they pop up, but leave the bunnies alone.',
          how='Tap each mole before it hides. Tapping a bunny costs two points. You have 45 seconds.'),
+    dict(id='gem-cascade', name='Gem Cascade', icon='💎', hue=280, cats=['puzzle', 'quick', 'new'], touch='Swipe or tap two gems', keys='Arrows, Enter',
+         desc='Swap neighbouring gems into lines of three and set off chain reactions.',
+         how='Swipe a gem, or tap two gems that touch, to swap them. Three or more in a line vanish and new gems fall in. You have 25 moves.'),
+    dict(id='nova-blaster', name='Nova Blaster', icon='🚀', hue=225, cats=['arcade', 'quick', 'new'], touch='Drag to steer', keys='← →',
+         desc='Your ship fires by itself. Slide under the raiders and let none slip past.',
+         how='Move with your finger, the mouse or the arrow keys. Tough raiders need more hits. Gold gives double fire, pink gives a life back.'),
+    dict(id='one-line', name='One Line', icon='✏️', hue=160, cats=['puzzle', 'brain', 'new'], touch='Drag a line', keys='Arrows, U to undo',
+         desc='Draw a single line that passes through every square exactly once.',
+         how='Drag from the gold dot through touching squares until every open square is filled. Drag back along the line to undo. Each solved board adds time.'),
+    dict(id='cloud-hopper', name='Cloud Hopper', icon='☁️', hue=205, cats=['arcade', 'kids', 'new'], touch='Drag left or right', keys='← →',
+         desc='Bounce from cloud to cloud and climb as high as the sky goes.',
+         how='You bounce by yourself: steer with your finger, the mouse or the arrow keys. Pink clouds break, blue clouds move, and a spring sends you flying.'),
+    dict(id='four-fall', name='Four Fall', icon='🔴', hue=5, cats=['brain', 'kids', 'new'], touch='Tap a column', keys='1 to 7',
+         desc='Drop discs into the frame and line up four before the ZBZGames™ bot does.',
+         how='Tap a column to drop your disc. Four in a row, across, down or slanted, wins. Keep winning until the bot beats you.'),
+    dict(id='maze-dash', name='Maze Dash', icon='🌀', hue=250, cats=['arcade', 'puzzle', 'new'], touch='Swipe', keys='Arrows or WASD',
+         desc='Race through a fresh maze to the star. Every maze is bigger than the last.',
+         how='Swipe or use the arrow keys. You run until the path splits. Reach the gold star before the clock runs out; a blue gem is a bonus.'),
+    dict(id='flip-field', name='Flip Field', icon='⚫', hue=145, cats=['brain', 'puzzle', 'new'], touch='Tap a square', keys='Arrows, Enter',
+         desc='Trap the bot\'s discs between yours to flip them and take the field.',
+         how='Place a disc so that a line of the bot\'s discs is caught between two of yours: they all flip. The dots show where you can play. Most discs wins.'),
+    dict(id='ring-tower', name='Ring Tower', icon='🗼', hue=30, cats=['puzzle', 'brain', 'kids', 'new'], touch='Tap two pegs', keys='1 2 3',
+         desc='Move the whole tower of rings to the last peg, one ring at a time.',
+         how='Tap a peg to lift its top ring, then tap where it goes. A bigger ring never sits on a smaller one. The fewest moves earn a bonus.'),
+    dict(id='number-nest', name='Number Nest', icon='🔟', hue=255, cats=['brain', 'puzzle', 'new'], touch='Tap a square, then a number', keys='Arrows, 1 to 6',
+         desc='A pocket sudoku: each row, column and box holds every number once.',
+         how='Tap an empty square, then the number that belongs there. No number repeats in a row, a column or a box. Three wrong numbers end the game.'),
+    dict(id='clock-wise', name='Clock Wise', icon='🕒', hue=185, cats=['kids', 'brain', 'new'], touch='Tap the time', keys='1 2 3 4',
+         desc='Read the hands of the clock and pick the right time.',
+         how='The short hand shows the hour and the long hand the minutes. Tap the time the clock shows. Ten clocks a round, and a star for each one read first time.'),
 ]
 
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
@@ -198,7 +228,9 @@ def bar(current):
 
 def card(g):
     kids = '<i class="kids">Kids</i>' if 'kids' in g['cats'] else ''
-    names = [n for c, n in CATS if c in g['cats'] and c != 'kids']
+    if 'new' in g['cats']:
+        kids += '<i class="new">New</i>'
+    names = [n for c, n in CATS if c in g['cats'] and c not in ('kids', 'new')]
     cat = ' · '.join(names[:2]) if names else 'Kids'
     return (f'<a class="game" href="/play/{g["id"]}/" data-id="{g["id"]}" data-cats="{" ".join(g["cats"])}" '
             f'data-name="{e(g["name"].lower() + " " + g["desc"].lower())}" style="--h:{g["hue"]}">'
@@ -258,6 +290,13 @@ def hub():
 <div class="marquee" aria-hidden="true"><div>{names}{names}</div></div>
 </section>
 <div class="wrap">
+  <section class="me" id="me" hidden aria-label="Your progress">
+    <div class="me-lv"><b id="meLv">1</b><span>Level</span></div>
+    <div class="me-xp"><div><strong id="meRank">Rookie</strong><span id="meNext"></span></div><i><b id="meBar"></b></i></div>
+    <div class="me-st"><b id="meStreak">0</b><span>Day streak</span></div>
+    <div class="me-st"><b id="meTried">0</b><span>Games tried</span></div>
+    <div class="me-st"><b id="meBests">0</b><span>Best scores</span></div>
+  </section>
   <section class="shelf" id="recent" hidden><h2>Jump back in</h2><div class="row"></div></section>
   <div class="tools"><div class="chips" role="group" aria-label="Category">{chips}</div>
   <input class="search" type="search" placeholder="Search games…" aria-label="Search games" autocomplete="off"></div>
@@ -297,6 +336,24 @@ def hub():
   /* Today's pick: the same game for everyone on the same day. */
   var day = Math.floor((Date.now() - new Date().getTimezoneOffset() * 60000) / 86400000), pick = document.getElementById('pick');
   pick.appendChild(cards[(day * 7) % cards.length].cloneNode(true)); pick.hidden = false;
+  /* Your progress: level, daily streak and games tried, all kept on this device. */
+  try {{
+    var num = function (k) {{ var v = JSON.parse(localStorage.getItem('zbz-' + k) || '0'); return typeof v === 'number' && isFinite(v) ? v : 0; }};
+    var xp = num('xp'), base = function (l) {{ return 50 * l * (l - 1); }}, lv = 1; while (base(lv + 1) <= xp) lv++;
+    var st = JSON.parse(localStorage.getItem('zbz-streak') || 'null'), tried = JSON.parse(localStorage.getItem('zbz-tried') || '[]');
+    var today = Math.floor((Date.now() - new Date().getTimezoneOffset() * 60000) / 86400000);
+    var bests = cards.filter(function (c) {{ try {{ return JSON.parse(localStorage.getItem('zbz-best-' + c.dataset.id) || '0') > 0; }} catch (e) {{ return false; }} }}).length;
+    if (xp > 0) {{
+      var ranks = ['Rookie', 'Player', 'Pro', 'Ace', 'Master', 'Legend'], set = function (id, v) {{ document.getElementById(id).textContent = v; }};
+      set('meLv', lv); set('meRank', ranks[Math.min(ranks.length - 1, Math.floor((lv - 1) / 3))]);
+      set('meNext', (base(lv + 1) - xp) + ' XP to level ' + (lv + 1));
+      document.getElementById('meBar').style.width = Math.max(4, Math.round((xp - base(lv)) / (base(lv + 1) - base(lv)) * 100)) + '%';
+      set('meStreak', st && (st.d === today || st.d === today - 1) ? st.n : 0);
+      set('meTried', (Array.isArray(tried) ? tried.filter(function (id) {{ return cards.some(function (c) {{ return c.dataset.id === id; }}); }}).length : 0) + '/' + cards.length);
+      set('meBests', bests);
+      document.getElementById('me').hidden = false;
+    }}
+  }} catch (e) {{}}
   /* Jump back in: the games played most recently on this device. */
   try {{
     var recent = JSON.parse(localStorage.getItem('zbz-recent') || '[]'), shelf = document.getElementById('recent'), row = shelf.querySelector('.row');
@@ -407,11 +464,11 @@ def privacy():
       <li><b>Analytics and tracking</b><span>None. No cookies.</span></li>
       <li><b>Personal data</b><span>None is asked for or sent to us.</span></li></ul></div>
     <div class="panel"><h2>What stays on your device</h2>
-      <p>Best scores, the games you played last, your light or dark choice and the sound setting are saved in your own browser so they are there next time.
-      Clearing the site's data, or uninstalling the app, removes them. They are never sent anywhere.</p></div>
+      <p>Best scores, your level and daily streak, the games you played, your light or dark choice and the sound setting are saved in your own browser so they are there next time.
+      Clearing the site's data, or uninstalling the app, removes them. They are never sent anywhere. The Share score button, on games outside the Kids corner, only opens your own device's share menu with a line of text; nothing is sent to us.</p></div>
     <div class="panel"><h2>Kids corner</h2>
       <p>The Kids corner and the Bangla, Arabic and English learning games are made to be safe to hand to a child: no chat, no
-      ads, no purchases, no links out of the arcade and no data collection. Finger tracing in the Write mode is checked on the
+      ads, no purchases, no links out of the arcade, no sharing buttons and no data collection. Finger tracing in the Write mode is checked on the
       device itself and never uploaded.</p>
       <p>Letters are read aloud by your device's own text-to-speech voice. Some phones may use their maker's online speech
       service to produce that voice; that is a setting of the device, not of the game, and it can be changed in the phone's
@@ -441,7 +498,12 @@ def page(g):
     others = [o for o in GAMES if o['id'] != g['id']]
     same = [o for o in others if set(o['cats']) & set(g['cats'])][:4]
     more = same + [o for o in others if o not in same][:6 - len(same)]
-    meta = json.dumps({'id': g['id'], 'name': g['name'], 'how': g['how'], 'icon': g['icon'], 'hue': g['hue'], 'touch': g.get('touch', ''), 'keys': g.get('keys', ''), 'typing': bool(g.get('typing'))}, ensure_ascii=False).replace('</', '<\\/')
+    # the game offered next: the following one in the list that shares a category
+    at = GAMES.index(g)
+    ring = GAMES[at + 1:] + GAMES[:at]
+    nxt = next((o for o in ring if (set(o['cats']) & set(g['cats'])) - {'new'}), ring[0])
+    meta = json.dumps({'id': g['id'], 'name': g['name'], 'how': g['how'], 'icon': g['icon'], 'hue': g['hue'], 'touch': g.get('touch', ''), 'keys': g.get('keys', ''), 'typing': bool(g.get('typing')), 'kids': 'kids' in g['cats'],
+                       'next': {'id': nxt['id'], 'name': nxt['name'], 'icon': nxt['icon']}}, ensure_ascii=False).replace('</', '<\\/')
     body = f'''<body style="--h:{g['hue']}">
 <a class="sr" href="#stage">Skip to the game</a>
 {bar('game')}
