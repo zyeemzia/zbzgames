@@ -36,6 +36,8 @@
   --grad: linear-gradient(120deg, #a78bfa, #56e0ff 55%, #e2b95c);
   --ln-shade: 0%;
 }
+/* Form controls use the page font; browsers otherwise fall back to Arial. */
+button, input, select, textarea { font-family: inherit; }
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
