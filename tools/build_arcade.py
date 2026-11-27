@@ -133,36 +133,66 @@ GAMES = [
     dict(id='mole-patrol', name='Mole Patrol', icon='🐹', hue=90, cats=['kids', 'quick'], touch='Tap the moles', keys='1 to 9',
          desc='Tap the moles as they pop up, but leave the bunnies alone.',
          how='Tap each mole before it hides. Tapping a bunny costs two points. You have 45 seconds.'),
-    dict(id='gem-cascade', name='Gem Cascade', icon='💎', hue=280, cats=['puzzle', 'quick', 'new'], touch='Swipe or tap two gems', keys='Arrows, Enter',
+    dict(id='gem-cascade', name='Gem Cascade', icon='💎', hue=280, cats=['puzzle', 'quick'], touch='Swipe or tap two gems', keys='Arrows, Enter',
          desc='Swap neighbouring gems into lines of three and set off chain reactions.',
          how='Swipe a gem, or tap two gems that touch, to swap them. Three or more in a line vanish and new gems fall in. You have 25 moves.'),
-    dict(id='nova-blaster', name='Nova Blaster', icon='🚀', hue=225, cats=['arcade', 'quick', 'new'], touch='Drag to steer', keys='← →',
+    dict(id='nova-blaster', name='Nova Blaster', icon='🚀', hue=225, cats=['arcade', 'quick'], touch='Drag to steer', keys='← →',
          desc='Your ship fires by itself. Slide under the raiders and let none slip past.',
          how='Move with your finger, the mouse or the arrow keys. Tough raiders need more hits. Gold gives double fire, pink gives a life back.'),
-    dict(id='one-line', name='One Line', icon='✏️', hue=160, cats=['puzzle', 'brain', 'new'], touch='Drag a line', keys='Arrows, U to undo',
+    dict(id='one-line', name='One Line', icon='✏️', hue=160, cats=['puzzle', 'brain'], touch='Drag a line', keys='Arrows, U to undo',
          desc='Draw a single line that passes through every square exactly once.',
          how='Drag from the gold dot through touching squares until every open square is filled. Drag back along the line to undo. Each solved board adds time.'),
-    dict(id='cloud-hopper', name='Cloud Hopper', icon='☁️', hue=205, cats=['arcade', 'kids', 'new'], touch='Drag left or right', keys='← →',
+    dict(id='cloud-hopper', name='Cloud Hopper', icon='☁️', hue=205, cats=['arcade', 'kids'], touch='Drag left or right', keys='← →',
          desc='Bounce from cloud to cloud and climb as high as the sky goes.',
          how='You bounce by yourself: steer with your finger, the mouse or the arrow keys. Pink clouds break, blue clouds move, and a spring sends you flying.'),
-    dict(id='four-fall', name='Four Fall', icon='🔴', hue=5, cats=['brain', 'kids', 'new'], touch='Tap a column', keys='1 to 7',
+    dict(id='four-fall', name='Four Fall', icon='🔴', hue=5, cats=['brain', 'kids'], touch='Tap a column', keys='1 to 7',
          desc='Drop discs into the frame and line up four before the ZBZGames™ bot does.',
          how='Tap a column to drop your disc. Four in a row, across, down or slanted, wins. Keep winning until the bot beats you.'),
-    dict(id='maze-dash', name='Maze Dash', icon='🌀', hue=250, cats=['arcade', 'puzzle', 'new'], touch='Swipe', keys='Arrows or WASD',
+    dict(id='maze-dash', name='Maze Dash', icon='🌀', hue=250, cats=['arcade', 'puzzle'], touch='Swipe', keys='Arrows or WASD',
          desc='Race through a fresh maze to the star. Every maze is bigger than the last.',
          how='Swipe or use the arrow keys. You run until the path splits. Reach the gold star before the clock runs out; a blue gem is a bonus.'),
-    dict(id='flip-field', name='Flip Field', icon='⚫', hue=145, cats=['brain', 'puzzle', 'new'], touch='Tap a square', keys='Arrows, Enter',
+    dict(id='flip-field', name='Flip Field', icon='⚫', hue=145, cats=['brain', 'puzzle'], touch='Tap a square', keys='Arrows, Enter',
          desc='Trap the bot\'s discs between yours to flip them and take the field.',
          how='Place a disc so that a line of the bot\'s discs is caught between two of yours: they all flip. The dots show where you can play. Most discs wins.'),
-    dict(id='ring-tower', name='Ring Tower', icon='🗼', hue=30, cats=['puzzle', 'brain', 'kids', 'new'], touch='Tap two pegs', keys='1 2 3',
+    dict(id='ring-tower', name='Ring Tower', icon='🗼', hue=30, cats=['puzzle', 'brain', 'kids'], touch='Tap two pegs', keys='1 2 3',
          desc='Move the whole tower of rings to the last peg, one ring at a time.',
          how='Tap a peg to lift its top ring, then tap where it goes. A bigger ring never sits on a smaller one. The fewest moves earn a bonus.'),
-    dict(id='number-nest', name='Number Nest', icon='🔟', hue=255, cats=['brain', 'puzzle', 'new'], touch='Tap a square, then a number', keys='Arrows, 1 to 6',
+    dict(id='number-nest', name='Number Nest', icon='🔟', hue=255, cats=['brain', 'puzzle'], touch='Tap a square, then a number', keys='Arrows, 1 to 6',
          desc='A pocket sudoku: each row, column and box holds every number once.',
          how='Tap an empty square, then the number that belongs there. No number repeats in a row, a column or a box. Three wrong numbers end the game.'),
-    dict(id='clock-wise', name='Clock Wise', icon='🕒', hue=185, cats=['kids', 'brain', 'new'], touch='Tap the time', keys='1 2 3 4',
+    dict(id='clock-wise', name='Clock Wise', icon='🕒', hue=185, cats=['kids', 'brain'], touch='Tap the time', keys='1 2 3 4',
          desc='Read the hands of the clock and pick the right time.',
          how='The short hand shows the hour and the long hand the minutes. Tap the time the clock shows. Ten clocks a round, and a star for each one read first time.'),
+    dict(id='paddle-duel', name='Paddle Duel', icon='🏓', hue=175, cats=['arcade', 'quick', 'new'], touch='Drag to move', keys='← →',
+         desc='Bat the ball past the bot at the top. It gets sharper with every point.',
+         how='Move your paddle with your finger, the mouse or the arrow keys. Each return scores 1 and each point off the bot scores 10. Miss three and the duel is over.'),
+    dict(id='lane-leap', name='Lane Leap', icon='🐸', hue=95, cats=['arcade', 'kids', 'new'], touch='Tap middle or sides', keys='Arrows or WASD',
+         desc='Hop across lanes of sliding blocks and keep ahead of the rising ground.',
+         how='Tap the middle to hop forward and the sides to step left or right. Rest on the green rows and pick up stars, but do not wait too long: the ground behind you is rising.'),
+    dict(id='soft-landing', name='Soft Landing', icon='🛸', hue=240, cats=['arcade', 'new'], touch='Hold to fire the engine', keys='Space, ← →',
+         desc='Fire the engine to slow your fall and set the craft down gently on the pad.',
+         how='Hold to fire the engine; the craft leans toward your finger. Touch the green pad while the speed reads safe. Fuel left over is a bonus. Three crashes end the flight.'),
+    dict(id='sky-juggle', name='Sky Juggle', icon='⚽', hue=30, cats=['arcade', 'quick', 'kids', 'new'], touch='Tap the ball', keys='Space, ← →',
+         desc='Keep the ball in the air. Every tap counts, and it gets livelier as you go.',
+         how='Tap the ball to knock it up. Tap its left side to send it right, and its right side to send it left. Every ten taps is a bonus. It ends when the ball drops.'),
+    dict(id='box-battle', name='Box Battle', icon='🔲', hue=205, cats=['brain', 'kids', 'new'], touch='Tap between two dots', keys='Arrows, Enter',
+         desc='Join the dots. Close a box to claim it, and take more boxes than the bot.',
+         how='Take turns drawing a line between two dots. Draw the fourth side of a box and it is yours, and you go again. Most boxes wins, with a bonus for beating the bot.'),
+    dict(id='pixel-clues', name='Pixel Clues', icon='🖼️', hue=315, cats=['puzzle', 'brain', 'new'], touch='Tap to fill', keys='Arrows, Enter, X',
+         desc='Number clues tell how many squares in each line are filled. Work out the picture.',
+         how='Each number is a run of filled squares in that row or column, in order, with a gap between runs. Tap to fill a square. A clue turns green when its line fits. Each picture adds time.'),
+    dict(id='letter-hunt', name='Letter Hunt', icon='🔎', hue=60, cats=['brain', 'puzzle', 'new'], touch='Drag over a word', keys='Arrows, Enter',
+         desc='Six words hide in the letters: across, down and on the slant. Catch them all.',
+         how='Drag from the first letter of a word to its last, or tap those two letters. Words run across, down or on a slant. Each word adds a little time; a cleared board adds more.'),
+    dict(id='block-bay', name='Block Bay', icon='🟦', hue=215, cats=['puzzle', 'new'], touch='Pick a shape, tap the bay', keys='1 2 3, Arrows, Enter',
+         desc='Fit the shapes into the bay. Full rows and columns clear. How long can you last?',
+         how='Pick one of the three shapes, then tap where its middle should go; hold and slide to see it first. A full row or column clears. The game ends when no shape fits.'),
+    dict(id='ten-pairs', name='Ten Pairs', icon='🍒', hue=350, cats=['kids', 'brain', 'quick', 'new'], touch='Tap two numbers', keys='Arrows, Enter',
+         desc='Tap two numbers that add up to ten. How many tens can you make in a minute?',
+         how='Tap two numbers that make 10, like 3 and 7. They pop and new numbers drop in. Three tens in a row earn a bonus. You have one minute.'),
+    dict(id='tiny-speller', name='Tiny Speller', icon='🔡', hue=285, cats=['kids', 'brain', 'new'], touch='Tap the letters', keys='Type the letters', typing=True,
+         desc='Look at the picture and tap the letters in order to spell its name.',
+         how='Tap the letters in the right order to spell the word for the picture. Two of the letters do not belong. Eight words a round, and a star for each one spelled without a slip.'),
 ]
 
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
@@ -285,7 +315,7 @@ def hub():
     <div class="hero-go"><a class="go" href="#games">▶ Play now</a><button class="ghost" id="lucky" type="button">🎲 Surprise me</button></div>
     <div class="stats"><div><b>{len(GAMES)}</b><span>Original games</span></div><div><b>{len(kids)}</b><span>For kids</span></div><div><b>0</b><span>Ads or sign-ups</span></div></div>
   </div>
-  <div class="pick" id="pick" hidden><p class="pick-label">Today's pick</p></div>
+  <div class="pick" id="pick" hidden><p class="pick-label">Today's pick <span id="pickNote"></span></p></div>
 </div>
 <div class="marquee" aria-hidden="true"><div>{names}{names}</div></div>
 </section>
@@ -296,6 +326,7 @@ def hub():
     <div class="me-st"><b id="meStreak">0</b><span>Day streak</span></div>
     <div class="me-st"><b id="meTried">0</b><span>Games tried</span></div>
     <div class="me-st"><b id="meBests">0</b><span>Best scores</span></div>
+    <div class="badges" id="badges" aria-label="Badges"></div>
   </section>
   <section class="shelf" id="recent" hidden><h2>Jump back in</h2><div class="row"></div></section>
   <div class="tools"><div class="chips" role="group" aria-label="Category">{chips}</div>
@@ -324,6 +355,18 @@ def hub():
     cards.forEach(function (c) {{ var ok = (cat === 'all' || c.dataset.cats.split(' ').indexOf(cat) >= 0) && (!s || c.dataset.name.indexOf(s) >= 0); c.hidden = !ok; if (ok) n++; }});
     empty.hidden = n > 0;
   }}
+  /* Favourites are marked on the game pages and kept on this device. */
+  try {{
+    var favs = JSON.parse(localStorage.getItem('zbz-favs') || '[]'), nf = 0; favs = Array.isArray(favs) ? favs : [];
+    [].forEach.call(document.querySelectorAll('.game[data-id]'), function (c) {{ if (favs.indexOf(c.dataset.id) >= 0) c.classList.add('faved'); }});
+    cards.forEach(function (c) {{ if (favs.indexOf(c.dataset.id) >= 0) {{ c.dataset.cats += ' fav'; nf++; }} }});
+    if (nf) {{
+      var fb = document.createElement('button'); fb.className = 'chip'; fb.type = 'button'; fb.dataset.cat = 'fav'; fb.setAttribute('aria-pressed', 'false');
+      fb.innerHTML = '♥ Favourites<small>' + nf + '</small>';
+      var bar = document.querySelector('.chips'); bar.insertBefore(fb, bar.children[1] || null);
+      chips = document.querySelectorAll('.chip');
+    }}
+  }} catch (e) {{}}
   chips.forEach(function (b) {{ b.addEventListener('click', function () {{ cat = b.dataset.cat; chips.forEach(function (x) {{ x.setAttribute('aria-pressed', String(x === b)); }}); apply(); }}); }});
   q.addEventListener('input', apply);
   var m = /[?&]cat=(\\w+)/.exec(location.search); if (m) {{ var b = document.querySelector('.chip[data-cat="' + m[1] + '"]'); if (b) b.click(); }}
@@ -335,7 +378,14 @@ def hub():
   }});
   /* Today's pick: the same game for everyone on the same day. */
   var day = Math.floor((Date.now() - new Date().getTimezoneOffset() * 60000) / 86400000), pick = document.getElementById('pick');
-  pick.appendChild(cards[(day * 7) % cards.length].cloneNode(true)); pick.hidden = false;
+  var todays = cards[(day * 7) % cards.length];
+  pick.appendChild(todays.cloneNode(true)); pick.hidden = false;
+  /* Playing today's pick earns bonus XP once; the game page reads this note. */
+  try {{
+    var dl = JSON.parse(localStorage.getItem('zbz-daily') || 'null');
+    if (!dl || dl.d !== day || dl.id !== todays.dataset.id) {{ dl = {{ d: day, id: todays.dataset.id }}; localStorage.setItem('zbz-daily', JSON.stringify(dl)); }}
+    document.getElementById('pickNote').textContent = dl.done ? 'Bonus earned ✓' : '+20 XP today';
+  }} catch (e) {{}}
   /* Your progress: level, daily streak and games tried, all kept on this device. */
   try {{
     var num = function (k) {{ var v = JSON.parse(localStorage.getItem('zbz-' + k) || '0'); return typeof v === 'number' && isFinite(v) ? v : 0; }};
@@ -351,6 +401,16 @@ def hub():
       set('meStreak', st && (st.d === today || st.d === today - 1) ? st.n : 0);
       set('meTried', (Array.isArray(tried) ? tried.filter(function (id) {{ return cards.some(function (c) {{ return c.dataset.id === id; }}); }}).length : 0) + '/' + cards.length);
       set('meBests', bests);
+      /* Badges: once earned they stay. */
+      var triedN = Array.isArray(tried) ? tried.filter(function (id) {{ return cards.some(function (c) {{ return c.dataset.id === id; }}); }}).length : 0, sn = st && st.n ? st.n : 0;
+      var list = [['🌱', 'First steps', 'Play a game', triedN >= 1], ['🧭', 'Explorer', 'Try 10 games', triedN >= 10], ['🌍', 'Globetrotter', 'Try 30 games', triedN >= 30],
+        ['🏁', 'Seen it all', 'Try every game', triedN >= cards.length], ['🔥', 'On fire', 'Play 3 days in a row', sn >= 3], ['⚡', 'Unstoppable', 'Play 7 days in a row', sn >= 7],
+        ['🏅', 'Record setter', 'Best score in 5 games', bests >= 5], ['🏆', 'Champion', 'Best score in 20 games', bests >= 20], ['⭐', 'Rising star', 'Reach level 5', lv >= 5], ['👑', 'Arcade royalty', 'Reach level 10', lv >= 10]];
+      var had = JSON.parse(localStorage.getItem('zbz-badges') || '[]'); had = Array.isArray(had) ? had : [];
+      list.forEach(function (b) {{ if (b[3] && had.indexOf(b[1]) < 0) had.push(b[1]); b[3] = had.indexOf(b[1]) >= 0; }});
+      localStorage.setItem('zbz-badges', JSON.stringify(had));
+      list.sort(function (a, b) {{ return (b[3] ? 1 : 0) - (a[3] ? 1 : 0); }});
+      document.getElementById('badges').innerHTML = list.map(function (b) {{ return '<span class="badge-i' + (b[3] ? ' got' : '') + '"><i>' + b[0] + '</i>' + b[1] + '<small>' + b[2] + '</small></span>'; }}).join('');
       document.getElementById('me').hidden = false;
     }}
   }} catch (e) {{}}
@@ -464,7 +524,7 @@ def privacy():
       <li><b>Analytics and tracking</b><span>None. No cookies.</span></li>
       <li><b>Personal data</b><span>None is asked for or sent to us.</span></li></ul></div>
     <div class="panel"><h2>What stays on your device</h2>
-      <p>Best scores, your level and daily streak, the games you played, your light or dark choice and the sound setting are saved in your own browser so they are there next time.
+      <p>Best scores and your last few scores, your level, daily streak and badges, the games you played and your favourites, your light or dark choice and the sound setting are saved in your own browser so they are there next time.
       Clearing the site's data, or uninstalling the app, removes them. They are never sent anywhere. The Share score button, on games outside the Kids corner, only opens your own device's share menu with a line of text; nothing is sent to us.</p></div>
     <div class="panel"><h2>Kids corner</h2>
       <p>The Kids corner and the Bangla, Arabic and English learning games are made to be safe to hand to a child: no chat, no

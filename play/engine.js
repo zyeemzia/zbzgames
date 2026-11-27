@@ -70,10 +70,13 @@
     let st = store.get('streak', null); if (!st || typeof st !== 'object') st = { d: 0, n: 0 };
     const newDay = st.d !== day;
     if (newDay) { st = { d: day, n: st.d === day - 1 ? (st.n || 0) + 1 : 1 }; store.set('streak', st); }
-    const gain = (score > 0 ? 10 : 2) + (isBest ? 25 : 0) + (first ? 30 : 0) + (newDay ? 15 : 0);
+    // today's pick, noted by the arcade home page, earns a bonus once
+    const dl = store.get('daily', null), daily = !!dl && typeof dl === 'object' && dl.d === day && dl.id === meta.id && !dl.done;
+    if (daily) store.set('daily', { d: day, id: meta.id, done: true });
+    const gain = (score > 0 ? 10 : 2) + (isBest ? 25 : 0) + (first ? 30 : 0) + (newDay ? 15 : 0) + (daily ? 20 : 0);
     const before = num('xp', 0), xp = before + gain;
     store.set('xp', xp);
-    return { gain, xp, up: levelOf(xp) > levelOf(before), streak: st.n };
+    return { gain, xp, up: levelOf(xp) > levelOf(before), streak: st.n, daily };
   }
 
   /* ---------- sound ----------
@@ -301,6 +304,10 @@
         const best = store.get('best-' + meta.id, 0);
         const isBest = score > best;
         if (isBest) store.set('best-' + meta.id, score);
+        // the last few scores, for the little chart on the card, and how often this game was played
+        const hist = store.get('hist-' + meta.id, []), plays = store.get('plays-' + meta.id, 0);
+        store.set('hist-' + meta.id, (Array.isArray(hist) ? hist : []).concat(score).slice(-8));
+        store.set('plays-' + meta.id, (typeof plays === 'number' && isFinite(plays) ? plays : 0) + 1);
         const prog = earn(isBest);
         sfx(isBest || prog.up ? 'win' : 'bad');
         showCard('over', text, isBest, prog);
@@ -359,7 +366,15 @@
   function progRow(p) {
     if (!p) return '';
     const L = levelOf(p.xp), a = levelBase(L), b = levelBase(L + 1), pct = Math.max(4, Math.min(100, Math.round((p.xp - a) / (b - a) * 100)));
-    return `<div class="xp${p.up ? ' up' : ''}"><span>${p.up ? 'Level up! ' : ''}Level ${L} · ${rankOf(L)}</span><i><b style="width:${pct}%"></b></i><span>+${p.gain} XP${p.streak > 1 ? ' · 🔥 ' + p.streak : ''}</span></div>`;
+    return `<div class="xp${p.up ? ' up' : ''}"><span>${p.up ? 'Level up! ' : ''}Level ${L} · ${rankOf(L)}</span><i><b style="width:${pct}%"></b></i><span>+${p.gain} XP${p.streak > 1 ? ' · 🔥 ' + p.streak : ''}${p.daily ? ' · 🎯' : ''}</span></div>${p.daily ? '<p class="small">🎯 Today\u2019s pick bonus: +20 XP</p>' : ''}`;
+  }
+  const favList = () => { const f = store.get('favs', []); return Array.isArray(f) ? f : []; };
+  const favBtn = () => { const on = favList().includes(meta.id); return `<button class="fav" id="fav" type="button" aria-pressed="${on}">${on ? '♥ In your favourites' : '♡ Add to favourites'}</button>`; };
+  function histRow() {
+    const hs = store.get('hist-' + meta.id, []);
+    if (!Array.isArray(hs) || hs.length < 3) return '';
+    const top = Math.max(1, ...hs);
+    return `<div class="hist" role="img" aria-label="Your last ${hs.length} scores: ${hs.join(', ')}"><div>${hs.map((v, i) => `<i${i === hs.length - 1 ? ' class="now"' : ''} style="height:${Math.max(8, Math.round(v / top * 100))}%"></i>`).join('')}</div><span>Your last ${hs.length} rounds</span></div>`;
   }
   function share(btn) {
     const text = `I scored ${score} in ${meta.name} on ZBZGames. Can you beat it?`, url = location.origin + '/play/' + meta.id + '/';
@@ -373,20 +388,28 @@
     const card = $('#card');
     const best = store.get('best-' + meta.id, 0);
     const icon = `<div class="c-icon" aria-hidden="true">${meta.icon || '🎮'}</div>`;
+    const plays = store.get('plays-' + meta.id, 0);
     const home = '<a class="ghost" href="/play/">All games</a>';
     const canShare = !meta.kids && score > 0 && (navigator.share || (navigator.clipboard && navigator.clipboard.writeText));
     const extra = (canShare ? '<button class="ghost sm" id="share" type="button">Share score</button>' : '')
       + (meta.next ? `<a class="ghost sm" href="/play/${meta.next.id}/">Next: ${meta.next.icon} ${meta.next.name}</a>` : '');
     card.innerHTML = kind === 'start'
-      ? `${icon}<h1>${meta.name}</h1><p class="how">${meta.how}</p>${chips()}<button class="go" id="go" type="button">▶ Play</button>${best ? `<p class="small">Your best: ${best}</p>` : ''}`
+      ? `${icon}<h1>${meta.name}</h1><p class="how">${meta.how}</p>${chips()}<button class="go" id="go" type="button">▶ Play</button>${favBtn()}${best ? `<p class="small">Your best: ${best}${plays > 1 ? ` · Played ${plays} times` : ''}</p>` : ''}`
       : kind === 'pause'
         ? `<h2>Paused</h2><p class="how">${meta.how}</p>${chips()}<div class="c-row"><button class="go" id="go" type="button">▶ Resume</button><button class="ghost" id="again" type="button">Restart</button>${home}</div>`
-        : `${isBest ? '<p class="badge">New best</p>' : ''}<h2>${isBest ? 'Well played!' : 'Game over'}</h2><p class="big" id="final">0</p>${text ? `<p class="how">${text}</p>` : ''}<div class="c-row"><button class="go" id="go" type="button">↻ Play again</button>${home}</div>${extra ? `<div class="c-row">${extra}</div>` : ''}${progRow(prog)}<p class="small">Best: ${Math.max(best, score)}</p>`;
+        : `${isBest ? '<p class="badge">New best</p>' : ''}<h2>${isBest ? 'Well played!' : best > 0 && score === best ? 'Level with your best!' : best > 0 && score >= best * .9 ? 'So close!' : 'Game over'}</h2><p class="big" id="final">0</p>${text ? `<p class="how">${text}</p>` : ''}<div class="c-row"><button class="go" id="go" type="button">↻ Play again</button>${home}</div>${extra ? `<div class="c-row">${extra}</div>` : ''}${progRow(prog)}${histRow()}<p class="small">Best: ${Math.max(best, score)}</p>${favBtn()}`;
     card.hidden = false;
     const go = $('#go');
     go.onclick = () => kind === 'pause' ? togglePause() : play();
     const again = $('#again'); if (again) again.onclick = play;
     const sh = $('#share'); if (sh) sh.onclick = () => share(sh);
+    const fv = $('#fav');
+    if (fv) fv.onclick = () => {
+      const list = favList(), on = !list.includes(meta.id);
+      store.set('favs', on ? list.concat(meta.id) : list.filter(x => x !== meta.id));
+      fv.setAttribute('aria-pressed', String(on)); fv.textContent = on ? '♥ In your favourites' : '♡ Add to favourites';
+      if (on) sfx('star');
+    };
     if (kind === 'over') {
       const el = $('#final'), end = score, t0 = performance.now(), dur = calm ? 0 : Math.min(900, 250 + end * 8);
       const up = t => { if (!el.isConnected) return; const k = dur ? Math.min(1, (t - t0) / dur) : 1; el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(up); };
@@ -401,6 +424,29 @@
     if (paused) { round.pause(); showCard('pause'); } else { hideCard(); round.resume(); $('#stage').focus({ preventScroll: true }); }
     paint();
   }
+
+  /* ---------- game controller ----------
+     A controller works wherever the keyboard does: the stick or the pad are the
+     arrow keys, the main button is Space, and Start pauses. It is only read
+     while one is plugged in. */
+  let padOn = false;
+  const padHeld = {};
+  function padPoll() {
+    let gp = null;
+    try { gp = [...navigator.getGamepads()].find(Boolean); } catch { /* not allowed here */ }
+    if (!gp) { padOn = false; return; }
+    const b = i => !!(gp.buttons[i] && gp.buttons[i].pressed), ax = gp.axes || [];
+    const want = { ArrowUp: b(12) || ax[1] < -.55, ArrowDown: b(13) || ax[1] > .55, ArrowLeft: b(14) || ax[0] < -.55, ArrowRight: b(15) || ax[0] > .55, ' ': b(0), Enter: b(2), Escape: b(9) };
+    for (const k in want) {
+      if (want[k] === !!padHeld[k]) continue;
+      padHeld[k] = want[k];
+      // on a card the main button presses the big button, as a click would
+      if (want[k] && (k === ' ' || k === 'Enter') && !$('#card').hidden && $('#go')) { $('#go').click(); continue; }
+      window.dispatchEvent(new KeyboardEvent(want[k] ? 'keydown' : 'keyup', { key: k, bubbles: true, cancelable: true }));
+    }
+    requestAnimationFrame(padPoll);
+  }
+  window.addEventListener('gamepadconnected', () => { if (!padOn) { padOn = true; requestAnimationFrame(padPoll); } });
 
   /* ---------- boot ---------- */
   window.ZBZ = {
